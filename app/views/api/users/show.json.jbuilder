@@ -1,7 +1,6 @@
 json.users do
   json.set! @user.id do
-    json.extract! @user, :id, :email, :fname,
-      :lname, :DOB, :gender, :city, :state
+    json.partial! 'api/users/user', user: @user
   end
 end
 
