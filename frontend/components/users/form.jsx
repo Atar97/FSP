@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import {createSelect,
+  createMonthSelect} from './user_form_util';
+
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +20,10 @@ class UserForm extends React.Component {
       country: ''
     };
 
-    // this.defaultFills = {
-    //   fname: 'First name',
-    //   lname: 'Last name'
-    // };
     this.handleChange = this.handleChange.bind(this);
-    this.createSelect = this.createSelect.bind(this);
-    this.createMonthSelect = this.createMonthSelect.bind(this);
+    this.createSelect = createSelect.bind(this);
+    this.createMonthSelect = createMonthSelect.bind(this);
+    this.valueSetter = this.valueSetter.bind(this);
   }
 
   handleChange(fieldName) {
@@ -37,35 +37,20 @@ class UserForm extends React.Component {
     this.props.sendForm(user);
   }
 
-  createSelect(min, max, name) {
-    const mappableArray = [];
-    for (let i = min; i <= max; i++) {
-      mappableArray.push(i);
+  valueSetter(fieldName) {
+    if (this.state[fieldName]) {
+      return this.state[fieldName];
     }
-    return (
-      <select onChange={this.handleChange(name)}>
-        <option>{name}</option>
-        {mappableArray.map(el => {
-          return <option key={el} value={el}>{el}</option>;
-        })}
-      </select>
-    );
+    return this.defaultFills[fieldName];
   }
 
-  createMonthSelect() {
-    const mappableArray = [1,2,3,4,5,6,7,8,9,10,11,12];
-    const months = [null,
-          'January', 'February', 'March',
-          'April', 'May', 'June',
-          'July', 'August', 'September',
-          'October', 'November', 'December'];
+  createInput(fieldName, type = 'text') {
     return (
-      <select onChange={this.handleChange('month')}>
-        <option>Month</option>
-        {mappableArray.map(el => {
-          return <option key={el} value={el}>{months[el]}</option>;
-        })}
-      </select>
+      <input
+        type={type}
+        onChange={this.handleChange(fieldName)}
+        value={this.state[fieldName]}>
+      </input>
     );
   }
 
@@ -87,11 +72,10 @@ class UserForm extends React.Component {
       <div className='userform signup-form'>
         <Link to='/login'>log in</Link>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input onChange={this.handleChange('fname')}></input>
-            <input onChange={this.handleChange('lname')}></input>
-            <input onChange={this.handleChange('email')}></input>
-            <input type='password'
-              onChange={this.handleChange('password')}></input>
+            {this.createInput('fname')}
+            {this.createInput('lname')}
+            {this.createInput('email')}
+            {this.createInput('password', 'password')}
             {this.createSelect(1, 31, 'day')}
             {this.createMonthSelect()}
             {this.createSelect(1900, 2006, 'year')}
