@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   helper_method :current_user, :logged_in?
+  before_action :underscore_params!
 
   def login(user)
     session[:session_token] = user.reset_session_token!
@@ -24,5 +25,11 @@ class ApplicationController < ActionController::Base
     end
     nil
   end
-  
+
+  private
+
+  def underscore_params!
+    params.transform_keys!(&:underscore)
+  end
+
 end
