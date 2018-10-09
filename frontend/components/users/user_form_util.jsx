@@ -12,8 +12,9 @@ export function createSelect(min, max, name) {
     }
   }
   return (
-    <select onChange={this.handleChange(name)}>
-      <option>{name}</option>
+    <select className='input'
+      onChange={this.handleChange(name)}>
+        <option>{name}</option>
       {mappableArray.map(el => {
         return <option key={el} value={el}>{el}</option>;
       })}
@@ -29,7 +30,8 @@ export function createMonthSelect() {
         'July', 'August', 'September',
         'October', 'November', 'December'];
   return (
-    <select onChange={this.handleChange('month')}>
+    <select className='input'
+      onChange={this.handleChange('month')}>
       <option>Month</option>
       {mappableArray.map(el => {
         return <option key={el} value={el}>{months[el]}</option>;
@@ -38,7 +40,7 @@ export function createMonthSelect() {
   );
 }
 
-export function createInput(fieldName, type = 'text', className) {
+export function createInput(fieldName, type = 'text', className = 'input') {
   return (
     <input
       type={type} className={className}

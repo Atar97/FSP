@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import Form from './form';
+import UserForm from './user_form';
 import {login, signup} from '../../actions/session_actions';
 
 const loginState = (state, ownProps) => ({
@@ -16,7 +16,7 @@ const dispatchCreator = callback => dispatch => ({
 });
 
 export const SignupFormContainer = connect(
-  signupState, dispatchCreator(signup))(Form);
+  signupState, dispatchCreator(signup))(UserForm);
 
 export const LoginFormContainer = connect(
-  loginState, dispatchCreator(login))(Form);
+  loginState, dispatchCreator(login))(UserForm);

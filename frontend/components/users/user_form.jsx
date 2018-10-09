@@ -16,9 +16,9 @@ class UserForm extends React.Component {
       lname: '',
       email: '',
       password: '',
-      day: '',
+      Day: '',
       month: '',
-      year: '',
+      Year: '',
       gender: '',
       country: ''
     };
@@ -35,7 +35,7 @@ class UserForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const DOB = `${this.state.day}/${this.state.month}/${this.state.year}`;
+    const DOB = `${this.state.Day}/${this.state.month}/${this.state.Year}`;
     const user = {user: Object.assign({}, this.state, {DOB})};
     this.props.sendForm(user);
   }
@@ -43,40 +43,48 @@ class UserForm extends React.Component {
   render() {
     if (this.props.formType === 'login') {
       return (
-        <div className='userform login-form'>
+        <div className='userform-container'>
           <Link to='/signup'>sign up</Link>
-          <form onSubmit={this.handleSubmit.bind(this)}>
+          <form className='userform login-form'
+            onSubmit={this.handleSubmit.bind(this)}>
             <ul>
               <li>{this.createInput('email')}</li>
               <li>{this.createInput('password', 'password')}</li>
-              <li><button>Log In</button></li>
+              <li><button>log in</button></li>
             </ul>
           </form>
         </div>
       );
     }
     return (
-      <div className='userform signup-form'>
-        <Link to='/login'>log in</Link>
-          <form onSubmit={this.handleSubmit.bind(this)}>
+      <div className='userform-container'>
+        <Link to='/login'>LOG IN</Link>
+          <form className='userform signup-form'
+            onSubmit={this.handleSubmit.bind(this)}>
             <ul>
               <li>{this.createInput('fname')}</li>
               <li>{this.createInput('lname')}</li>
               <li>{this.createInput('email')}</li>
               <li>{this.createInput('password', 'password')}</li>
-              <li>
-                {this.createSelect(1, 31, 'day')}
-                {this.createMonthSelect()}
-                {this.createSelect(2006, 1900, 'year')}
+              <li className='holder'>
+                  {this.createSelect(1, 31, 'Day')}
+                  {this.createMonthSelect()}
+                  {this.createSelect(2006, 1900, 'Year')}
               </li>
-              <li>
-                <input type='radio' name='gender' value='M'
-                  onClick={() => {this.state.gender = 'M';}}></input>
-                <input type='radio' name='gender' value='F'
-                  onClick={() => {this.state.gender = 'F';}}></input>
+              <li className='holder'>
+                <label className='input'>Male
+                  <input type='radio' name='gender' value='M'
+                    className='radio'
+                    onClick={() => {this.state.gender = 'M';}}></input>
+                </label>
+                <label className='input'>Female
+                  <input type='radio' name='gender' value='F'
+                    className='radio'
+                    onClick={() => {this.state.gender = 'F';console.log('change')}}></input>
+                </label>
               </li>
               <li>{this.createInput('country')}</li>
-              <li><button>Sign Up</button></li>
+              <li><button>sign up</button></li>
             </ul>
           </form>
       </div>

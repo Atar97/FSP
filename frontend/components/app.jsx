@@ -9,7 +9,9 @@ import {
 export default () => (
   <div>
     <h1>Plot my Plod</h1>
-    <AuthRoute path='/signup' component={SignupFormContainer} />
-    <AuthRoute path='/login' component={LoginFormContainer} />
+    <div className='main-content'>
+      <AuthRoute path='/signup' component={SignupFormContainer} />
+      <AuthRoute path='/login' component={LoginFormContainer} />
+    </div>
   </div>
 );
