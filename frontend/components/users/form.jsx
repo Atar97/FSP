@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {createSelect,
-  createMonthSelect} from './user_form_util';
+import {
+  createSelect,
+  createMonthSelect,
+  createInput
+  } from './user_form_util';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -23,7 +26,7 @@ class UserForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.createSelect = createSelect.bind(this);
     this.createMonthSelect = createMonthSelect.bind(this);
-    this.valueSetter = this.valueSetter.bind(this);
+    this.createInput = createInput.bind(this);
   }
 
   handleChange(fieldName) {
@@ -37,33 +40,17 @@ class UserForm extends React.Component {
     this.props.sendForm(user);
   }
 
-  valueSetter(fieldName) {
-    if (this.state[fieldName]) {
-      return this.state[fieldName];
-    }
-    return this.defaultFills[fieldName];
-  }
-
-  createInput(fieldName, type = 'text') {
-    return (
-      <input
-        type={type}
-        onChange={this.handleChange(fieldName)}
-        value={this.state[fieldName]}>
-      </input>
-    );
-  }
-
   render() {
     if (this.props.formType === 'login') {
       return (
         <div className='userform login-form'>
           <Link to='/signup'>sign up</Link>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input onChange={this.handleChange('email')}></input>
-            <input type='password'
-              onChange={this.handleChange('password')}></input>
-            <button>Log In</button>
+            <ul>
+              <li>{this.createInput('email')}</li>
+              <li>{this.createInput('password', 'password')}</li>
+              <li><button>Log In</button></li>
+            </ul>
           </form>
         </div>
       );
@@ -72,14 +59,25 @@ class UserForm extends React.Component {
       <div className='userform signup-form'>
         <Link to='/login'>log in</Link>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            {this.createInput('fname')}
-            {this.createInput('lname')}
-            {this.createInput('email')}
-            {this.createInput('password', 'password')}
-            {this.createSelect(1, 31, 'day')}
-            {this.createMonthSelect()}
-            {this.createSelect(1900, 2006, 'year')}
-            <button>Sign Up</button>
+            <ul>
+              <li>{this.createInput('fname')}</li>
+              <li>{this.createInput('lname')}</li>
+              <li>{this.createInput('email')}</li>
+              <li>{this.createInput('password', 'password')}</li>
+              <li>
+                {this.createSelect(1, 31, 'day')}
+                {this.createMonthSelect()}
+                {this.createSelect(2006, 1900, 'year')}
+              </li>
+              <li>
+                <input type='radio' name='gender' value='M'
+                  onClick={() => {this.state.gender = 'M';}}></input>
+                <input type='radio' name='gender' value='F'
+                  onClick={() => {this.state.gender = 'F';}}></input>
+              </li>
+              <li>{this.createInput('country')}</li>
+              <li><button>Sign Up</button></li>
+            </ul>
           </form>
       </div>
     );

@@ -2,8 +2,14 @@ import React from 'react';
 
 export function createSelect(min, max, name) {
   const mappableArray = [];
-  for (let i = min; i <= max; i++) {
-    mappableArray.push(i);
+  if (min < max) {
+    for (let i = min; i <= max; i++) {
+      mappableArray.push(i);
+    }
+  } else {
+    for (let i = min; i > max; i--) {
+      mappableArray.push(i);
+    }
   }
   return (
     <select onChange={this.handleChange(name)}>
@@ -29,5 +35,15 @@ export function createMonthSelect() {
         return <option key={el} value={el}>{months[el]}</option>;
       })}
     </select>
+  );
+}
+
+export function createInput(fieldName, type = 'text', className) {
+  return (
+    <input
+      type={type} className={className}
+      onChange={this.handleChange(fieldName)}
+      value={this.state[fieldName]}>
+    </input>
   );
 }
