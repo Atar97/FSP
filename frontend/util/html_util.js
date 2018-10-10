@@ -10,7 +10,6 @@ export function removeClass(target, className) {
 }
 
 export function hasClass(target, className) {
-  debugger;
   return target.className.split(' ').includes(className);
 }
 

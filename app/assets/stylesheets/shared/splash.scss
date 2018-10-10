@@ -21,12 +21,14 @@
 }
 
 .splash-image {
-  background-image: url('https://c18.pcloud.com/dpZOp05kHZ1gl9LHZemSNZZA8bHI7ZNVZZtIZXZlIKhIvvOLC0EWCTFSUVDN8W6YgEV/th-8633607824-1193x796.jpg');
+  background-image: url('https://images.pexels.com/photos/54326/runners-male-sport-run-54326.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-position: 0 -400px;
+  // background-image: url('https://images.pexels.com/photos/39308/runners-silhouettes-athletes-fitness-39308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
   background-repeat: no-repeat;
   height: 700px;
   width: 1150px;
   padding-right: 75px;
-  padding-top: 75px;
 
   .line {
     height: 5px;

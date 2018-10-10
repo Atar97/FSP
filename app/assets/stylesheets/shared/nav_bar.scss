@@ -24,7 +24,8 @@
     align-items: center;
 
     .homelink {
-      background: linear-gradient(to right, #0F3CA9, #339EF7);
+      // background: linear-gradient(to right, #0F3CA9, #339EF7); //blue
+      background: linear-gradient(to right, #F74209, #F08E09); //red
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 25px;
@@ -33,7 +34,8 @@
       font-weight: 500;
 
       i {
-        background: linear-gradient(to right, #0F3CA9, #339EF7);
+        // background: linear-gradient(to right, #0F3CA9, #339EF7); //blue
+        background: linear-gradient(to right, #F74209, #F08E09); //red
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-right: 6px;
@@ -74,7 +76,7 @@
     text-transform: none;
     margin-right: 10px;
     font-size: 14px;
-
+    margin-top: 5px;
   }
 
 }
