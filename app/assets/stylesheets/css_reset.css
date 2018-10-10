@@ -26,3 +26,11 @@ img {
   width: 100%;
   height: auto;
 }
+
+body {
+  background-color: #F0F0F0;
+}
+
+a {
+  text-decoration: none;
+}

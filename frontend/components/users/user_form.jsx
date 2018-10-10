@@ -49,12 +49,12 @@ class UserForm extends React.Component {
     if (this.props.formType === 'login') {
       return (
         <div className='userform-container'>
-          <Link to='/signup'>sign up</Link>
           <form className='userform login-form'
             onSubmit={this.handleSubmit.bind(this)}>
+            <Link to='/signup'>sign up</Link>
             <ul>
-              <li>{this.createInput('email')}</li>
-              <li>{this.createInput('password', 'password')}</li>
+              <li>{this.createInput('email', 'Email')}</li>
+              <li>{this.createInput('password', 'Password', 'password')}</li>
               <li><button>log in</button></li>
             </ul>
           </form>
@@ -63,9 +63,9 @@ class UserForm extends React.Component {
     }
     return (
       <div className='userform-container'>
-        <Link to='/login'>LOG IN</Link>
           <form className='userform signup-form'
             onSubmit={this.handleSubmit.bind(this)}>
+            <Link to='/login'>LOG IN</Link>
             <ul>
               <li>{this.createInput('fname', 'First name')}</li>
               <li>{this.createInput('lname', 'Last name')}</li>
