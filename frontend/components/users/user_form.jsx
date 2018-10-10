@@ -5,7 +5,11 @@ import {
   createSelect,
   createMonthSelect,
   createInput
-  } from './user_form_util';
+} from './user_form_util';
+
+import {
+  toggleClass, addClass, removeClass
+} from '../../util/html_util';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -30,7 +34,18 @@ class UserForm extends React.Component {
   }
 
   handleChange(fieldName) {
-    return (event) => this.setState({[fieldName]: event.target.value});
+    return (event) => {
+      const target = event.target;
+      this.setState({[fieldName]: target.value},
+      () => {
+        if (this.state[fieldName]) {
+          removeClass(target, 'error');
+        } else {
+          addClass(target, 'error');
+        }
+      });
+
+    };
   }
 
   handleSubmit(event) {
@@ -41,7 +56,7 @@ class UserForm extends React.Component {
   }
 
   handleClick(event) {
-    console.log(event.target.value);
+    toggleClass(event.target, 'error');
     this.setState({gender: event.target.value});
   }
 
