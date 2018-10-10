@@ -14,7 +14,7 @@ export function createSelect(min, max, name) {
   return (
     <select className='input placeholder'
       onChange={this.handleChange(name)}>
-        <option>{name}</option>
+        <option value=''>{name}</option>
       {mappableArray.map(el => {
         return <option key={el} value={el}>{el}</option>;
       })}
@@ -32,7 +32,7 @@ export function createMonthSelect() {
   return (
     <select className='input placeholder'
       onChange={this.handleChange('month')}>
-      <option >Month</option>
+      <option value=''>Month</option>
       {mappableArray.map(el => {
         return <option key={el} value={el}>{months[el]}</option>;
       })}
