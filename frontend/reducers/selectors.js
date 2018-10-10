@@ -1,3 +1,2 @@
-export const currentUser = (state) => {
-  
-}
+export const currentUser = ({session, entities: {users}}) => (
+  users[session.id]);

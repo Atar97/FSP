@@ -27,7 +27,7 @@
       background: linear-gradient(to right, #0F3CA9, #339EF7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 20px;
+      font-size: 30px;
       margin-right: 10px;
       text-transform: uppercase;
 
@@ -35,6 +35,7 @@
         background: linear-gradient(to right, #0F3CA9, #339EF7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        margin-right: 6px;
       }
     }
   }
@@ -45,8 +46,8 @@
     align-items: center;
   }
 
-  .signup-button {
-    width: 60px;
+  .signup-link {
+    min-width: 60px;
     height: 23px;
     background: #1ddd7c;
     font-size: 12px;
@@ -60,6 +61,11 @@
     text-transform: uppercase;
     margin-top: 10px;
     text-align: center;
+  }
+
+  .logout-button {
+    display: flex;
+    margin-top: 0;
   }
 
   .login-link {
