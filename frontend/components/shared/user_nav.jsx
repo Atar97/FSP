@@ -9,7 +9,6 @@ class UserNav extends React.Component {
 
   handleLogout(event) {
     if (this.props.currentUser) {
-      debugger;
       this.props.logout();
     }
   }
@@ -19,7 +18,7 @@ class UserNav extends React.Component {
     if (this.props.currentUser) {
       usernav = (
         <div className='usernav'>
-          <button className='logout-button signup-link'
+          <button className='logout-button green-link'
             onClick={this.handleLogout.bind(this)}>Log Out</button>
         </div>
       );
@@ -36,7 +35,6 @@ class UserNav extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {currentUser: currentUser(state)};
 };
 
