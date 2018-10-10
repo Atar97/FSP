@@ -23,7 +23,7 @@ class UserForm extends React.Component {
       Day: '',
       month: '',
       Year: '',
-      gender: 'NA',
+      gender: 'N/A',
       country: ''
     };
 
@@ -51,13 +51,14 @@ class UserForm extends React.Component {
   fullState() {
     const stateValues = Object.values(this.state);
     const emptyValues = stateValues.filter(value => !Boolean(value));
-    debugger;
+    if (this.props.formType === 'login') {
+      return emptyValues.length > 2;
+    }
     return emptyValues.length === 0;
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    debugger;
     if (this.fullState()) {
       const DOB = `${this.state.Day}/${this.state.month}/${this.state.Year}`;
       const user = {user: Object.assign({}, this.state, {DOB})};
