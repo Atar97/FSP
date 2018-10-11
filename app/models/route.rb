@@ -17,4 +17,13 @@ class Route < ApplicationRecord
   belongs_to :creator,
   class_name: :User,
   foreign_key: :creator_id
+
+  def self.create_random_route(user_id)
+    Route.create({
+      creator_id: user_id,
+      city: Faker::LordOfTheRings.location,
+      distance: rand(2000),
+      name: Faker::LordOfTheRings.character
+      })
+  end
 end

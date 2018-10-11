@@ -59,12 +59,14 @@ class User < ApplicationRecord
   end
 
   def self.create_demo_user
-    User.create({email: Faker::Internet.email,
+    user = User.create({email: Faker::Internet.email,
       fname: Faker::Name.first_name,
       lname: Faker::Name.last_name,
       DOB: Faker::Date.birthday(16, 120),
       password: 'starwars',
       gender: ['F', 'M'].shuffle[0],
       country: Faker::WorldCup.team})
+    Route.create_random_route(user.id)
+    return user
   end
 end
