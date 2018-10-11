@@ -78,8 +78,8 @@ class UserForm extends React.Component {
             {this.createMonthSelect()}
             {this.createSelect(2006, 1900, 'Year')}
           </li>);
-      gender = (<li className='holder'>
 
+      gender = (<li className='holder'>
         <input type='radio' defaultValue='Female' id='female'
           name='gender' onClick={this.handleClick.bind(this)}>
         </input>
@@ -92,8 +92,7 @@ class UserForm extends React.Component {
         </input>
         <label htmlFor='male' className='input placeholder'>
           Male</label>
-
-      </li>);
+          </li>);
       country = <li>{this.createInput('country', 'Country')}</li>;
       linkText = 'sign up';
       linkPath = '/login';

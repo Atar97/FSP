@@ -22,4 +22,20 @@ ActiveRecord::Base.transaction do
       User.create_demo_user
     end
 
+  austin = User.find_by(email: 'austin');
+
+  Route.destroy_all
+
+  Route.create!([
+    {city: 'Madison', distance: 1234,
+      name: Faker::LordOfTheRings.location, creator_id: austin.id},
+    {city: 'Madison', distance: 2345,
+      name: Faker::LordOfTheRings.location, creator_id: austin.id},
+    {city: 'Madison', distance: 23421,
+      name: Faker::LordOfTheRings.location, creator_id: austin.id},
+    {city: 'Madison', distance: 4463,
+      name: Faker::LordOfTheRings.location, creator_id: austin.id},
+  ])
+
+
 end
