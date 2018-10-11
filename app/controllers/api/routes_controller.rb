@@ -11,6 +11,8 @@ class Api::RoutesController < ApplicationController
   end
 
   def show
+    @user = User.find(@route.creator_id)
+    render :user_show
   end
 
   def create

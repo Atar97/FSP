@@ -8,7 +8,9 @@ export default (state = [], action) => {
     case CLEAR_ERRORS:
       return [];
     case RECEIVE_ROUTE_ERRORS:
-      return action.errors;
+      if (action.errors) {
+        return action.errors;
+      } return [];
     default:
       return state;
   }
