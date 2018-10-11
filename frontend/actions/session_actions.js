@@ -22,12 +22,12 @@ const success = payload => {
   dispatch(receiveCurrentUser(payload));
 };
 
-export const failure = errorResponse => {
+const failure = errorResponse => {
   const errors = errorResponse.responseJSON;
   dispatch(receiveErrors(errors));
 };
 
-export const createThunkAction = callback => user => dispatch => {
+const createThunkAction = callback => user => dispatch => {
   return callback(user).then(success, failure);
 };
 

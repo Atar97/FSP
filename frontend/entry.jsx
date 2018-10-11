@@ -5,7 +5,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 //begin test
-import * as RouteApi from './util/route_api_util';
+import * as RouteApi from './actions/route_actions';
 // end test
 
 document.addEventListener('DOMContentLoaded', ()=> {

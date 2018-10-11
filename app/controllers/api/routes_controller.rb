@@ -19,20 +19,23 @@ class Api::RoutesController < ApplicationController
     if @route.save
       render :show
     else
-      render json: @route.errors.full_messages
+      render json: @route.errors.full_messages, status: 406
     end
   end
 
   def destroy
-    @route.destroy
-    render json: ['Route Destroyed']
+    if @route.destroy
+      render json: ['Route Destroyed']
+    else
+      render json: ['No route with that id'], status: 404
+    end
   end
 
   def update
     if @route.update(route_params)
       render :show
     else
-      render @route.errors.full_messages
+      render json: @route.errors.full_messages, status: 406
     end
   end
 
