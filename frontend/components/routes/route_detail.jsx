@@ -14,6 +14,9 @@ class RouteDetail extends React.Component {
   }
 
   render () {
+    if (this.props.route === {}) {
+
+    }
     return (
       <h1>{this.id}</h1>
     );
@@ -25,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  route: state.entities.route
+  route: state.entities.routes
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteDetail);

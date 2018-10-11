@@ -10,7 +10,8 @@ export default ({errors}) => {
   return (
     <div className={classname}>
       <ul>
-        {errors.map(error => <li className='error'>{error}</li>)}
+        {errors.map((error, idx) =>
+          <li className='error-item' key={idx}>{error}</li>)}
       </ul>
     </div>
   );
