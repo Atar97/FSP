@@ -19,6 +19,7 @@
   min-height: 700px;
 }
 
+
 .green-link {
   min-width: 60px;
   height: 23px;
@@ -31,4 +32,10 @@
   text-transform: uppercase;
   margin-top: 10px;
   text-align: center;
+}
+
+.vertical-box-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

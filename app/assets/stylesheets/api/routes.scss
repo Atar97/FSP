@@ -1,0 +1,46 @@
+// Place all the styles related to the Routes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.route-table-container {
+
+}
+
+.route-list {
+  width: 1000px;
+}
+
+.route-item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+
+  li {
+    background-color: white;
+    height: 75px;
+    border: 1px solid gray;
+    min-width: 75px;
+    text-align: center;
+  }
+
+  .route {
+  }
+
+  .created {
+    width: 100px;
+  }
+
+  .distance {
+  }
+
+  .name {
+    width: 300px;
+  }
+  .city {
+  }
+
+  .options {
+  }
+}

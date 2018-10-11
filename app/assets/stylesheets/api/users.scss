@@ -8,6 +8,7 @@
   align-items: center;
   padding-top: 35px;
   padding-bottom: 65px;
+  background-color: #F0F0F0;
 
   a {
     color: #717275;
@@ -100,7 +101,7 @@
   .line {
     height: 1px;
     width: 130px;
-    background-color: #717275;
+    background-color: #D3D6DC;
   }
 
   .or-container {
@@ -109,6 +110,7 @@
     margin-top: 7px;
     margin-bottom: 3px;
     font-weight: 200;
+    font-size: 12px;
   }
 }
 
@@ -117,16 +119,18 @@
   color: red;
   font-size: 12px;
   padding: 3px;
-  text-align: center;
-  border: 1px solid red;
   margin-bottom: 20px;
 }
 
 .none {
-  border: 1px solid transparent;
 }
 
 #demo {
   background-color: #3B5998;
-  font-weight: 300;
+  font-weight: 400;
+  letter-spacing: .08em;
+}
+
+.error {
+  margin: 2px;
 }
