@@ -98,6 +98,10 @@
     .no-margin {
       margin: 0;
     }
+
+    .error {
+      border: 1px solid red;
+    }
   }
 
   .line {
@@ -114,6 +118,8 @@
     font-weight: 200;
     font-size: 12px;
   }
+
+
 }
 
 .error-div {
@@ -128,8 +134,4 @@
   background-color: #3B5998;
   font-weight: 400;
   letter-spacing: .08em;
-}
-
-.error {
-  border: 1px solid red;
 }
