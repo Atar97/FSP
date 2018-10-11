@@ -1,7 +1,11 @@
 import {connect} from 'react-redux';
 
 import UserForm from './user_form';
-import {demoUser, login, signup, clearErrors} from '../../actions/session_actions';
+import {
+  demoUser,
+  login,
+  signup,
+  clearErrors} from '../../actions/session_actions';
 
 const loginState = (state, ownProps) => ({
   formType: 'login',
