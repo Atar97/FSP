@@ -4,17 +4,27 @@ import {Link} from 'react-router-dom';
 export default class RouteIndexItem extends React.Component {
   render () {
     const route = this.props.route;
+    let classname = 'route-item';
+    if (this.props.idx % 2 == 1) {
+      classname += ' gray';
+    }
     return (
-      <ul className='route-item'>
-        <li className='route'>{route.id}</li>
-        <li className='created'>{route.createdDate}</li>
-        <li className='distance'>{route.distance}</li>
-        <li className='name'>{route.name}</li>
-        <li className='city'>{route.city}</li>
-        <li className='options'>
-          <p>copy</p>
-          <p>edit</p>
-          <p>delete</p>
+      <ul className={classname}>
+        <li className='route attribute-box'><p>{route.id}</p></li>
+
+        <li className='created attribute-box'>
+          <Link to='/' className='link-style'>{route.createdDate}</Link></li>
+
+        <li className='distance attribute-box'><p>{route.distance}</p></li>
+
+        <li className='name attribute-box'>
+          <Link to='/' className='link-style'>{route.name}</Link></li>
+        <li className='city attribute-box'><p>{route.city}</p></li>
+
+        <li className='options attribute-box'>
+          <p className='link-style'>copy</p>
+          <p className='link-style'>edit</p>
+          <p className='link-style'>delete</p>
         </li>
       </ul>
     );

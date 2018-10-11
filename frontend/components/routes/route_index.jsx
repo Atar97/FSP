@@ -22,10 +22,17 @@ class RouteIndex extends React.Component {
           <Link to='/routes/create/' className='create-route'>create a route</Link>
         </header>
         <ul className='route-list vertical-box-center'>
-          <li><header className='minor-header'>Minor header</header></li>
+          <li> <ul className='minor-header'>
+                <li className='route attribute-box'>ID</li>
+                <li className='created attribute-box'>Created</li>
+                <li className='distance attribute-box'>distance</li>
+                <li className='name attribute-box'>name</li>
+                <li className='city attribute-box'>city</li>
+                <li className='options attribute-box'>options</li>
+            </ul></li>
 
-          {this.props.routes.map(route => (
-            <RouteIndexItem key={route.id} route={route}/>
+          {this.props.routes.map((route, idx) => (
+            <RouteIndexItem key={route.id} idx={idx} route={route}/>
           ))}
         </ul>
       </div>

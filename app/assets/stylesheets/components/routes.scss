@@ -4,11 +4,35 @@
 
 
 .route-table-container {
+  margin: 0 auto;
+  width: 100%;
 
-}
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: 10px;
 
-.route-list {
-  width: 1000px;
+    h1 {
+      font-size: 22px;
+      font-weight: normal;
+    }
+  }
+
+
+  .create-route {
+    background-color: $create-orange;
+    padding: 12px 15px;
+    border-radius: 2px;
+    color: white;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: .08em;
+  }
 }
 
 .route-item {
@@ -17,30 +41,65 @@
   width: 100%;
   justify-content: center;
 
+}
+
+.route-list {
+  border: 1px solid $light-gray;
+  font-size: 14px;
+
   li {
-    background-color: white;
-    height: 75px;
-    border: 1px solid gray;
-    min-width: 75px;
-    text-align: center;
+    width: 100%
   }
 
-  .route {
+  ul:hover {
+    background-color: $hover-gray;
+  }
+
+  width: 100%;
+  .attribute-box {
+    padding-left: 10px;
+    height: 75px;
+    border-right: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .created {
-    width: 100px;
+    width: 20%;
   }
 
   .distance {
   }
 
   .name {
-    width: 300px;
-  }
-  .city {
+    width: 45%;
   }
 
-  .options {
+  .gray {
+    background-color: $route-background;
+  }
+
+  .link-style {
+    color: $link-blue;
+  }
+
+  .link-style:hover {
+    cursor: pointer;
+  }
+
+  .minor-header {
+    background-color: $route-background;
+    display: flex;
+    text-transform: capitalize;
+    .attribute-box {
+      height: 50px;
+    }
+  }
+
+  .minor-header:hover {
+    background-color: $route-background;
   }
 }
