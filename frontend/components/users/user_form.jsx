@@ -33,6 +33,10 @@ class UserForm extends React.Component {
     this.createInput = createInput.bind(this);
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   handleChange(fieldName) {
     return (event) => {
       const target = event.target;
@@ -74,21 +78,33 @@ class UserForm extends React.Component {
   render() {
     if (this.props.formType === 'login') {
       return (
-        <div className='userform-container'>
-          <form className='userform login-form'
-            onSubmit={this.handleSubmit.bind(this)}>
-            <Link to='/signup'>sign up</Link>
+        <div>
+          <div>
             <ul>
-              <li>{this.createInput('email', 'Email')}</li>
-              <li>{this.createInput('password', 'Password', 'password')}</li>
-              <li><button>log in</button></li>
+              {this.props.errors.map(error => <li>{error}</li>)}
             </ul>
-          </form>
+          </div>
+          <div className='userform-container'>
+            <form className='userform login-form'
+              onSubmit={this.handleSubmit.bind(this)}>
+              <Link to='/signup'>sign up</Link>
+              <ul>
+                <li>{this.createInput('email', 'Email')}</li>
+                <li>{this.createInput('password', 'Password', 'password')}</li>
+                <li><button>log in</button></li>
+              </ul>
+            </form>
+          </div>
         </div>
       );
     }
     return (
       <div className='userform-container'>
+        <div>
+          <ul>
+            {this.props.errors.map(error => <li>{error}</li>)}
+          </ul>
+        </div>
           <form className='userform signup-form'
             onSubmit={this.handleSubmit.bind(this)}>
             <Link to='/login'>LOG IN</Link>

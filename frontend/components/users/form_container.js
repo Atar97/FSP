@@ -1,18 +1,21 @@
 import {connect} from 'react-redux';
 
 import UserForm from './user_form';
-import {login, signup} from '../../actions/session_actions';
+import {login, signup, clearErrors} from '../../actions/session_actions';
 
 const loginState = (state, ownProps) => ({
-  formType: 'login'
+  formType: 'login',
+  errors: state.errors.sessionErrors
 });
 
 const signupState = (state, ownProps) => ({
-  formType: 'signup'
+  formType: 'signup',
+  errors: state.errors.sessionErrors
 });
 
 const dispatchCreator = callback => dispatch => ({
-  sendForm: (user) => dispatch(callback(user))
+  sendForm: (user) => dispatch(callback(user)),
+  clearErrors: () => dispatch(clearErrors()),
 });
 
 export const SignupFormContainer = connect(

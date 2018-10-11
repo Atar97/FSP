@@ -1,6 +1,6 @@
 import React from 'react';
 import {AuthRoute, ProtectedRoute} from '../util/route_util';
-import {Route} from 'react-router-dom';
+import {Route, Redirect, Switch} from 'react-router-dom';
 
 import {
   SignupFormContainer,
@@ -12,12 +12,15 @@ import Splash from './shared/splash';
 
 export default () => (
   <div>
-    <Route path='/' component={NavBar} />
+    <NavBar />
     <div className='main-content'>
-      <Route exact path='/' component={Splash}/>
-      <AuthRoute path='/signup' component={SignupFormContainer} />
-      <AuthRoute path='/login' component={LoginFormContainer} />
+      <Switch>
+        <AuthRoute path='/signup' component={SignupFormContainer} />
+        <AuthRoute path='/login' component={LoginFormContainer} />
+        <Route exact path='/' component={Splash}/>
+        <Redirect to='/' />
+      </Switch>
     </div>
-    <Route path='/' component={Footer}/>
+    <Footer/>
   </div>
 );

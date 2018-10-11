@@ -1,13 +1,13 @@
 import React from 'react';
 
-export function createSelect(min, max, name) {
+export function createSelect(top, bottom, name) {
   const mappableArray = [];
-  if (min < max) {
-    for (let i = min; i <= max; i++) {
+  if (top < bottom) {
+    for (let i = top; i <= bottom; i++) {
       mappableArray.push(i);
     }
   } else {
-    for (let i = min; i > max; i--) {
+    for (let i = top; i > bottom; i--) {
       mappableArray.push(i);
     }
   }
