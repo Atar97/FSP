@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 
 import {currentUser} from '../../reducers/selectors';
-import {logot} from '../../actions/session_actions';
+import {logout} from '../../actions/session_actions';
 
 class UserNav extends React.Component {
 

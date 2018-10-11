@@ -101,10 +101,29 @@
       border: 1px solid red;
     }
   }
+
+  .line {
+    height: 1px;
+    width: 130px;
+    background-color: #717275;
+  }
+
+  .or-container {
+    align-items: center;
+    color: #717275;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    font-weight: 200;
+  }
 }
 
 .error-div {
   height: 100px;
   color: red;
   font-size: 12px;
+}
+
+#demo {
+  background-color: #3B5998;
+  font-weight: 400;
 }

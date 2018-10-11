@@ -34,3 +34,4 @@ export const createThunkAction = callback => user => dispatch => {
 export const logout = createThunkAction(SessionUtil.logout);
 export const login = createThunkAction(SessionUtil.login);
 export const signup = createThunkAction(SessionUtil.signup);
+export const demoUser = createThunkAction(SessionUtil.demoUser);

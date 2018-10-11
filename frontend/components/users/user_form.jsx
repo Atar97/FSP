@@ -12,6 +12,7 @@ import {
 } from '../../util/html_util';
 
 import UserErrors from './user_errors';
+import DemoLogin from './demo_user_button';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -73,6 +74,12 @@ class UserForm extends React.Component {
           <form className='userform login-form'
             onSubmit={this.handleSubmit.bind(this)}>
             <Link to='/signup'>sign up</Link>
+            <DemoLogin demoUser={this.props.demoUser} />
+            <div className='holder or-container'>
+              <div className='line'></div>
+              <span>OR</span>
+              <div className='line'></div>
+            </div>
             <ul>
               <li>{this.createInput('email', 'Email')}</li>
               <li>{this.createInput('password', 'Password', 'password')}</li>
@@ -87,6 +94,7 @@ class UserForm extends React.Component {
           <UserErrors errors={this.props.errors}/>
           <form className='userform signup-form'
             onSubmit={this.handleSubmit.bind(this)}>
+            <DemoLogin demoUser={this.props.demoUser} />
             <Link to='/login'>LOG IN</Link>
             <ul>
               <li>{this.createInput('fname', 'First name')}</li>

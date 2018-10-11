@@ -14,6 +14,11 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def demo_user
+    @user = User.create_demo_user
+    login(@user)
+    render :show
+  end
 
   private
 
