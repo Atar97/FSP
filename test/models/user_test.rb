@@ -10,10 +10,9 @@
 #  gender          :string
 #  session_token   :string           not null
 #  password_digest :string           not null
-#  city            :string
-#  state           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  country         :string
 #
 
 require 'test_helper'

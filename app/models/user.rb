@@ -10,10 +10,9 @@
 #  gender          :string
 #  session_token   :string           not null
 #  password_digest :string           not null
-#  city            :string
-#  state           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  country         :string
 #
 
 class User < ApplicationRecord
@@ -54,5 +53,15 @@ class User < ApplicationRecord
     self.session_token = User.token
     self.save
     self.session_token
+  end
+
+  def self.create_demo_user
+    User.create({email: Faker::Internet.email,
+      fname: Faker::Name.first_name,
+      lname: Faker::Name.last_name,
+      DOB: Faker::Date.birthday(16, 120),
+      password: 'starwars',
+      gender: ['F', 'M'].shuffle[0],
+      country: Faker::WorldCup.team})
   end
 end

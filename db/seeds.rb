@@ -12,10 +12,14 @@ ActiveRecord::Base.transaction do
   User.create!([
     {email: 'austin', password: 'password',
       fname: 'Austin', lname: 'Cotant', DOB: '5/5/1991',
-    gender: 'M', city: 'San Francisco', state: 'CA'},
+    gender: 'M', country: 'USA'},
     {email: 'Sam', password: 'password',
       fname: 'Sam', lname: 'Hacker', DOB: '24/6/1993',
-    gender: 'M', city: 'Madison', state: 'WI'}
+    gender: 'M', country: 'USA'}
     ])
+
+    10.times do
+      User.create_demo_user
+    end
 
 end
