@@ -19,6 +19,7 @@ export const clearErrors = () => ({
 });
 
 const success = payload => {
+  dispatch(clearErrors);
   dispatch(receiveCurrentUser(payload));
 };
 

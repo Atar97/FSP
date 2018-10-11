@@ -24,11 +24,8 @@ class Api::RoutesController < ApplicationController
   end
 
   def destroy
-    if @route.destroy
-      render json: ['Route Destroyed']
-    else
-      render json: ['No route with that id'], status: 404
-    end
+    @route.destroy
+    render json: ['Route Destroyed']
   end
 
   def update

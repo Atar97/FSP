@@ -62,7 +62,6 @@ class UserForm extends React.Component {
   }
 
   handleClick(event) {
-    toggleClass(event.target, 'error');
     this.setState({gender: event.target.value});
   }
 

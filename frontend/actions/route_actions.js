@@ -1,11 +1,24 @@
 import * as RouteAPIUtil from '../util/route_api_util';
 
+export const RECEIVE_ROUTES = 'RECEIVE_ROUTES';
+export const RECEIVE_ROUTE_ERRORS = 'RECEIVE_ROUTE_ERRORS';
+
+export const receiveRoutes = payload => ({
+  type: RECEIVE_ROUTES,
+  payload
+});
+
+export const receiveRouteErrors = errors => ({
+  type: RECEIVE_ROUTE_ERRORS,
+  errors
+});
+
 const success = (res) => {
-  console.log(res);
+  dispatch(receiveRoutes(res));
 };
 
 const failure = res => {
-  console.log(res);
+  dispatch(receiveRouteErrors(res.responseJSON));
 };
 
 const createThunkAction = callback => input => dispatch => {
@@ -13,8 +26,8 @@ const createThunkAction = callback => input => dispatch => {
 };
 
 export const fetchRoute = createThunkAction(RouteAPIUtil.fetchRoute);
-export const fetchMyRoutes = createThunkAction(RouteAPIUtil.fetchMyRoutes);
-export const fetchAllRoutes = createThunkAction(RouteAPIUtil.fetchAllRoutes);
 export const createRoute = createThunkAction(RouteAPIUtil.createRoute);
 export const updateRoute = createThunkAction(RouteAPIUtil.updateRoute);
 export const destroyRoute = createThunkAction(RouteAPIUtil.destroyRoute);
+export const fetchAllRoutes = createThunkAction(RouteAPIUtil.fetchAllRoutes);
+export const fetchMyRoutes = createThunkAction(RouteAPIUtil.fetchMyRoutes);
