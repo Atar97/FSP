@@ -16,10 +16,10 @@ export default () => (
     <NavBar />
     <div className='main-content'>
       <Switch>
+        <AuthRoute exact path='/' component={Splash}/>
         <AuthRoute path='/signup' component={SignupFormContainer} />
         <AuthRoute path='/login' component={LoginFormContainer} />
         <ProtectedRoute path='/routes/my_routes' component={RouteIndex} />
-        <Route exact path='/' component={Splash}/>
         <Redirect to='/' />
       </Switch>
     </div>

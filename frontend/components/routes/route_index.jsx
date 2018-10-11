@@ -17,9 +17,12 @@ class RouteIndex extends React.Component {
   render() {
     return (
       <div className='route-table-container vertical-box-center'>
-        <header>Main Header</header>
+        <header className='main-header'>
+          <h1>my routes</h1>
+          <Link to='/routes/create/' className='create-route'>create a route</Link>
+        </header>
         <ul className='route-list vertical-box-center'>
-          <li><header>Minor header</header></li>
+          <li><header className='minor-header'>Minor header</header></li>
 
           {this.props.routes.map(route => (
             <RouteIndexItem key={route.id} route={route}/>
