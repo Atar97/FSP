@@ -7,3 +7,4 @@ end
 json.session do
   json.id @user.id
 end
+# {users: 1: {userobject} session:{id: 1}}

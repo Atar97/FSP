@@ -69,7 +69,8 @@ class UserForm extends React.Component {
   render() {
     let fname, lname, date, gender, country;
     let linkPath = '/signup';
-    let linkText = 'log in';
+    let linkText = 'sign up';
+    let buttonText = 'log in';
     if (this.props.formType === 'signup') {
       fname = <li>{this.createInput('fname', 'First name')}</li>;
       lname = <li>{this.createInput('lname', 'Last name')}</li>;
@@ -94,8 +95,9 @@ class UserForm extends React.Component {
           Male</label>
           </li>);
       country = <li>{this.createInput('country', 'Country')}</li>;
-      linkText = 'sign up';
+      linkText = 'log in';
       linkPath = '/login';
+      buttonText = 'sign up';
     }
     return (
       <div className='userform-container'>
@@ -117,7 +119,7 @@ class UserForm extends React.Component {
             {date}
             {gender}
             {country}
-            <li><button>{linkText}</button></li>
+            <li><button>{buttonText}</button></li>
           </ul>
         </form>
         </div>

@@ -14,13 +14,26 @@ class Api::RoutesController < ApplicationController
   end
 
   def create
+    @route = Route.new(route_params)
+    @route.creator_id = current_user.id
+    if @route.save
+      render :show
+    else
+      render json: @route.errors.full_messages
+    end
   end
 
   def destroy
+    @route.destroy
+    render json: ['Route Destroyed']
   end
 
   def update
-
+    if @route.update(route_params)
+      render :show
+    else
+      render @route.errors.full_messages
+    end
   end
 
   private

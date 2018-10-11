@@ -5,11 +5,12 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 //begin test
-import {demoUser} from './actions/session_actions';
+import * as RouteApi from './util/route_api_util';
+// end test
 
 document.addEventListener('DOMContentLoaded', ()=> {
   const rootEl = document.getElementById('root');
-  let store
+  let store;
   if (window.currentUser.id) {
     const preloadedState = {
       entities: {
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     store = configureStore({});
   }
   // start test
-  window.demoUser = demoUser;
+  window.RouteApi = RouteApi;
+  window.newRoute = {route: {name: 'new', distance: '42', city: 'San Fran'}};
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   // end test
