@@ -11,6 +11,8 @@ import {
   toggleClass, addClass, removeClass
 } from '../../util/html_util';
 
+import UserErrors from './user_errors';
+
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
@@ -48,26 +50,14 @@ class UserForm extends React.Component {
           addClass(target, 'error');
         }
       });
-
     };
-  }
-
-  fullState() {
-    const stateValues = Object.values(this.state);
-    const emptyValues = stateValues.filter(value => !Boolean(value));
-    if (this.props.formType === 'login') {
-      return emptyValues.length > 2;
-    }
-    return emptyValues.length === 0;
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.fullState()) {
-      const DOB = `${this.state.Day}/${this.state.month}/${this.state.Year}`;
-      const user = {user: Object.assign({}, this.state, {DOB})};
-      this.props.sendForm(user);
-    }
+    const DOB = `${this.state.Day}/${this.state.month}/${this.state.Year}`;
+    const user = {user: Object.assign({}, this.state, {DOB})};
+    this.props.sendForm(user);
   }
 
   handleClick(event) {
@@ -78,33 +68,23 @@ class UserForm extends React.Component {
   render() {
     if (this.props.formType === 'login') {
       return (
-        <div>
-          <div>
+        <div className='userform-container'>
+          <UserErrors errors={this.props.errors}/>
+          <form className='userform login-form'
+            onSubmit={this.handleSubmit.bind(this)}>
+            <Link to='/signup'>sign up</Link>
             <ul>
-              {this.props.errors.map(error => <li>{error}</li>)}
+              <li>{this.createInput('email', 'Email')}</li>
+              <li>{this.createInput('password', 'Password', 'password')}</li>
+              <li><button>log in</button></li>
             </ul>
-          </div>
-          <div className='userform-container'>
-            <form className='userform login-form'
-              onSubmit={this.handleSubmit.bind(this)}>
-              <Link to='/signup'>sign up</Link>
-              <ul>
-                <li>{this.createInput('email', 'Email')}</li>
-                <li>{this.createInput('password', 'Password', 'password')}</li>
-                <li><button>log in</button></li>
-              </ul>
-            </form>
-          </div>
+          </form>
         </div>
       );
     }
     return (
-      <div className='userform-container'>
-        <div>
-          <ul>
-            {this.props.errors.map(error => <li>{error}</li>)}
-          </ul>
-        </div>
+        <div className='userform-container'>
+          <UserErrors errors={this.props.errors}/>
           <form className='userform signup-form'
             onSubmit={this.handleSubmit.bind(this)}>
             <Link to='/login'>LOG IN</Link>
@@ -125,14 +105,15 @@ class UserForm extends React.Component {
                 <input type='radio' defaultValue='Female' id='female'
                   name='gender' onClick={this.handleClick.bind(this)}>
                 </input>
-                <label htmlFor='female' className='input placeholder no-margin'
-                  >Female</label>
+                <label htmlFor='female'
+                  className='input placeholder no-margin'>
+                  Female</label>
 
                 <input type='radio' defaultValue='Male' id='male'
                   name='gender' onClick={this.handleClick.bind(this)}>
                 </input>
-                <label htmlFor='male' className='input placeholder'
-                  >Male</label>
+                <label htmlFor='male' className='input placeholder'>
+                  Male</label>
 
               </li>
               <li>{this.createInput('country', 'Country')}</li>
