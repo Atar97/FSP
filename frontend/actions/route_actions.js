@@ -14,11 +14,11 @@ export const receiveRouteErrors = errors => ({
 });
 
 const success = (res) => {
-  dispatch(receiveRoutes(res));
+  return dispatch(receiveRoutes(res));
 };
 
 const failure = res => {
-  dispatch(receiveRouteErrors(res.responseJSON));
+  return dispatch(receiveRouteErrors(res.responseJSON));
 };
 
 const createThunkAction = callback => input => dispatch => {
