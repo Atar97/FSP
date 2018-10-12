@@ -13,12 +13,12 @@ export default class RouteIndexItem extends React.Component {
         <li className='route attribute-box'><p>{route.id}</p></li>
 
         <li className='created attribute-box'>
-          <Link to='/' className='link-style'>{route.createdDate}</Link></li>
+          <Link to={`/routes/${route.id}`} className='link-style'>{route.createdDate}</Link></li>
 
         <li className='distance attribute-box'><p>{route.distance}</p></li>
 
         <li className='name attribute-box'>
-          <Link to='/' className='link-style'>{route.name}</Link></li>
+          <Link to={`/routes/${route.id}`} className='link-style'>{route.name}</Link></li>
         <li className='city attribute-box'><p>{route.city}</p></li>
 
         <li className='options attribute-box'>

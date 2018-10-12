@@ -14,11 +14,38 @@ class RouteDetail extends React.Component {
   }
 
   render () {
-    if (this.props.route === {}) {
-
+    const self = this.props.route[this.id];
+    debugger;
+    if (self && self.creator) {
+      const creator = `${self.creator.fname} ${self.creator.lname}`
+      return (
+        <div className='route-detail-container'>
+          <h1>{self.name}</h1>
+          <div className='description'>
+            <div className='distance-box'>
+              <strong>distance</strong>
+              <h2>{self.distance}</h2>
+              <p>miles</p>
+              <div className='run'>run</div>
+            </div>
+            <ul className='details'>
+              <li><strong>begins in:</strong><p>{self.city}</p></li>
+              <li><strong>created by:</strong><p>{creator}</p></li>
+              <li><strong>description:</strong>
+                <p>
+                  This is a {self.distance} mi Run in {self.city}. This route
+                  was created by {creator} on {self.createdDate}.
+                </p>
+            </li>
+              <li><strong>type:</strong><p>RUN</p></li>
+            </ul>
+          </div>
+          <div className='small-map'></div>
+        </div>
+      );
     }
     return (
-      <h1>{this.id}</h1>
+      <h1>Loading</h1>
     );
   }
 }
