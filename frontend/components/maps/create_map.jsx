@@ -11,6 +11,7 @@ class CreateMap extends RouteMap {
   componentDidMount() {
     this.defaultMount();
     this.map.addListener('rightclick', this.handleClick.bind(this));
+    this.map.addListener('click', this.addLinePoint.bind(this));
   }
 
   handleClick(event) {
@@ -20,7 +21,7 @@ class CreateMap extends RouteMap {
   addLinePoint(event) {
     let routePath = this.routeLine.getPath();
 
-    path.push(event.latLng);
+    routePath.push(event.latLng);
 
     this.markerManager.createMarker(event.latLng);
   }
