@@ -4,7 +4,7 @@ import CreateMap from '../maps/create_map';
 
 class RouteCreate extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -19,5 +19,6 @@ class RouteCreate extends React.Component {
     );
   }
 }
+
 
 export default RouteCreate;

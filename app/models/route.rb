@@ -18,6 +18,8 @@ class Route < ApplicationRecord
   class_name: :User,
   foreign_key: :creator_id
 
+  has_many :markers
+
   def self.create_random_route(user_id)
     Route.create({
       creator_id: user_id,
