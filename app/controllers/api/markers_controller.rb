@@ -1,6 +1,7 @@
 class Api::MarkersController < ApplicationController
 
   def create
+    debugger
     @markers = Marker.create(marker_params[:markers])
   end
 

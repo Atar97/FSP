@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :destroy]
     resources :routes, except: [:new, :edit]
+    resources :markers, only: [:create]
   end
   get 'api/my_routes/', to: 'api/routes#myindex'
 

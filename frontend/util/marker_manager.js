@@ -12,10 +12,12 @@ export default class MarkerManager {
   }
 
   createMarker(geoPosition) {
-    this.markers.push(new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: geoPosition,
       map: this.map,
-    }));
+    });
+    this.markers.push(marker);
+    return marker;
   }
 
 }
