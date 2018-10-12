@@ -13,6 +13,7 @@ import Footer from './shared/footer';
 import Splash from './shared/splash';
 import RouteIndex from './routes/route_index';
 import RouteDetail from './routes/route_detail';
+import RouteCreate from './routes/route_create';
 
 export default () => (
   <div>
@@ -23,6 +24,7 @@ export default () => (
         <AuthRoute path='/signup' component={SignupFormContainer} />
         <AuthRoute path='/login' component={LoginFormContainer} />
         <ProtectedRoute path='/routes/my_routes' component={RouteIndex} />
+        <ProtectedRoute path='/routes/create' component={RouteCreate} />
         <ProtectedRoute path='/routes/:route_id' component={RouteDetail} />
         <Redirect to='/' />
       </Switch>
