@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 
 import {fetchRoute} from '../../actions/route_actions';
+import RouteMap from '../maps/route_map';
 
 class RouteDetail extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class RouteDetail extends React.Component {
 
   render () {
     const self = this.props.route[this.id];
-    debugger;
     if (self && self.creator) {
       const creator = `${self.creator.fname} ${self.creator.lname}`
       return (
@@ -40,7 +40,9 @@ class RouteDetail extends React.Component {
               <li><strong>type:</strong><p>RUN</p></li>
             </ul>
           </div>
-          <div className='small-map'></div>
+          <div className='small-map'>
+            <RouteMap />
+          </div>
         </div>
       );
     }
