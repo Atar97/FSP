@@ -12,7 +12,11 @@ export default (state = [], action) => {
       newState.push(action.marker);
       return newState;
     case RECEIVE_MARKERS:
-      return action.markers;
+      const newState1 = action.markers.map(marker => {
+        const position = new google.maps.LatLng(marker.lat, marker.lng);
+        return new google.maps.Marker({position});
+      });
+      return newState1;
     default:
       return state;
   }

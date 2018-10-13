@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json}  do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :destroy]
-    resources :routes, except: [:new, :edit]
+    resources :routes, except: [:new, :edit] do
+      resources :markers, only: [:index]
+    end
     resources :markers, only: [:create]
   end
   get 'api/my_routes/', to: 'api/routes#myindex'

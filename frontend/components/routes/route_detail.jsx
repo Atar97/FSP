@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 
 import {fetchRoute} from '../../actions/route_actions';
+import {fetchMarkersforRoute} from '../../actions/marker_actions';
 import RouteMap from '../maps/route_map';
 
 class RouteDetail extends React.Component {
@@ -11,7 +12,8 @@ class RouteDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRoute(this.id);
+    this.props.fetchRoute(this.id)
+    .then(this.props.fetchMarkersforRoute(this.id));
   }
 
   render () {
@@ -53,7 +55,8 @@ class RouteDetail extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchRoute: (id) => dispatch(fetchRoute(id))
+  fetchRoute: (id) => dispatch(fetchRoute(id)),
+  fetchMarkersforRoute: (id) => dispatch(fetchMarkersforRoute(id)),
 });
 
 const mapStateToProps = state => ({

@@ -2,7 +2,7 @@ export const RECEIVE_MARKERS = 'RECEIVE_MARKERS';
 export const REMOVE_MARKER = 'REMOVE_MARKER';
 export const RECEIVE_MARKER = 'RECEIVE_MARKER';
 
-import {sendDownMarkers} from '../util/marker_api_util';
+import * as APIUtil from '../util/marker_api_util';
 
 export const receiveMarkers = markers => ({
   type: RECEIVE_MARKERS,
@@ -24,5 +24,9 @@ const success = (res) => {
 };
 
 export const createMarkers = (markers, routeId) => dispatch => (
-  sendDownMarkers(markers, routeId).then(success)
+  APIUtil.sendDownMarkers(markers, routeId).then(success)
+);
+
+export const fetchMarkersforRoute = routeId => dispatch => (
+  APIUtil.fetchMarkersforRoute(routeId).then(success)
 );

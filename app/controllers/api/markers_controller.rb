@@ -17,6 +17,7 @@ class Api::MarkersController < ApplicationController
   end
 
   def index
+    @markers = Marker.where(route_id: params[:route_id])
   end
 
   private
