@@ -19,7 +19,7 @@ class RouteDetail extends React.Component {
   render () {
     const self = this.props.route[this.id];
     if (self && self.creator) {
-      const creator = `${self.creator.fname} ${self.creator.lname}`
+      const creator = `${self.creator.fname} ${self.creator.lname}`;
       return (
         <div className='route-detail-container'>
           <h1>{self.name}</h1>

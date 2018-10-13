@@ -29,7 +29,6 @@ class RouteMap extends React.Component {
     const routeLine = this.routeLine;
     const map = this.map;
     this.props.markers.forEach(marker => {
-      debugger;
       marker.setMap(map);
       routeLine.getPath().push(marker.position);
     });

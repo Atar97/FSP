@@ -16,15 +16,23 @@ class RouteCreate extends React.Component {
   }
 
   render() {
+    const {
+      markers,
+      createMarkers,
+      createRoute,
+      routeDistance,
+      receiveMarker,
+      receiveRouteDistance} = this.props;
     return (
       <div className='route-creation-container'>
-        <CreateOptions markers={this.props.markers}
-          createMarkers={this.props.createMarkers}
-          createRoute={this.props.createRoute}/>
+        <CreateOptions markers={markers}
+          createMarkers={createMarkers}
+          createRoute={createRoute}/>
         <div className='big-map'>
-          <CreateButtons markers={this.props.markers}/>
-          <CreateMap receiveMarker={this.props.receiveMarker}
-            receiveRouteDistance={this.props.receiveRouteDistance}/>
+          <CreateButtons markers={markers}
+            routeDistance={routeDistance}/>
+          <CreateMap receiveMarker={receiveMarker}
+            receiveRouteDistance={receiveRouteDistance}/>
         </div>
       </div>
     );
@@ -40,6 +48,7 @@ const mDtP = dispatch => ({
 
 const mStP = state => ({
   markers: state.entities.markers,
+  routeDistance: state.ui.distance,
 });
 
 export default connect(mStP, mDtP)(RouteCreate);
