@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import CreateMap from '../maps/create_map';
 import RouteTools from '../maps/route_tools';
 import RouteForm from './route_form';
-import {receiveMarker, createMarkers} from '../../actions/marker_actions';
+import {receiveMarker, createMarkers, receiveMarkers
+} from '../../actions/marker_actions';
 import {createRoute, receiveRouteDistance, clearDistance
 } from '../../actions/route_actions';
 import {distanceInMiles} from '../../reducers/selectors.js';
@@ -14,6 +15,9 @@ import {fetchLocation, receiveCenter, fetchAddress
 class RouteCreate extends React.Component {
   constructor(props) {
     super(props);
+    if (this.props.location.pathname === '/routes/create/') {
+      this.props.receiveMarkers([]);
+    }
   }
 
   render() {
@@ -23,7 +27,7 @@ class RouteCreate extends React.Component {
       receiveMarker, receiveRouteDistance,
       miles, clearDistance, fetchLocation,
       center, receiveCenter, fetchAddress,
-      address
+      address, receiveMarkers
       } = this.props;
     return (
       <div className='route-creation-container'>
@@ -47,6 +51,8 @@ class RouteCreate extends React.Component {
 
 const mDtP = dispatch => ({
   receiveMarker: marker => dispatch(receiveMarker(marker)),
+  receiveMarkers: markers => dispatch(receiveMarkers(markers)),
+  createMarkers: marker => dispatch(createMarkers(marker)),
   createRoute: route => dispatch(createRoute(route)),
   createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId)),
   receiveRouteDistance: distance => dispatch(receiveRouteDistance(distance)),
