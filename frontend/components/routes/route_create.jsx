@@ -5,13 +5,11 @@ import CreateMap from '../maps/create_map';
 import RouteTools from '../maps/route_tools';
 import RouteForm from './route_form';
 import {receiveMarker, createMarkers} from '../../actions/marker_actions';
-import {
-  createRoute,
-  receiveRouteDistance,
-  clearDistance
+import {createRoute, receiveRouteDistance, clearDistance
 } from '../../actions/route_actions';
 import {distanceInMiles} from '../../reducers/selectors.js';
-import {fetchAddress, receiveCenter} from '../../actions/map_actions';
+import {fetchLocation, receiveCenter, fetchAddress
+} from '../../actions/map_actions';
 
 class RouteCreate extends React.Component {
   constructor(props) {
@@ -23,18 +21,17 @@ class RouteCreate extends React.Component {
       markers, createMarkers,
       createRoute, routeDistance,
       receiveMarker, receiveRouteDistance,
-      miles, clearDistance, fetchAddress,
-      center, receiveCenter
+      miles, clearDistance, fetchLocation,
+      center, receiveCenter, fetchAddress,
+      address
       } = this.props;
     return (
       <div className='route-creation-container'>
         <RouteForm markers={markers}
-          createMarkers={createMarkers}
-          createRoute={createRoute}
-          routeDistance={routeDistance}
-          clearDistance={clearDistance}
-          fetchAddress={fetchAddress}
-          receiveCenter={receiveCenter}
+          createMarkers={createMarkers} createRoute={createRoute}
+          routeDistance={routeDistance} clearDistance={clearDistance}
+          fetchLocation={fetchLocation} receiveCenter={receiveCenter}
+          fetchAddress={fetchAddress} address={address}
           />
         <div className='big-map'>
           <RouteTools markers={markers}
@@ -54,7 +51,8 @@ const mDtP = dispatch => ({
   createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId)),
   receiveRouteDistance: distance => dispatch(receiveRouteDistance(distance)),
   clearDistance: () => dispatch(clearDistance()),
-  fetchAddress: address => dispatch(fetchAddress(address)),
+  fetchLocation: address => dispatch(fetchLocation(address)),
+  fetchAddress: latLng => dispatch(fetchAddress(latLng)),
   receiveCenter: center => dispatch(receiveCenter(center)),
 });
 
@@ -63,6 +61,7 @@ const mStP = state => ({
   miles: distanceInMiles(state),
   routeDistance: state.ui.routeDistance,
   center: state.ui.maps.center,
+  address: state.ui.maps.address,
 });
 
 export default connect(mStP, mDtP)(RouteCreate);

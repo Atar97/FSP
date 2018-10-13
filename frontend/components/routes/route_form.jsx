@@ -14,8 +14,14 @@ class RouteForm extends React.Component {
   }
 
   saveRoute(event) {
+    const {
+      markers, address,
+      fetchAddress, routeDistance,
+      createRoute, createMarkers,
+      clearDistance, history
+    } = this.props;
     event.preventDefault();
-    const data = this.props.markers.map((marker, idx) => {
+    const data = markers.map((marker, idx) => {
       let last = false;
       if (idx === this.props.markers.length - 1) {
         last = true;
@@ -27,17 +33,36 @@ class RouteForm extends React.Component {
         last
       };
     });
-    this.state.distance = this.props.routeDistance;
-    this.props.createRoute({route: Object.assign({}, this.state)})
-    .then(res => {
-      const resRoute = Object.values(res.payload)[0];
-      this.props.createMarkers(data, resRoute.id);
-    }).then(response => {
-      debugger;
-      this.props.clearDistance();
-      this.props.history.push('/routes/my_routes');
-    }
-    );
+    const route = Object.assign({}, this.state);
+    route.distance = routeDistance;
+    //latlng=40.714224,-73.961452
+    const startPosition = markers[0].position;
+    const latLngString = `${startPosition.lat()},${startPosition.lng()}`;
+    fetchAddress(latLngString).then(mainAddress => {
+      route.city = this.createCity(mainAddress.address);
+      createRoute({route})
+        .then(res => {
+          const resRoute = Object.values(res.payload)[0];
+          createMarkers(data, resRoute.id);
+        }).then(response => {
+          clearDistance();
+          history.push('/routes/my_routes');
+        }
+      );
+    });
+  }
+
+  createCity(addressComponents) {
+    const cityArray = [];
+    addressComponents.forEach(component => {
+      const types = component.types;
+      if (types.includes('locality') || types.includes('sublocality') ||
+        types.includes('administrative_area_level_1') ||
+        types.includes('country')) {
+        cityArray.push(component.short_name);
+      }
+    });
+    return cityArray.join(', ');
   }
 
   handleChange(inputType) {
@@ -46,7 +71,7 @@ class RouteForm extends React.Component {
 
   moveCenter(event) {
     event.preventDefault();
-    this.props.fetchAddress(
+    this.props.fetchLocation(
       this.createAddressString()
     ).then(this.setState({snapAddress: ''}));
   }
