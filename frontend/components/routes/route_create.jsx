@@ -5,7 +5,10 @@ import CreateMap from '../maps/create_map';
 import CreateButtons from '../maps/create_buttons';
 import CreateOptions from './create_options';
 import {receiveMarker, createMarkers} from '../../actions/marker_actions';
-import {createRoute} from '../../actions/route_actions';
+import {
+  createRoute,
+  receiveRouteDistance
+} from '../../actions/route_actions';
 
 class RouteCreate extends React.Component {
   constructor(props) {
@@ -20,7 +23,8 @@ class RouteCreate extends React.Component {
           createRoute={this.props.createRoute}/>
         <div className='big-map'>
           <CreateButtons markers={this.props.markers}/>
-          <CreateMap receiveMarker={this.props.receiveMarker}/>
+          <CreateMap receiveMarker={this.props.receiveMarker}
+            receiveRouteDistance={this.props.receiveRouteDistance}/>
         </div>
       </div>
     );
@@ -30,7 +34,8 @@ class RouteCreate extends React.Component {
 const mDtP = dispatch => ({
   receiveMarker: marker => dispatch(receiveMarker(marker)),
   createRoute: route => dispatch(createRoute(route)),
-  createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId))
+  createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId)),
+  receiveRouteDistance: distance => dispatch(receiveRouteDistance(distance)),
 });
 
 const mStP = state => ({

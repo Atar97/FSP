@@ -19,7 +19,6 @@ export const removeMarker = () => ({
 });
 
 const success = (res) => {
-  debugger;
   dispatch(receiveMarkers(res));
 };
 
