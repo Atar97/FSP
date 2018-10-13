@@ -19,7 +19,6 @@ class CreateMap extends RouteMap {
     routePath.push(event.latLng);
     const pathLeng = routePath.length;
     if (pathLeng > 1) {
-      debugger;
       const newDistance = this.distance(
         routePath.getArray()[pathLeng - 1],
         routePath.getArray()[pathLeng - 2]);
