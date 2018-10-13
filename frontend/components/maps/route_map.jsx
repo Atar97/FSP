@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import MarkerManager from '../../util/marker_manager';
 
@@ -7,10 +8,10 @@ class RouteMap extends React.Component {
     super(props);
   }
 
-  defaultMount() {
+  defaultMount(zoom) {
     const mapOptions = {
-      center: {lat: 37.7758, lng: -122.435},
-      zoom: 12
+      center: this.props.center,
+      zoom: 4
     };
     this.map = new google.maps.Map(
       document.getElementById('map'),

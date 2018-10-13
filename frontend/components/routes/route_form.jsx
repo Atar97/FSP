@@ -43,13 +43,22 @@ class RouteForm extends React.Component {
     return (event) => this.setState({[inputType]: event.target.value});
   }
 
+  moveCenter() {
+    this.props.receiveCenter({lat: 37.7476629, lng: -122.4611401});
+  }
+
   render() {
     return (
       <div className='options'>
         <form>
-          <input onChange={this.handleChange('name').bind(this)}
-            value={this.state.name} placeholder='Name this route'
-            ></input>
+          <button onClick={this.moveCenter.bind(this)}>
+            Center the Map</button>
+          <h2>Route Details</h2>
+          <div>
+            <input onChange={this.handleChange('name').bind(this)}
+              value={this.state.name} placeholder='Name this route'
+              ></input><p>*</p>
+          </div>
           <input onChange={this.handleChange('city').bind(this)}
             value={this.state.city} placeholder='city'
             ></input>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 import RouteMap from './route_map';
 
@@ -12,6 +11,12 @@ class CreateMap extends RouteMap {
   componentDidMount() {
     this.defaultMount();
     this.map.addListener('click', this.addLinePoint.bind(this));
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.center !== this.props.center) {
+      this.map.panTo(this.props.center);
+    }
   }
 
   addLinePoint(event) {

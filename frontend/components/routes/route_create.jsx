@@ -11,6 +11,7 @@ import {
   clearDistance
 } from '../../actions/route_actions';
 import {distanceInMiles} from '../../reducers/selectors.js';
+import {fetchAddress, receiveCenter} from '../../actions/map_actions';
 
 class RouteCreate extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class RouteCreate extends React.Component {
       markers, createMarkers,
       createRoute, routeDistance,
       receiveMarker, receiveRouteDistance,
-      miles, clearDistance
+      miles, clearDistance, fetchAddress,
+      center, receiveCenter
       } = this.props;
     return (
       <div className='route-creation-container'>
@@ -31,12 +33,15 @@ class RouteCreate extends React.Component {
           createRoute={createRoute}
           routeDistance={routeDistance}
           clearDistance={clearDistance}
+          fetchAddress={fetchAddress}
+          receiveCenter={receiveCenter}
           />
         <div className='big-map'>
           <RouteTools markers={markers}
             miles={miles}/>
           <CreateMap receiveMarker={receiveMarker}
-            receiveRouteDistance={receiveRouteDistance}/>
+            receiveRouteDistance={receiveRouteDistance}
+            center={center} receiveCenter={receiveCenter} />
         </div>
       </div>
     );
@@ -49,12 +54,15 @@ const mDtP = dispatch => ({
   createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId)),
   receiveRouteDistance: distance => dispatch(receiveRouteDistance(distance)),
   clearDistance: () => dispatch(clearDistance()),
+  fetchAddress: address => dispatch(fetchAddress(address)),
+  receiveCenter: center => dispatch(receiveCenter(center)),
 });
 
 const mStP = state => ({
   markers: state.entities.markers,
   miles: distanceInMiles(state),
   routeDistance: state.ui.routeDistance,
+  center: state.ui.maps.center,
 });
 
 export default connect(mStP, mDtP)(RouteCreate);

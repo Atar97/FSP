@@ -5,8 +5,8 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 //begin test
-import * as RouteApi from './actions/route_actions';
-import {sendDownMarkers} from './util/marker_api_util';
+import * as RouteApi from './util/route_api_util';
+import * as mapActions from './actions/map_actions';
 // end test
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     store = configureStore({});
   }
   // start test
-  window.sendDownMarkers = sendDownMarkers;
-  window.RouteApi = RouteApi;
-  window.newRoute = {route: {name: 'new', distance: '42', city: 'San Fran'}};
+  window.mapActions = mapActions;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   // end test
