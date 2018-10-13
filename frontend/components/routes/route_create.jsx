@@ -48,7 +48,7 @@ const mDtP = dispatch => ({
 
 const mStP = state => ({
   markers: state.entities.markers,
-  routeDistance: state.ui.distance,
+  routeDistance: state.ui.routeDistance,
 });
 
 export default connect(mStP, mDtP)(RouteCreate);
