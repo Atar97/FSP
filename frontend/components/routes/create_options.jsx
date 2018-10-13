@@ -7,11 +7,11 @@ export default class CreateOptions extends React.Component {
     this.state = {
       city: '',
       name: '',
-      distance: '',
+      distance: 0,
     };
   }
 
-  updateMarkers(event) {
+  saveRoute(event) {
     event.preventDefault();
     const data = this.props.markers.map((marker, idx) => {
       let last = false;
@@ -25,11 +25,17 @@ export default class CreateOptions extends React.Component {
         last
       };
     });
+    this.state.distance = this.props.routeDistance;
     this.props.createRoute({route: Object.assign({}, this.state)})
     .then(res => {
       const resRoute = Object.values(res.payload)[0];
       this.props.createMarkers(data, resRoute.id);
-    });
+    }).then(response => {
+      debugger;
+      this.props.clearDistance();
+      this.props.history.push('/');
+    }
+    );
   }
 
   handleChange(inputType) {
@@ -43,14 +49,11 @@ export default class CreateOptions extends React.Component {
           <input onChange={this.handleChange('name').bind(this)}
             value={this.state.name} placeholder='Name this route'
             ></input>
-          <input onChange={this.handleChange('distance').bind(this)}
-            value={this.state.distance} placeholder='distance'
-            ></input>
           <input onChange={this.handleChange('city').bind(this)}
             value={this.state.city} placeholder='city'
             ></input>
 
-          <button onClick={this.updateMarkers.bind(this)}>Save Route</button>
+          <button onClick={this.saveRoute.bind(this)}>Save Route</button>
         </form>
       </div>
     );

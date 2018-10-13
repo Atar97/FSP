@@ -5,7 +5,6 @@ export default (state =  0, action) => {
 
   switch (action.type) {
     case RECEIVE_ROUTE_DISTANCE:
-    debugger;
       return state + action.distance;
     default:
       return state;

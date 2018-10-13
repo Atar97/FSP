@@ -3,6 +3,7 @@ import * as RouteAPIUtil from '../util/route_api_util';
 export const RECEIVE_ROUTES = 'RECEIVE_ROUTES';
 export const RECEIVE_ROUTE_ERRORS = 'RECEIVE_ROUTE_ERRORS';
 export const RECEIVE_ROUTE_DISTANCE = 'RECEIVE_ROUTE_DISTANCE';
+export const CLEAR_DISTANCE = 'CLEAR_DISTANCE';
 
 export const receiveRoutes = payload => ({
   type: RECEIVE_ROUTES,
@@ -17,6 +18,10 @@ export const receiveRouteErrors = errors => ({
 export const receiveRouteDistance = distance => ({
   type: RECEIVE_ROUTE_DISTANCE,
   distance,
+});
+
+export const clearDistance = () => ({
+  type: CLEAR_DISTANCE
 });
 
 const success = (res) => {

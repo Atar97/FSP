@@ -18,7 +18,7 @@ export default class CreateButtons extends React.Component {
       <div className='buttons'>
         <header className='distance-header'>
           <span>distance</span>
-          <strong>{this.props.routeDistance}</strong>
+          <strong>{this.props.miles}</strong>
         </header>
         <button id='undo' disabled onClick={this.undo.bind(this)}>Undo</button>
       </div>
