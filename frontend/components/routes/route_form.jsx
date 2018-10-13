@@ -7,9 +7,7 @@ class RouteForm extends React.Component {
 
     this.state = {
       snapAddress: '',
-      city: '',
       name: '',
-      distance: 0,
     };
   }
 
@@ -85,23 +83,18 @@ class RouteForm extends React.Component {
     return (
       <div className='options'>
         <form>
-          <h2>Choose map location:</h2>
-          <label>
-            <input onChange={this.handleChange('snapAddress').bind(this)}
-              value={this.state.snapAddress} placeholder='Address Or Zip'
-              className='address'
-              ></input>
-            <button className='search' onClick={this.moveCenter.bind(this)}>
-              Search</button>
-          </label>
+          <h2 className='h2'>Choose map location:</h2>
+          <input onChange={this.handleChange('snapAddress').bind(this)}
+            value={this.state.snapAddress} placeholder='Address Or Zip'
+            className='address'
+            ></input>
+          <button className='search' onClick={this.moveCenter.bind(this)}>
+            Search</button>
         </form>
         <form>
           <h2>Route Details</h2>
-            <input onChange={this.handleChange('name').bind(this)}
-              value={this.state.name} placeholder='Name this route'
-              ></input>
-          <input onChange={this.handleChange('city').bind(this)}
-            value={this.state.city} placeholder='city'
+          <input onChange={this.handleChange('name').bind(this)}
+            value={this.state.name} placeholder='Name this route'
             ></input>
 
           <button className='submit'
