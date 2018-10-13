@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 
-class CreateOptions extends React.Component {
+class RouteForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -61,4 +61,4 @@ class CreateOptions extends React.Component {
   }
 }
 
-export default withRouter(CreateOptions);
+export default withRouter(RouteForm);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CreateButtons extends React.Component {
+export default class RouteTools extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,12 +15,15 @@ export default class CreateButtons extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
+      <div className='route-tools'>
         <header className='distance-header'>
           <span>distance</span>
-          <strong>{this.props.miles}</strong>
+          <strong>{this.props.miles} MI</strong>
         </header>
-        <button id='undo' disabled onClick={this.undo.bind(this)}>Undo</button>
+        <div className='buttons'>
+          <button  id='undo' disabled className='edit-button'
+            onClick={this.undo.bind(this)}>Undo</button>
+        </div>
       </div>
     );
   }

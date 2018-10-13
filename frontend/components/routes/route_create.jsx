@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import CreateMap from '../maps/create_map';
-import CreateButtons from '../maps/create_buttons';
-import CreateOptions from './create_options';
+import RouteTools from '../maps/route_tools';
+import RouteForm from './route_form';
 import {receiveMarker, createMarkers} from '../../actions/marker_actions';
 import {
   createRoute,
@@ -26,14 +26,14 @@ class RouteCreate extends React.Component {
       } = this.props;
     return (
       <div className='route-creation-container'>
-        <CreateOptions markers={markers}
+        <RouteForm markers={markers}
           createMarkers={createMarkers}
           createRoute={createRoute}
           routeDistance={routeDistance}
           clearDistance={clearDistance}
           />
         <div className='big-map'>
-          <CreateButtons markers={markers}
+          <RouteTools markers={markers}
             miles={miles}/>
           <CreateMap receiveMarker={receiveMarker}
             receiveRouteDistance={receiveRouteDistance}/>

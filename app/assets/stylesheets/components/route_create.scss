@@ -17,7 +17,7 @@
     height: 600px;
   }
 
-  .buttons {
+  .route-tools {
     height: 300px;
     width: 200px;
     z-index: 1;
@@ -25,6 +25,46 @@
     position: absolute;
     top: 70px;
     right: 12px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    .distance-header {
+      background: rgba(75, 75, 75, .8);
+      display: flex;
+      flex-direction: column;
+      height: 40px;
+      padding: 5px;
+
+      span {
+        color: #EFEFEF;
+        text-transform: uppercase;
+        font-size: 10px;
+
+      }
+
+      strong {
+        color: #FFFFFF;
+        font-size: 22px;
+        text-shadow: 1px 1px black;
+      }
+    }
+
+
+    .buttons {
+      background-color: #F9F9F9;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 15px;
+    }
+
+    .edit-button {
+      background-color: #F2F2F2;
+      margin: 2px;
+      padding: 3px;
+      color: green;
+      height: 40px;
+    }
   }
 }
