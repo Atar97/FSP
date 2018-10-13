@@ -7,7 +7,7 @@ export const receiveCenter = center => ({
 });
 
 export const fetchAddress = address => dispatch => {
-  MapAPIUtil.fetchAddress(address)
+  return MapAPIUtil.fetchAddress(address)
     .then(res => dispatch(
       receiveCenter(res.results[0].geometry.location)));
 };

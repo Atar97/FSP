@@ -44,22 +44,25 @@ class RouteForm extends React.Component {
     return (event) => this.setState({[inputType]: event.target.value});
   }
 
-  moveCenter() {
-
-    this.props.receiveCenter({lat: 37.7476629, lng: -122.4611401});
+  moveCenter(event) {
+    event.preventDefault();
+    this.props.fetchAddress(
+      this.createAddressString()
+    ).then(this.setState({snapAddress: ''}));
   }
 
   createAddressString() {
-
+    // 1600+Amphitheatre+Parkway,+Mountain+View,+CA address style
+    return this.state.snapAddress.split(' ').join('+');
   }
 
   render() {
     return (
       <div className='options'>
         <form>
-          <label for='address'>Jump to Location</label>
+          <label htmlFor='address'>Jump to Location:</label>
           <input onChange={this.handleChange('snapAddress').bind(this)}
-            value={this.state.city} placeholder='Enter Address' id='address'
+            value={this.state.snapAddress} placeholder='Enter Address' id='address'
             ></input>
           <button onClick={this.moveCenter.bind(this)}>
             Center the Map</button>
