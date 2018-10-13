@@ -6,6 +6,7 @@ class RouteForm extends React.Component {
     super(props);
 
     this.state = {
+      snapAddress: '',
       city: '',
       name: '',
       distance: 0,
@@ -44,15 +45,26 @@ class RouteForm extends React.Component {
   }
 
   moveCenter() {
+
     this.props.receiveCenter({lat: 37.7476629, lng: -122.4611401});
+  }
+
+  createAddressString() {
+
   }
 
   render() {
     return (
       <div className='options'>
         <form>
+          <label for='address'>Jump to Location</label>
+          <input onChange={this.handleChange('snapAddress').bind(this)}
+            value={this.state.city} placeholder='Enter Address' id='address'
+            ></input>
           <button onClick={this.moveCenter.bind(this)}>
             Center the Map</button>
+        </form>
+        <form>
           <h2>Route Details</h2>
           <div>
             <input onChange={this.handleChange('name').bind(this)}
