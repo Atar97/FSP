@@ -1,6 +1,7 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
-export default class CreateOptions extends React.Component {
+class CreateOptions extends React.Component {
   constructor(props) {
     super(props);
 
@@ -33,7 +34,7 @@ export default class CreateOptions extends React.Component {
     }).then(response => {
       debugger;
       this.props.clearDistance();
-      this.props.history.push('/');
+      this.props.history.push('/routes/my_routes');
     }
     );
   }
@@ -59,3 +60,5 @@ export default class CreateOptions extends React.Component {
     );
   }
 }
+
+export default withRouter(CreateOptions);

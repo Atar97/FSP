@@ -18,7 +18,6 @@ class RouteCreate extends React.Component {
   }
 
   render() {
-    debugger;
     const {
       markers, createMarkers,
       createRoute, routeDistance,
@@ -31,6 +30,7 @@ class RouteCreate extends React.Component {
           createMarkers={createMarkers}
           createRoute={createRoute}
           routeDistance={routeDistance}
+          clearDistance={clearDistance}
           />
         <div className='big-map'>
           <CreateButtons markers={markers}
