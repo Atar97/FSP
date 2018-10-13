@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import {addClass, removeClass} from '../../util/html_util';
 
 class RouteForm extends React.Component {
   constructor(props) {
@@ -11,15 +12,9 @@ class RouteForm extends React.Component {
     };
   }
 
-  saveRoute(event) {
-    const {
-      markers, address,
-      fetchAddress, routeDistance,
-      createRoute, createMarkers,
-      clearDistance, history
-    } = this.props;
-    event.preventDefault();
-    const data = markers.map((marker, idx) => {
+  makeMarkerData() {
+    const {markers} = this.props;
+    return markers.map((marker, idx) => {
       let last = false;
       if (idx === this.props.markers.length - 1) {
         last = true;
@@ -31,20 +26,35 @@ class RouteForm extends React.Component {
         last
       };
     });
+  }
+  saveRoute(event) {
+    const {
+      markers, address,
+      fetchAddress, routeDistance,
+      createRoute, createMarkers,
+      clearDistance, history
+    } = this.props;
+    event.preventDefault();
+    if (markers.length < 2 || !this.state.name) {
+      return;
+    }
+    const data = this.makeMarkerData();
     const route = Object.assign({}, this.state);
     route.distance = routeDistance;
     //latlng=40.714224,-73.961452
     const startPosition = markers[0].position;
     const latLngString = `${startPosition.lat()},${startPosition.lng()}`;
+    let newRouteId;
     fetchAddress(latLngString).then(mainAddress => {
       route.city = this.createCity(mainAddress.address);
       createRoute({route})
-        .then(res => {
-          const resRoute = Object.values(res.payload)[0];
-          createMarkers(data, resRoute.id);
-        }).then(response => {
+      .then(res => {
+        const resRoute = Object.values(res.payload)[0];
+        createMarkers(data, resRoute.id);
+        newRouteId = resRoute.id;
+      }).then(response => {
           clearDistance();
-          history.push('/routes/my_routes');
+          history.push(`/routes/${newRouteId}`);
         }
       );
     });
@@ -69,9 +79,11 @@ class RouteForm extends React.Component {
 
   moveCenter(event) {
     event.preventDefault();
-    this.props.fetchLocation(
-      this.createAddressString()
-    ).then(this.setState({snapAddress: ''}));
+    if (this.state.snapAddress) {
+      this.props.fetchLocation(
+        this.createAddressString()
+      ).then(this.setState({snapAddress: ''}));
+    }
   }
 
   createAddressString() {
@@ -81,12 +93,12 @@ class RouteForm extends React.Component {
 
   render() {
     return (
-      <div className='options'>
+      <div className='options' id='options-container'>
         <form>
           <h2 className='h2'>Choose map location:</h2>
           <input onChange={this.handleChange('snapAddress').bind(this)}
             value={this.state.snapAddress} placeholder='Address Or Zip'
-            className='address'
+            className='address' id='address'
             ></input>
           <button className='search' onClick={this.moveCenter.bind(this)}>
             Search</button>
@@ -95,6 +107,7 @@ class RouteForm extends React.Component {
           <h2>Route Details</h2>
           <input onChange={this.handleChange('name').bind(this)}
             value={this.state.name} placeholder='Name this route'
+            id='name'
             ></input>
 
           <button className='submit'
