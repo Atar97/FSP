@@ -6,9 +6,12 @@
   display: flex;
 
   .options {
-    width: 200px;
+    width: 20%;
     margin-right: 20px;
     border: 1px solid $light-gray;
+    border-radius: 3px;
+    box-shadow: 0 0 5px $medium-gray;
+    // background: $route-background;
 
     form {
       display: flex;
@@ -16,27 +19,58 @@
       align-items: center;
       padding: 15px;
 
-      div {
-        display: inline;
+      label {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
+
+      h2 {
+        font-weight: normal;
+        font-size: 20px;
+        background-color: #EFEFEF;
+        width: 104%;
+        padding: 3px;
+        margin-bottom: 7px;
+      }
+
       input {
         padding: 5px;
         font-size: 16px;
         color: $dark-gray;
-        width: 80%;
+        width: 100%;
       }
-      p {
-        display: inline;
-        color: red;
-        font-size: 25px;
-        margin: 3px;
+
+      .address {
+        font-size: 12px;
+        padding: 7px 2px;
       }
+
       button {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: white;
+        box-shadow: 2px 2px 3px $light-gray;
+        font-weight: bold;
+        width: 100%;
+      }
+
+      .search {
+        background-color: #b1b1b1;
+      }
+
+      .submit {
         background-color: $create-orange;
       }
 
-      button:hover {
+      .submit:hover {
         background-color: $create-orange-hover;
+      }
+
+      .error-input {
+        border: 1px solid red;
       }
     }
 
@@ -44,8 +78,9 @@
 
   .big-map {
     position: relative;
-    width: 75%;
+    width: 72%;
     height: 600px;
+    box-shadow: 0 0 5px $medium-gray;
   }
 
   .route-tools {

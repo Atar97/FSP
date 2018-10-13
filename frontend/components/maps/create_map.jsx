@@ -16,6 +16,7 @@ class CreateMap extends RouteMap {
   componentDidUpdate(prevProps) {
     if (prevProps.center !== this.props.center) {
       this.map.panTo(this.props.center);
+      this.map.setZoom(12);
     }
   }
 

@@ -60,25 +60,27 @@ class RouteForm extends React.Component {
     return (
       <div className='options'>
         <form>
-          <label htmlFor='address'>Jump to Location:</label>
-          <input onChange={this.handleChange('snapAddress').bind(this)}
-            value={this.state.snapAddress} placeholder='Enter Address' id='address'
-            ></input>
-          <button onClick={this.moveCenter.bind(this)}>
-            Center the Map</button>
+          <h2>Choose map location:</h2>
+          <label>
+            <input onChange={this.handleChange('snapAddress').bind(this)}
+              value={this.state.snapAddress} placeholder='Address Or Zip'
+              className='address'
+              ></input>
+            <button className='search' onClick={this.moveCenter.bind(this)}>
+              Search</button>
+          </label>
         </form>
         <form>
           <h2>Route Details</h2>
-          <div>
             <input onChange={this.handleChange('name').bind(this)}
               value={this.state.name} placeholder='Name this route'
-              ></input><p>*</p>
-          </div>
+              ></input>
           <input onChange={this.handleChange('city').bind(this)}
             value={this.state.city} placeholder='city'
             ></input>
 
-          <button onClick={this.saveRoute.bind(this)}>Save Route</button>
+          <button className='submit'
+            onClick={this.saveRoute.bind(this)}>Save Route</button>
         </form>
       </div>
     );

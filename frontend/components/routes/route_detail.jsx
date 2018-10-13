@@ -43,7 +43,8 @@ class RouteDetail extends React.Component {
             </ul>
           </div>
           <div className='small-map'>
-            <RouteMap markers={this.props.markers}/>
+            <RouteMap markers={this.props.markers}
+              center={this.props.center}/>
           </div>
         </div>
       );
@@ -61,7 +62,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   route: state.entities.routes,
-  markers: state.entities.markers
+  markers: state.entities.markers,
+  center: state.ui.maps.center,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RouteDetail);
