@@ -26,8 +26,9 @@ class Api::RoutesController < ApplicationController
   end
 
   def destroy
+    route_id = @route.id
     @route.destroy
-    render json: ['Route Destroyed']
+    render json: {id: route_id}
   end
 
   def update
