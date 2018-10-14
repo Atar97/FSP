@@ -66,7 +66,7 @@ class User < ApplicationRecord
       password: 'starwars',
       gender: ['F', 'M'].shuffle[0],
       country: Faker::WorldCup.team})
-    Route.create_random_route(user.id)
+    # Route.create_random_route(user.id)
     return user
   end
 end

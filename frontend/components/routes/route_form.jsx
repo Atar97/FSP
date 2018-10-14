@@ -104,7 +104,6 @@ class RouteForm extends React.Component {
 
   render() {
     let errors;
-    debugger;
     if (this.state.errors) {
       errors = (
         <div className='error-box'>

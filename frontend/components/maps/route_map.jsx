@@ -8,16 +8,16 @@ class RouteMap extends React.Component {
     super(props);
   }
 
-  defaultMount(zoom) {
+  defaultMount(zoom = 4, strokeColor = '#EC2626') {
     const mapOptions = {
       center: this.props.center,
-      zoom: 4
+      zoom
     };
     this.map = new google.maps.Map(
       document.getElementById('map'),
       mapOptions);
     this.routeLine = new google.maps.Polyline({
-      strokeColor: '#EC2626',
+      strokeColor,
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
