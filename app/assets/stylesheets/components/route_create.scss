@@ -5,13 +5,18 @@
   height: 100%;
   display: flex;
 
+  .error-box {
+    color: red;
+    display: flex;
+    justify-content: center;
+
+  }
   .options {
     width: 20%;
     margin-right: 20px;
     border: 1px solid $light-gray;
     border-radius: 3px;
     box-shadow: 0 0 5px $medium-gray;
-    // background: $route-background;
 
     form {
       display: flex;
@@ -62,9 +67,6 @@
         background-color: $create-orange-hover;
       }
 
-      .error-input {
-        border: 1px solid red;
-      }
     }
 
   }

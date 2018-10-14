@@ -9,6 +9,7 @@ class RouteForm extends React.Component {
     this.state = {
       snapAddress: '',
       name: '',
+      errors: [],
     };
   }
 
@@ -36,6 +37,13 @@ class RouteForm extends React.Component {
     } = this.props;
     event.preventDefault();
     if (markers.length < 2 || !this.state.name) {
+
+      // this.setState({errors: this.state.errors.push(
+      //   'You must have at least 2 points to make a route')});
+      if (!this.state.name) {
+        this.setState({errors: this.state.errors.concat(
+          ['Each route needs a name'])});
+      }
       return;
     }
     const data = this.makeMarkerData();
@@ -74,7 +82,10 @@ class RouteForm extends React.Component {
   }
 
   handleChange(inputType) {
-    return (event) => this.setState({[inputType]: event.target.value});
+    return (event) => this.setState({
+      [inputType]: event.target.value,
+      errors: []
+    });
   }
 
   moveCenter(event) {
@@ -92,6 +103,16 @@ class RouteForm extends React.Component {
   }
 
   render() {
+    let errors;
+    debugger;
+    if (this.state.errors) {
+      errors = (
+        <div className='error-box'>
+          {this.state.errors.map((error, i) =>
+            <p key={i}>{error}</p>)}
+        </div>
+      );
+    }
     return (
       <div className='options' id='options-container'>
         <form>
@@ -113,6 +134,7 @@ class RouteForm extends React.Component {
           <button className='submit'
             onClick={this.saveRoute.bind(this)}>Save Route</button>
         </form>
+        {errors}
       </div>
     );
   }
