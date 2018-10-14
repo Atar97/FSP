@@ -33,13 +33,10 @@ class RouteForm extends React.Component {
       markers, address,
       fetchAddress, routeDistance,
       createRoute, createMarkers,
-      clearDistance, history
+      clearDistance, history, receiveMarkers
     } = this.props;
     event.preventDefault();
     if (markers.length < 2 || !this.state.name) {
-
-      // this.setState({errors: this.state.errors.push(
-      //   'You must have at least 2 points to make a route')});
       if (!this.state.name) {
         this.setState({errors: this.state.errors.concat(
           ['Each route needs a name'])});
@@ -62,6 +59,7 @@ class RouteForm extends React.Component {
         newRouteId = resRoute.id;
       }).then(response => {
           clearDistance();
+          receiveMarkers([]);
           history.push(`/routes/${newRouteId}`);
         }
       );

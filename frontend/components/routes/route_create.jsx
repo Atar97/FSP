@@ -36,6 +36,7 @@ class RouteCreate extends React.Component {
           routeDistance={routeDistance} clearDistance={clearDistance}
           fetchLocation={fetchLocation} receiveCenter={receiveCenter}
           fetchAddress={fetchAddress} address={address}
+          receiveMarkers ={receiveMarkers}
           />
         <div className='big-map'>
           <RouteTools markers={markers}
