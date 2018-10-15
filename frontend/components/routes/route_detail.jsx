@@ -20,7 +20,8 @@ class RouteDetail extends React.Component {
   render () {
     const self = this.props.route[this.id];
     const {
-      markers, center, receiveCenter, fetchMarkersforRoute
+      markers, center, receiveCenter,
+      fetchMarkersforRoute, receiveMarkers,
     } = this.props;
     if (self && self.creator) {
       const milesDistance = self.distance / 1609;
@@ -53,7 +54,7 @@ class RouteDetail extends React.Component {
               center={center}
               receiveCenter={receiveCenter}
               fetchMarkersforRoute={fetchMarkersforRoute}
-              routeId={this.id}/>
+              routeId={this.id} receiveMarkers={receiveMarkers}/>
           </div>
         </div>
       );

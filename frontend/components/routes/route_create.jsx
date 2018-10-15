@@ -15,9 +15,9 @@ import {fetchLocation, receiveCenter, fetchAddress
 class RouteCreate extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.location.pathname === '/routes/create/') {
-      this.props.receiveMarkers([]);
-    }
+    // if (this.props.location.pathname === '/routes/create/') {
+    //   this.props.receiveMarkers([]);
+    // }
   }
 
   render() {
@@ -42,9 +42,10 @@ class RouteCreate extends React.Component {
           <RouteTools markers={markers} miles={miles}
             popMarker={popMarker}
             />
-          <CreateMap receiveMarker={receiveMarker}
+          <CreateMap receiveMarker={receiveMarker} markers={markers}
             receiveRouteDistance={receiveRouteDistance}
-            center={center} receiveCenter={receiveCenter} />
+            center={center} receiveCenter={receiveCenter}
+            receiveMarkers={receiveMarkers}/>
         </div>
       </div>
     );

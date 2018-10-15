@@ -6,6 +6,7 @@ class CreateMap extends RouteMap {
   constructor(props) {
     super(props);
     this.distance = google.maps.geometry.spherical.computeDistanceBetween;
+    this.props.receiveMarkers([]);
   }
 
   componentDidMount() {
@@ -14,6 +15,8 @@ class CreateMap extends RouteMap {
   }
 
   componentDidUpdate(prevProps) {
+    const path = this.props.markers.map(marker => marker.position);
+    this.state.routeLine.setPath(path);
     if (prevProps.center !== this.props.center) {
       this.map.panTo(this.props.center);
       this.map.setZoom(12);
@@ -21,7 +24,7 @@ class CreateMap extends RouteMap {
   }
 
   addLinePoint(event) {
-    let routePath = this.routeLine.getPath();
+    const routePath = this.state.routeLine.getPath();
     routePath.push(event.latLng);
     const pathLeng = routePath.length;
     if (pathLeng > 1) {
