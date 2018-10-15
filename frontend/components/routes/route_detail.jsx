@@ -10,13 +10,13 @@ import {receiveCenter} from '../../actions/map_actions';
 class RouteDetail extends React.Component {
   constructor(props) {
     super(props);
+    debugger;
     this.id = this.props.match.params.route_id;
   }
 
   componentDidMount() {
     const {fetchRoute, fetchMarkersforRoute} = this.props;
-    fetchRoute(this.id)
-      .then(fetchMarkersforRoute(this.id));
+    fetchRoute(this.id);
   }
 
   render () {

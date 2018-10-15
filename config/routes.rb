@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :markers, only: [:index]
     end
     resources :markers, only: [:create, :destroy]
-    resources :workouts, only: [:destroy, :show]
+    resources :workouts, only: [:destroy, :show, :update]
   end
   get 'api/my_routes/', to: 'api/routes#myindex'
 
