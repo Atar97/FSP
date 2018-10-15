@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_12_180623) do
+ActiveRecord::Schema.define(version: 2018_10_15_164025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 2018_10_12_180623) do
     t.string "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token"
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "title", null: false
+    t.date "date", null: false
+    t.time "start_time"
+    t.text "body"
+    t.integer "route_id"
+    t.integer "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "duration"
+    t.index ["route_id"], name: "index_workouts_on_route_id"
   end
 
 end

@@ -6,11 +6,6 @@
 
 
 ## Route Edit
-- ### clear
-  - needs access to markers, set all maps to null then dispatch
-    receiveMarkers([])
-
-    **20min if it all goes well**
 - ### create_map.jsx
   - change save route button to dispatch a call to update rather
     than a call to create

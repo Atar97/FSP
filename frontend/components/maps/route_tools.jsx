@@ -18,7 +18,7 @@ export default class RouteTools extends React.Component {
   }
 
   clear() {
-    const {markers, receiveMarkers, clearDistance} = this.props
+    const {markers, receiveMarkers, clearDistance} = this.props;
     markers.forEach(marker => marker.setMap(null));
     receiveMarkers([]);
     clearDistance();
