@@ -25,6 +25,8 @@ class User < ApplicationRecord
   has_many :routes,
   foreign_key: :creator_id
 
+  has_many :workouts
+
   attr_reader :password
 
   def password=(pw)

@@ -52,13 +52,17 @@ class RouteForm extends React.Component {
     let newRouteId;
     fetchAddress(latLngString)
     .then(mainAddress => {
+        //wait for address from google
         route.city = this.createCity(mainAddress.address);
         createRoute({route})
         .then(routeRes => {
+            //wait for route to be created to make markers
             const resRoute = Object.values(routeRes.payload)[0];
             newRouteId = resRoute.id;
             createMarkers(data, resRoute.id)
           .then(() => {
+              //wait for all markers to be created before redirecting to
+              //route show page
               clearDistance();
               history.push(`/routes/${newRouteId}`);
             });

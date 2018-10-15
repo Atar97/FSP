@@ -7,12 +7,18 @@ export default class RouteTools extends React.Component {
     this.state = {
       undidPoints: []
     };
+    this.distance = google.maps.geometry.spherical.computeDistanceBetween;
   }
 
   undo() {
-    const {markers, popMarker} = this.props;
+    const {markers, popMarker, receiveRouteDistance} = this.props;
     const marker = markers[markers.length - 1];
+    const minusDistance = this.distance(
+      markers[markers.length - 2].position,
+      marker.position
+    );
     popMarker();
+    receiveRouteDistance(-1 * minusDistance);
     marker.setMap(null);
     this.state.undidPoints.push(marker);
   }

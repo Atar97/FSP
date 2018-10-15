@@ -20,6 +20,8 @@ class Route < ApplicationRecord
 
   has_many :markers
 
+  has_many :workouts
+
   def self.create_random_route(user_id)
     Route.create({
       creator_id: user_id,
