@@ -16,7 +16,7 @@ class Api::WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    @workout.user_id = current_user.id
+    @workout.user_id = params[:user_id]
     @workout.start_time = workout_params[:startTime]
     if @workout.save
       render :show
@@ -31,7 +31,7 @@ class Api::WorkoutsController < ApplicationController
       render :show
     else
       render json: @workout.errors.full_messages
-    end 
+    end
   end
 
   private

@@ -24,7 +24,7 @@ ActiveRecord::Base.transaction do
 
   austin = User.find_by(email: 'austin');
 
-  Route.destroy_all
+  # Route.destroy_all
 
   # Route.create!([
   #   {city: 'Madison', distance: 1234,
@@ -36,6 +36,18 @@ ActiveRecord::Base.transaction do
   #   {city: 'Madison', distance: 4463,
   #     name: Faker::LordOfTheRings.location, creator_id: austin.id},
   # ])
+
+  rf = Route.first
+  rl = Route.last
+
+  Workout.create!([
+    {user_id: austin.id, title: Faker::Dune.planet, start_time: '19:23',
+    body: Faker::Dune.saying, route_id: rf.id, distance: rf.distance,
+    duration: 600, date: Faker::Date.backward(10)},
+    {user_id: austin.id, title: Faker::Dune.planet, start_time: '19:23',
+    body: Faker::Dune.saying, route_id: rl.id, distance: rl.distance,
+    duration: 1000, date: Faker::Date.backward(10)},
+    ])
 
 
 end
