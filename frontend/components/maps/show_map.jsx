@@ -11,7 +11,7 @@ export default class ShowMap extends RouteMap {
     const {
       receiveCenter, fetchMarkersforRoute, routeId
     } = this.props;
-    this.defaultMount(6);
+    this.defaultMount(13);
     fetchMarkersforRoute(routeId)
     .then(() => {
       const routeLine = this.state.routeLine;

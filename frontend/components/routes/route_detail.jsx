@@ -10,7 +10,6 @@ import {receiveCenter} from '../../actions/map_actions';
 class RouteDetail extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.id = this.props.match.params.route_id;
   }
 

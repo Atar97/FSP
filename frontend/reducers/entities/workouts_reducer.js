@@ -7,7 +7,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_WORKOUTS:
       return action.payload;
-    case REMOVE_ROUTE:
+    case REMOVE_WORKOUT:
       const newState = Object.assign({}, state);
       delete newState[action.workoutId];
       return newState;
