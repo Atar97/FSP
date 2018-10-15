@@ -5,8 +5,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 //begin test
-import * as RouteApi from './util/route_api_util';
-import * as mapActions from './actions/map_actions';
+import * as WorkoutApi from './util/workout_api_util';
 // end test
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     store = configureStore({});
   }
   // start test
-  window.mapActions = mapActions;
+  window.WorkoutApi = WorkoutApi;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   // end test

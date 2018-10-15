@@ -2,7 +2,7 @@ class Api::WorkoutsController < ApplicationController
   before_action :find_workout, only: [:edit, :destroy, :show]
 
   def index
-    @workouts = Workout.find_by(user_id: params[:user_id])
+    @workouts = Workout.where(user_id: params[:user_id])
   end
 
   def show
@@ -16,7 +16,7 @@ class Api::WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    @workout.user_id = params[:user_id]
+    @workout.user_id = current_user.id
     @workout.start_time = workout_params[:startTime]
     if @workout.save
       render :show

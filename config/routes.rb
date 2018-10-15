@@ -6,14 +6,14 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json}  do
     resources :users, only: [:create, :show] do
-      resources :workouts, only: [:index, :create]
+      resources :workouts, only: [:index]
     end
     resource :session, only: [:create, :destroy]
     resources :routes, except: [:new, :edit] do
       resources :markers, only: [:index]
     end
     resources :markers, only: [:create, :destroy]
-    resources :workouts, only: [:destroy, :show, :update]
+    resources :workouts, only: [:destroy, :show, :update, :create]
   end
   get 'api/my_routes/', to: 'api/routes#myindex'
 
