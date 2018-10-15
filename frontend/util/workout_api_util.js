@@ -22,7 +22,7 @@ export const fetchWorkout = id => (
 
 export const updateWorkout = workout => (
   $.ajax({
-    url: `api/workouts/${workout.id}`,
+    url: `api/workouts/${workout.workout.id}`,
     method: 'PATCH',
     data: workout
   })

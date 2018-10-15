@@ -1,5 +1,5 @@
 class Api::WorkoutsController < ApplicationController
-  before_action :find_workout, only: [:edit, :destroy, :show]
+  before_action :find_workout, only: [:update, :destroy, :show]
 
   def index
     @workouts = Workout.where(user_id: params[:user_id])
@@ -17,7 +17,6 @@ class Api::WorkoutsController < ApplicationController
   def create
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
-    @workout.start_time = workout_params[:startTime]
     if @workout.save
       render :show
     else
@@ -25,8 +24,7 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
-  def edit
-    @workout.start_time = workout_params[:startTime]
+  def update
     if @workout.update(workout_params)
       render :show
     else
@@ -40,7 +38,7 @@ class Api::WorkoutsController < ApplicationController
   end
 
   def workout_params
-    params.require(:workout).permit(:title, :date, :start_time,
-      :body, :distance, :duration)
+    params.require(:workout).permit(:title, :date, :body,
+      :distance, :duration, :startTime, :routeId).transform_keys!(&:underscore)
   end
 end
