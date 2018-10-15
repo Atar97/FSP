@@ -5,12 +5,16 @@ export default class RouteTools extends React.Component {
     super(props);
 
     this.state = {
-      undidPoint: null
+      undidPoints: []
     };
   }
 
-  undo(event) {
-    this.state.undidPoint = this.props.markers.pop();
+  undo() {
+    const {markers, popMarker} = this.props;
+    const marker = markers[markers.length - 1];
+    popMarker();
+    marker.setMap(null);
+    this.state.undidPoints.push(marker);
   }
 
   render() {
@@ -21,7 +25,7 @@ export default class RouteTools extends React.Component {
           <strong>{this.props.miles} MI</strong>
         </header>
         <div className='buttons'>
-          <button  id='undo' disabled className='edit-button'
+          <button  id='undo' className='edit-button'
             onClick={this.undo.bind(this)}>Undo</button>
         </div>
       </div>

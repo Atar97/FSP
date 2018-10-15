@@ -1,5 +1,5 @@
 export const RECEIVE_MARKERS = 'RECEIVE_MARKERS';
-export const REMOVE_MARKER = 'REMOVE_MARKER';
+export const POP_MARKER = 'REMOVE_MARKER';
 export const RECEIVE_MARKER = 'RECEIVE_MARKER';
 
 import * as APIUtil from '../util/marker_api_util';
@@ -14,8 +14,8 @@ export const receiveMarker = marker => ({
   marker
 });
 
-export const removeMarker = () => ({
-  type: REMOVE_MARKER
+export const popMarker = () => ({
+  type: POP_MARKER
 });
 
 const success = (res) => {
