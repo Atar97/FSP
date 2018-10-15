@@ -15,9 +15,6 @@ import {fetchLocation, receiveCenter, fetchAddress
 class RouteCreate extends React.Component {
   constructor(props) {
     super(props);
-    // if (this.props.location.pathname === '/routes/create/') {
-    //   this.props.receiveMarkers([]);
-    // }
   }
 
   render() {

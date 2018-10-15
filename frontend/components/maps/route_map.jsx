@@ -14,6 +14,7 @@ class RouteMap extends React.Component {
         strokeWeight: 2
       })
     };
+    this.props.receiveMarkers([]);
   }
 
   defaultMount(zoom = 4) {
@@ -26,7 +27,7 @@ class RouteMap extends React.Component {
       mapOptions);
     this.state.routeLine.setMap(this.map);
     this.markerManager = new MarkerManager(this.map);
-    this.setState({routeLine: this.makeMarkers()});
+    // this.setState({routeLine: this.makeMarkers()});
   }
 
   componentDidMount() {
