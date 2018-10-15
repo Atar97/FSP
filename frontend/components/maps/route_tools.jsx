@@ -17,6 +17,13 @@ export default class RouteTools extends React.Component {
     this.state.undidPoints.push(marker);
   }
 
+  clear() {
+    const {markers, receiveMarkers, clearDistance} = this.props
+    markers.forEach(marker => marker.setMap(null));
+    receiveMarkers([]);
+    clearDistance();
+  }
+
   render() {
     return (
       <div className='route-tools'>
@@ -27,6 +34,8 @@ export default class RouteTools extends React.Component {
         <div className='buttons'>
           <button  id='undo' className='edit-button'
             onClick={this.undo.bind(this)}>Undo</button>
+          <button id='clear' className='edit-button'
+            onClick={this.clear.bind(this)}>Clear</button>
         </div>
       </div>
     );

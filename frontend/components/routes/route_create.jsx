@@ -28,17 +28,20 @@ class RouteCreate extends React.Component {
       } = this.props;
     return (
       <div className='route-creation-container'>
+
         <RouteForm markers={markers}
           createMarkers={createMarkers} createRoute={createRoute}
           routeDistance={routeDistance} clearDistance={clearDistance}
           fetchLocation={fetchLocation} receiveCenter={receiveCenter}
           fetchAddress={fetchAddress} address={address}
-          receiveMarkers ={receiveMarkers}
-          />
+          receiveMarkers ={receiveMarkers}/>
+        
         <div className='big-map'>
+
           <RouteTools markers={markers} miles={miles}
-            popMarker={popMarker}
-            />
+            popMarker={popMarker} receiveMarkers={receiveMarkers}
+            clearDistance={clearDistance}/>
+
           <CreateMap receiveMarker={receiveMarker} markers={markers}
             receiveRouteDistance={receiveRouteDistance}
             center={center} receiveCenter={receiveCenter}

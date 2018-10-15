@@ -16,8 +16,6 @@ export default (state = [], action) => {
 
     case RECEIVE_MARKERS:
       const markerManager = new MarkerManager(null);
-      console.log('you received these markers:');
-      console.log(action.markers);
       newState = action.markers.map(marker => {
         const position = new google.maps.LatLng(marker.lat, marker.lng);
         const gmapMarker = markerManager.createMarker(position);
