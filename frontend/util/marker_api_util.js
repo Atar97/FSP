@@ -10,6 +10,7 @@ export const sendDownMarkers = (markers, routeId) => {
 };
 
 export const fetchMarkersforRoute = (routeId) => {
+  console.log('You sent for markers for ' + routeId);
   return $.ajax({
     url: `/api/routes/${routeId}/markers`,
     method: 'GET'

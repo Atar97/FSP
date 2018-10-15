@@ -5,21 +5,19 @@ import RouteMap from './route_map';
 export default class ShowMap extends RouteMap {
   constructor(props) {
     super(props);
-
-    this.props.receiveMarkers([]);
   }
 
   componentDidMount() {
     const {
       receiveCenter, fetchMarkersforRoute, routeId
     } = this.props;
-    this.defaultMount(12);
+    this.defaultMount(6);
     fetchMarkersforRoute(routeId)
     .then(() => {
       const routeLine = this.state.routeLine;
       const map = this.map;
       this.props.markers.forEach(marker => {
-        debugger;
+
         marker.setMap(map);
         routeLine.getPath().push(marker.position);
       });

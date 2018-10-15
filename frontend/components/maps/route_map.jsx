@@ -27,7 +27,6 @@ class RouteMap extends React.Component {
       mapOptions);
     this.state.routeLine.setMap(this.map);
     this.markerManager = new MarkerManager(this.map);
-    // this.setState({routeLine: this.makeMarkers()});
   }
 
   componentDidMount() {
@@ -35,7 +34,6 @@ class RouteMap extends React.Component {
   }
 
   makeMarkers() {
-    debugger;
     const routeLine = this.state.routeLine;
     const map = this.map;
     this.props.markers.forEach(marker => {
@@ -44,10 +42,6 @@ class RouteMap extends React.Component {
     });
     return routeLine;
   }
-
-  // componentWillReceiveProps(prevProps) {
-  //   this.makeMarkers();
-  // }
 
   render() {
     return <div id='map'></div>;

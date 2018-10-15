@@ -14,7 +14,9 @@ class RouteDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRoute(this.id);
+    const {fetchRoute, fetchMarkersforRoute} = this.props;
+    fetchRoute(this.id)
+      .then(fetchMarkersforRoute(this.id));
   }
 
   render () {

@@ -50,20 +50,20 @@ class RouteForm extends React.Component {
     const startPosition = markers[0].position;
     const latLngString = `${startPosition.lat()},${startPosition.lng()}`;
     let newRouteId;
-    fetchAddress(latLngString).then(mainAddress => {
-      route.city = this.createCity(mainAddress.address);
-      createRoute({route})
-      .then(res => {
-        const resRoute = Object.values(res.payload)[0];
-        createMarkers(data, resRoute.id);
-        newRouteId = resRoute.id;
-      }).then(response => {
-          clearDistance();
-          receiveMarkers([]);
-          history.push(`/routes/${newRouteId}`);
-        }
-      );
-    });
+    fetchAddress(latLngString)
+    .then(mainAddress => {
+        route.city = this.createCity(mainAddress.address);
+        createRoute({route})
+        .then(routeRes => {
+            const resRoute = Object.values(routeRes.payload)[0];
+            newRouteId = resRoute.id;
+            createMarkers(data, resRoute.id)
+          .then(() => {
+              clearDistance();
+              history.push(`/routes/${newRouteId}`);
+            });
+          });
+      });
   }
 
   createCity(addressComponents) {

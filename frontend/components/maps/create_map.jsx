@@ -6,7 +6,6 @@ class CreateMap extends RouteMap {
   constructor(props) {
     super(props);
     this.distance = google.maps.geometry.spherical.computeDistanceBetween;
-    this.props.receiveMarkers([]);
   }
 
   componentDidMount() {

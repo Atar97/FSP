@@ -10,7 +10,6 @@ export default (state = {}, action) => {
     case REMOVE_ROUTE:
       const newState = Object.assign({}, state);
       delete newState[action.routeId];
-      debugger;
       return newState;
     default:
       return state;
