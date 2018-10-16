@@ -1,15 +1,22 @@
 # What needs doing!
 ## TA questions
 
-- if I am creating something with a belongs to association is it always making 2 db queries because it needs to know if that thing exists?
-
 ## Workouts
-  - can you have a workout without a route?
-  - crud no updating your workout until later
+  - finish workout show page
+  - get a workout index page
+  - routes dropdown
+  **1 day**
+
+## DashBoard
+  **1.5 days**
+
+## Routes pictures?
   **1 day**
 
 ## Friends
   **1 day**
+
+
 
 ## Things to come back to
   - fix the login user page to not show errors on demo user (sign-up page doesn't do it anymore)**10 min**
