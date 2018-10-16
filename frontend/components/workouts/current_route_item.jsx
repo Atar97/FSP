@@ -7,7 +7,7 @@ export default class CurrentRouteItem extends React.Component {
   }
 
   clearRoute(e) {
-    e.preventDefault();
+    this.props.receiveSelectedRoute(null)
   }
 
   openDropdown(event) {
@@ -30,7 +30,7 @@ export default class CurrentRouteItem extends React.Component {
             <strong>{route.name}</strong>
             <p>{route.city}</p>
           </div>
-          <p className='clear-route' onClick={this.clearRoute.bind(this)}>
+          <p className='clear-route button' onClick={this.clearRoute.bind(this)}>
             <i className="fas fa-times"></i> Clear Route</p>
         </div>
       );

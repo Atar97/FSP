@@ -26,8 +26,11 @@ export default class RouteDropDown extends React.Component {
               <div key={route.id} value={route.id}
                 className='route-dropdown-item'
                 onClick={this.selectRoute.bind(this)}>
-                <strong>{route.name}</strong>
-                <p>{inMiles(route.distance)} mi in {route.city}</p>
+                <img />
+                <div>
+                  <strong>{route.name}</strong>
+                  <p>{inMiles(route.distance)} mi in {route.city}</p>
+                </div>
               </div>
             )
           })}

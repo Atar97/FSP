@@ -37,10 +37,14 @@ class WorkoutForm extends React.Component {
     const data = Object.assign({}, this.state);
     data.distance = data.distance * 1609;
     data.duration = this.getDuration();
+    data.routeId = selectedRouteId;
     if (match.params.id) {
 
     } else {
-      createWorkout({workout: data});
+      createWorkout({workout: data})
+      .then(res => {
+        console.log(res)
+      });
     }
 
   }
