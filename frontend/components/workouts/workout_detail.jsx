@@ -6,7 +6,7 @@ import {fetchMarkersforRoute} from '../../marker_actions';
 
 class WorkoutDetail extends React.Component {
   render() {
-    const {distance, duration, date, startTime} = this.props
+    const {distance, duration, date, startTime} = this.props;
     return (
       <div className='content-container'>
         <div className='route-detail-container'>
