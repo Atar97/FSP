@@ -9,24 +9,68 @@ import RouteDropDown from './route_dropdown';
 class WorkoutForm extends React.Component {
   constructor(props) {
     super(props);
-
+    const d = new Date();
     this.state = {
       title: '',
-      date: '',
+      date: `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`,
       body: '',
-      startTime: '',
+      startTime: '12:00',
       routeId: null,
-      duration: 0,
-      distance: 0,
+      hrs: '',
+      min: '',
+      sec: '',
+      distance: '',
+      pace: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.getDuration = this.getDuration.bind(this);
+    this.getPace = this.getPace.bind(this);
+  }
+
+  handleSubmit(event) {
+    const {match, createWorkout, editWorkout} = this.props;
+    event.preventDefault();
+    const data = Object.assign({}, this.state);
+    data.distance = data.distance * 1609;
+    data.duration = this.getDuration();
+    if (match.params.id) {
+
+    } else {
+      createWorkout({workout: data});
+    }
+
+  }
+
+  handleChange(dataField) {
+    return event => {
+      this.setState({[dataField]: event.target.value}, () => {
+        if (this.getPace()) {
+          this.setState({pace: this.getPace()});
+        }
+      });
     };
   }
 
+  getDuration() {
+    const {hrs, sec, min} = this.state;
+    return (hrs * 3600) + (min * 60) + sec;
+  }
+
+  getPace() {
+    if (this.getDuration() && this.state.distance) {
+      return Number(this.getDuration()) / Number(this.state.distance);
+    }
+  }
+
   render () {
+    const {title, date, body, startTime, sec,
+      routeId, hrs, min, distance, pace} = this.state;
     return (
       <div className='content-container'>
         <div className='workout-form-container'>
           <h1>log a workout</h1>
-          <div className='title-container'><i class="fas fa-dumbbell"></i>
+          <div className='title-container'><i className="fas fa-dumbbell"></i>
             <p>
               if you've been active get credit for it!
               Add your workout details below,
@@ -36,18 +80,23 @@ class WorkoutForm extends React.Component {
 
           <form className='workout-form'>
             <div className='row-container'>
-              <label id='title'>Workout name
-                <input/>
+              <label>Workout name
+                <input id='title' onChange={this.handleChange('title')}
+                  value={title}/>
               </label>
-              <label id='date'>Date
-                <input type='date'/>
+              <label>Date
+                <input id='date' type='date' value={date}
+                  onChange={this.handleChange('date')}/>
               </label>
             </div>
             <label id='start-time'>Start time
-              <input type='time' placeholder='HH:MM AM'/>
+              <input type='time' placeholder='HH:MM AM'
+                value={startTime}
+                onChange={this.handleChange('startTime')}/>
             </label>
             <label >How did it go?
-              <textarea />
+              <textarea value={body}
+                onChange={this.handleChange('body')}/>
             </label>
           </form>
 
@@ -60,26 +109,44 @@ class WorkoutForm extends React.Component {
             <label>
               Duration
               <div className='row-container'>
-                <input className='time-box' placeholder='hh'/><p>:</p>
-                <input className='time-box' placeholder='mm'/><p>:</p>
-                <input className='time-box' placeholder='ss'/>
+                <input onChange={this.handleChange('hrs')}
+                  className='time-box' placeholder='hh' value={hrs}
+                  type='number' max='23' min='0'/><p>:</p>
+                <input onChange={this.handleChange('min')}
+                  className='time-box' placeholder='mm' value={min}
+                  type='number' max='59' min='0'/><p>:</p>
+                <input onChange={this.handleChange('sec')}
+                  className='time-box' placeholder='ss' value={sec}
+                  type='number' max='59' min='0'/>
               </div>
             </label>
             <label>Distance
-              <input/>
+              <input type='number' min='0' step='.01' placeholder='0 mi'
+                onChange={this.handleChange('distance')}
+                value={distance}/>
             </label>
             <label>Pace
               <div className='row-container'>
-                <input className='time-box' placeholder='mm'/><p>:</p>
-                <input className='time-box' placeholder='ss'/><p>min/mi</p>
+                <input disabled className='time-box' placeholder='mm'
+                  type='number' max='59' min='0'
+                  value={Math.round(Number(pace) / 60)}/><p>:</p>
+                <input disabled className='time-box' placeholder='ss'
+                  type='number' max='59' min='0'
+                  value={Math.round((Number(pace) % 60))}/><p>min/mi</p>
               </div>
             </label>
           </form>
-          <button className='workout-button save'>save</button>
+          <button onClick={this.handleSubmit.bind(this)}
+            className='workout-button save'>save</button>
         </div>
       </div>
     );
   }
 }
 
-export default WorkoutForm;
+const mapDispatchToProps = dispatch => ({
+  createWorkout: (workout) => dispatch(createWorkout(workout)),
+  updateWorkout: (workout) => dispatch(updateWorkout(workout)),
+});
+
+export default connect(null, mapDispatchToProps)(WorkoutForm);

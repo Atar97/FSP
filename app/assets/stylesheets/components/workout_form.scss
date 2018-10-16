@@ -31,8 +31,10 @@
     p {
       margin-top: 20px;
       text-align: center;
-      margin-left: 2px;
-      margin-right: 2px;
+      margin-left: 4px;
+      margin-right: 4px;
+      font-size: 14px;
+      font-weight: lighter;
     }
 
   }
@@ -44,6 +46,7 @@
     margin-top: 9px;
     display: block;
     border: 1px solid $light-gray;
+    height: 25px;
   }
 
   input:focus, textarea:focus {
@@ -107,9 +110,24 @@
     background-color: $button-blue;
     border-radius: 3px;
     color: white;
+    text-transform: uppercase;
   }
 
   .save {
-    padding: 30px 10px;
+    font-weight: lighter;
+    padding: 12px 12px;
+    font-size: 16px;
+    letter-spacing: .08em;
+    min-width: 187px;
   }
+
+  #date {
+    width: 200px;
+  }
+
+  #title {
+    width: 300px;
+    margin-right: 50px;
+  }
+
 }

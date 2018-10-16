@@ -56,7 +56,6 @@ class RouteCreate extends React.Component {
 const mDtP = dispatch => ({
   receiveMarker: marker => dispatch(receiveMarker(marker)),
   receiveMarkers: markers => dispatch(receiveMarkers(markers)),
-  createMarkers: marker => dispatch(createMarkers(marker)),
   popMarker: () => dispatch(popMarker()),
   createRoute: route => dispatch(createRoute(route)),
   createMarkers: (markers, routeId) => dispatch(createMarkers(markers, routeId)),
