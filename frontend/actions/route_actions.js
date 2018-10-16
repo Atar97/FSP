@@ -21,13 +21,13 @@ export const receiveRouteDistance = distance => ({
   distance,
 });
 
+export const clearDistance = () => ({
+  type: CLEAR_DISTANCE
+});
+
 export const removeRoute = routeId => ({
   type: REMOVE_ROUTE,
   routeId
-});
-
-export const clearDistance = () => ({
-  type: CLEAR_DISTANCE
 });
 
 const success = (res) => {

@@ -145,6 +145,8 @@
   position: relative;
   width: 80%;
   border: 1px solid $light-gray;
+  // border-right: 1px solid white;
+  // border-left: 1px solid white;
   padding: 10px;
   margin-top: 10px;
 
@@ -165,12 +167,14 @@
     overflow-y: scroll;
   }
 
-  .default-route {
+  #default-route {
     margin: 5px;
     color: $medium-gray;
     font-weight: normal;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    height: 100%;
   }
 
   .route-dropdown-item {
@@ -180,12 +184,11 @@
 
   .selected-route {
     width: 100%;
-    // height: 25px;
     display: flex;
     justify-content: space-between;
-    // border-top: 1px solid $light-gray;
-    // border-bottom: 1px solid $light-gray;
     padding: 5px 0;
+
+
 
     span {
       font-size: 16px;
@@ -213,10 +216,10 @@
     button {
       font-size: 14px;
       width: 120px;
-      border: 2px solid $medium-gray;
+      border: 2px solid $light-gray;
       border-radius: 4px;
       padding: 6px 0;
-      color: $medium-gray;
+      color: $light-gray;
       text-align: center;
       margin-left: 15px;
       text-transform: uppercase;

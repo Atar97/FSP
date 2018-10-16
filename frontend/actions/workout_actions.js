@@ -3,6 +3,7 @@ import * as WorkoutAPIUtil from '../util/workout_api_util';
 export const RECEIVE_WORKOUTS = 'RECEIVE_WORKOUTS';
 export const REMOVE_WORKOUT = 'REMOVE_WORKOUT';
 export const RECEIVE_WORKOUT_ERRORS = 'RECEIVE_WORKOUT_ERRORS';
+export const RECEIVE_SELECTED_ROUTE = 'RECEIVE_SELECTED_ROUTE';
 
 export const receiveWorkouts = payload => ({
   type: RECEIVE_WORKOUTS,
@@ -18,6 +19,11 @@ export const removeWorkout = workoutId => ({
   type: REMOVE_WORKOUT,
   workoutId
 });
+
+export const receiveSelectedRoute = routeId => ({
+  type: RECEIVE_SELECTED_ROUTE,
+  routeId
+})
 
 // Thunk actions
 

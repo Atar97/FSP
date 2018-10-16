@@ -8,13 +8,15 @@ export default class RouteDropDown extends React.Component {
 
     this.state = {
       defaultRoute: (
-        <span className='default-route'>Select:
-          <i className="fa fa-caret-down" aria-hidden="true"></i></span>
+        <span id='default-route' onClick={this.openDropdown.bind(this)}>
+          Select: <i className="fa fa-caret-down" aria-hidden="true"></i>
+        </span>
       )
     }
   }
 
   openDropdown(event) {
+    const select = document.getElementById('default-route');
     const routeList = document.getElementById('routes');
     const body = document.getElementsByTagName('body')[0];
     body.addEventListener('click', () =>  routeList.classList.add('hidden'))
@@ -22,6 +24,17 @@ export default class RouteDropDown extends React.Component {
       console.log('closed')
       routeList.classList.remove('hidden');
     }
+  }
+
+  clearRoute(e) {
+    e.preventDefault();
+    // this.setState({
+    //   defaultRoute: (
+    //     <span id='default-route' onClick={this.openDropdown.bind(this)}>
+    //       Select: <i className="fa fa-caret-down" aria-hidden="true"></i>
+    //     </span>
+    //   )
+    // })
   }
 
   selectRoute(event) {
@@ -33,17 +46,18 @@ export default class RouteDropDown extends React.Component {
           <strong>{route.name}</strong>
           <p>{route.city}</p>
         </div>
-        <button className='clear-route' onClick]{this.clearRoute.bind(this)}>
+        <button className='clear-route' onClick={this.clearRoute.bind(this)}>
           <i className="fas fa-times"></i> Clear Route</button>
       </div>
     )})
     document.getElementById('routes').classList.add('hidden');
+    this.props.receiveSelectedRoute(route.id)
   }
 
   render() {
     const {routes} = this.props;
     return (
-      <div className='route-dropdown' onClick={this.openDropdown.bind(this)}>
+      <div className='route-dropdown'>
         {this.state.defaultRoute}
         <div id='routes' className='hidden'>
           {routes.map((route, idx) => {

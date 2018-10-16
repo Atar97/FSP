@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {fetchMyRoutes} from '../../actions/route_actions';
-import {createWorkout, updateWorkout
+import {createWorkout, updateWorkout, receiveSelectedRoute
 } from '../../actions/workout_actions';
 import RouteDropDown from './route_dropdown';
 
@@ -29,7 +29,9 @@ class WorkoutForm extends React.Component {
   }
 
   handleSubmit(event) {
-    const {match, createWorkout, editWorkout} = this.props;
+    const {
+      match, createWorkout,
+      editWorkout, selectedRouteId} = this.props;
     event.preventDefault();
     const data = Object.assign({}, this.state);
     data.distance = data.distance * 1609;
@@ -54,6 +56,14 @@ class WorkoutForm extends React.Component {
         }
       });
     };
+  }
+
+  componentDidUpdate() {
+    const {myRoutes, selectedRouteId} = this.props;
+    if (selectedRouteId) {
+      this.state.distance = myRoutes[selectedRouteId].distance
+      console.log(this.state.distance);
+    }
   }
 
   getDuration() {
@@ -107,7 +117,8 @@ class WorkoutForm extends React.Component {
           <form className='workout-detail-form'>
             <label>Route
               <div className='route-drop-down'>
-                <RouteDropDown routes={this.props.myRoutes}/>
+                <RouteDropDown routes={Object.values(this.props.myRoutes)}
+                  receiveSelectedRoute={this.props.receiveSelectedRoute}/>
               </div>
             </label>
             <label>
@@ -152,10 +163,12 @@ const mapDispatchToProps = dispatch => ({
   createWorkout: (workout) => dispatch(createWorkout(workout)),
   updateWorkout: (workout) => dispatch(updateWorkout(workout)),
   fetchMyRoutes: () => dispatch(fetchMyRoutes()),
+  receiveSelectedRoute: routeId => dispatch(receiveSelectedRoute(routeId))
 });
 
 const mapStateToProps = state => ({
-  myRoutes: Object.values(state.entities.routes),
+  myRoutes: state.entities.routes,
+  selectedRouteId: state.ui.workouts.selectedRouteId,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutForm);
