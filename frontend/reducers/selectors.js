@@ -9,3 +9,11 @@ export const distanceInMiles = ({ui: {routeDistance}}) => {
 export const inMiles = distance => (
   Math.round(distance / 1609 * 100) / 100
 );
+
+export const getDistance = state => {
+  const route = state.entities.routes[state.ui.workouts.selectedRouteId];
+  if (route) {
+    return route.distance;
+  }
+  return 0;
+}

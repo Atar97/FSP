@@ -5,6 +5,7 @@ import {fetchMyRoutes} from '../../actions/route_actions';
 import {createWorkout, updateWorkout, receiveSelectedRoute
 } from '../../actions/workout_actions';
 import RouteDropDown from './route_dropdown';
+import {getDistance, inMiles} from '../../reducers/selectors';
 
 class WorkoutForm extends React.Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class WorkoutForm extends React.Component {
       hrs: '',
       min: '',
       sec: '',
-      distance: '',
-      pace: ''
+      pace: '',
+      distance: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,6 +49,12 @@ class WorkoutForm extends React.Component {
     this.props.fetchMyRoutes()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.distance != nextProps.distance) {
+      this.setState({distance: inMiles(nextProps.distance)})
+    }
+  }
+
   handleChange(dataField) {
     return event => {
       this.setState({[dataField]: event.target.value}, () => {
@@ -56,14 +63,6 @@ class WorkoutForm extends React.Component {
         }
       });
     };
-  }
-
-  componentDidUpdate() {
-    const {myRoutes, selectedRouteId} = this.props;
-    if (selectedRouteId) {
-      this.state.distance = myRoutes[selectedRouteId].distance
-      console.log(this.state.distance);
-    }
   }
 
   getDuration() {
@@ -117,8 +116,9 @@ class WorkoutForm extends React.Component {
           <form className='workout-detail-form'>
             <label>Route
               <div className='route-drop-down'>
-                <RouteDropDown routes={Object.values(this.props.myRoutes)}
-                  receiveSelectedRoute={this.props.receiveSelectedRoute}/>
+                <RouteDropDown routes={this.props.myRoutes}
+                  receiveSelectedRoute={this.props.receiveSelectedRoute}
+                  selectedRouteId={this.props.selectedRouteId}/>
               </div>
             </label>
             <label>
@@ -137,8 +137,7 @@ class WorkoutForm extends React.Component {
             </label>
             <label>Distance
               <input type='number' min='0' step='.01' placeholder='0 mi'
-                onChange={this.handleChange('distance')}
-                value={distance}/>
+                onChange={this.handleChange('distance')} value={distance}/>
             </label>
             <label>Pace
               <div className='row-container'>
@@ -166,9 +165,11 @@ const mapDispatchToProps = dispatch => ({
   receiveSelectedRoute: routeId => dispatch(receiveSelectedRoute(routeId))
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+  return {
   myRoutes: state.entities.routes,
   selectedRouteId: state.ui.workouts.selectedRouteId,
-})
+  distance: getDistance(state)
+}};
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutForm);
