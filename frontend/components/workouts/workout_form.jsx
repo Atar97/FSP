@@ -42,6 +42,10 @@ class WorkoutForm extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.props.fetchMyRoutes()
+  }
+
   handleChange(dataField) {
     return event => {
       this.setState({[dataField]: event.target.value}, () => {
@@ -80,16 +84,16 @@ class WorkoutForm extends React.Component {
 
           <form className='workout-form'>
             <div className='row-container'>
-              <label>Workout name
+              <label id='title-container'>Workout name
                 <input id='title' onChange={this.handleChange('title')}
                   value={title}/>
               </label>
-              <label>Date
+              <label id='date-container'>Date
                 <input id='date' type='date' value={date}
                   onChange={this.handleChange('date')}/>
               </label>
             </div>
-            <label id='start-time'>Start time
+            <label>Start time
               <input type='time' placeholder='HH:MM AM'
                 value={startTime}
                 onChange={this.handleChange('startTime')}/>
@@ -103,7 +107,7 @@ class WorkoutForm extends React.Component {
           <form className='workout-detail-form'>
             <label>Route
               <div className='route-drop-down'>
-                <RouteDropDown />
+                <RouteDropDown routes={this.props.myRoutes}/>
               </div>
             </label>
             <label>
@@ -147,6 +151,11 @@ class WorkoutForm extends React.Component {
 const mapDispatchToProps = dispatch => ({
   createWorkout: (workout) => dispatch(createWorkout(workout)),
   updateWorkout: (workout) => dispatch(updateWorkout(workout)),
+  fetchMyRoutes: () => dispatch(fetchMyRoutes()),
 });
 
-export default connect(null, mapDispatchToProps)(WorkoutForm);
+const mapStateToProps = state => ({
+  myRoutes: Object.values(state.entities.routes),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutForm);
