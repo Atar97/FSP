@@ -60,11 +60,11 @@ class WorkoutDetail extends React.Component {
               <li><h3>avg pace</h3>
                 <strong>{this.renderPace()}</strong></li>
             </ul>
-            <div className='buttons'>
-              <Link className='button-style'
+            <div className='button-list'>
+              <Link className='button-style small'
                 to='/workouts/edit/:workout_id'>edit</Link>
-              <p className='button-style'>delete</p>
-              <Link className='button-style'
+              <p className='button-style small'>delete</p>
+              <Link className='button-style small'
                 to='/workouts/create'>create workout</Link>
             </div>
           </div>

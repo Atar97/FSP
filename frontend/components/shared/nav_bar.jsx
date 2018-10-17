@@ -11,7 +11,7 @@ const NavBar = () => {
           <i className="fas fa-route"></i>
           plot my plod
         </Link>
-        <Link className='navlink' to='/workouts/create'>training</Link>
+        <Link className='navlink' to='/workouts/index'>training</Link>
         <Link className='navlink' to='/routes/my_routes'>routes</Link>
         <Link className='navlink' to='/challenges'>challenges</Link>
       </div>

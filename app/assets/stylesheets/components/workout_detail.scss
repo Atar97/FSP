@@ -47,26 +47,25 @@
   }
 
 }
-.buttons {
+.button-list {
   display: flex;
   margin-top: 20px;
   padding-left: 15px;
   border-top: 1px solid $light-gray;
   padding-top: 25px;
 
-  .button-style {
-    padding: 7px;
-    border-radius: 4px;
-    box-shadow: 0 0 5px black;
-    margin-left: 10px;
-    color: white;
-    font-size: 12px;
-    min-width: 35px;
-    text-align: center;
-  }
 
   a {
     background-color: $create-orange;
+  }
+
+  a:hover {
+    background-color: $create-orange-hover;
+  }
+
+  p {
+    background-color: $medium-gray;
+    font-size: 12px;
   }
 
   p {
@@ -91,4 +90,41 @@
   .map {
     height: 400px;
   }
+}
+
+.button-style {
+  margin-left: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px gray;
+  color: white;
+  min-width: 35px;
+  text-align: center;
+}
+
+.gray-button {
+  background-color: $medium-gray;
+
+}
+
+.gray-button:hover {
+  background-color: $dark-gray;
+
+}
+
+.orange-button {
+  background-color: $create-orange;
+}
+
+.orange-button:hover {
+  background-color: $create-orange-hover;
+}
+
+.small {
+  font-size: 12px;
+  padding: 7px;
+}
+
+.big {
+  font-size: 20px;
+  padding: 7px 12px;
 }

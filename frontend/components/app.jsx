@@ -16,6 +16,7 @@ import RouteDetail from './routes/route_detail';
 import RouteCreate from './routes/route_create';
 import WorkoutForm from './workouts/workout_form';
 import WorkoutDetail from './workouts/workout_detail';
+import WorkoutIndex from './workouts/workout_index';
 
 export default () => (
   <div>
@@ -28,7 +29,8 @@ export default () => (
         <ProtectedRoute path='/routes/my_routes' component={RouteIndex} />
         <ProtectedRoute path='/routes/create' component={RouteCreate} />
         <ProtectedRoute path='/routes/:route_id' component={RouteDetail} />
-        <ProtectedRoute path='/workouts/' component={WorkoutForm} />
+        <ProtectedRoute path='/workouts/index' component={WorkoutIndex} />
+        <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
         <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
         <Redirect to='/' />
       </Switch>
