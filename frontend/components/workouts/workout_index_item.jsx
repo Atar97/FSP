@@ -12,7 +12,7 @@ export default class WorkoutIndexItem extends React.Component {
   render() {
     const {title, distance} = this.props.workout
     return (
-      <li onClick={this.handleClick}>
+      <li onClick={this.handleClick.bind(this)}>
         <i className="fas fa-running"></i>
         <div className='workout-name'>
           <p>{title}</p>

@@ -15,4 +15,36 @@
   width: 70%;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 25px;
+  color: $dark-gray;
+
+  i {
+    color: $dark-gray;
+    font-size: 140px;
+  }
+
+  li {
+    height: 150px;
+    width: 150px;
+    z-index: 1;
+    border: 1px solid $medium-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+    div {
+      position: absolute;
+      bottom: 5px;
+      background-color: rgba(255, 255, 255, .8);
+      width: 90%;
+      box-shadow: 0 0 3px gray;
+    }
+  }
+
+  li:hover {
+    color: $light-blue;
+  }
 }

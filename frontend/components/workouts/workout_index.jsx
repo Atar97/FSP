@@ -12,7 +12,7 @@ class WorkoutIndex extends React.Component {
   }
 
   render() {
-    const {workouts} = this.props;
+    const {workouts, history} = this.props;
     return (
       <div className='content-container'>
         <header className='workout-header'>
@@ -20,14 +20,12 @@ class WorkoutIndex extends React.Component {
           <Link className='button-style gray-button big'
             to='/workouts/create'>Log a Workout</Link>
         </header>
-        <div className='workout-list'>
-          <ul>
-            {Object.values(workouts).map(workout => {
-              return <WorkoutIndexItem key={workout.id}
-                workout={workout}/>
-            })}
-          </ul>
-        </div>
+        <ul className='workout-list'>
+          {Object.values(workouts).map(workout => {
+            return <WorkoutIndexItem key={workout.id}
+              workout={workout} history={history}/>
+          })}
+        </ul>
       </div>
     )
   }
