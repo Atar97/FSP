@@ -43,7 +43,9 @@ class WorkoutForm extends React.Component {
     } else {
       createWorkout({workout: data})
       .then(res => {
-        console.log(res)
+        debugger;
+        const resId = Object.keys(res.payload)[0]
+        this.props.history.push(`/workouts/${resId}`)
       });
     }
 
@@ -62,22 +64,21 @@ class WorkoutForm extends React.Component {
   handleChange(dataField) {
     return event => {
       this.setState({[dataField]: event.target.value}, () => {
-        if (this.getPace()) {
           this.setState({pace: this.getPace()});
-        }
       });
     };
   }
 
   getDuration() {
     const {hrs, sec, min} = this.state;
-    return (hrs * 3600) + (min * 60) + sec;
+    return (hrs * 3600) + (min * 60) + Number(sec);
   }
 
   getPace() {
     if (this.getDuration() && this.state.distance) {
-      return Number(this.getDuration()) / Number(this.state.distance);
+      return Number(this.getDuration()) / (60 * Number(this.state.distance));
     }
+    return ''
   }
 
   render () {
@@ -147,10 +148,10 @@ class WorkoutForm extends React.Component {
               <div className='row-container'>
                 <input disabled className='time-box' placeholder='mm'
                   type='number' max='59' min='0'
-                  value={Math.round(Number(pace) / 60)}/><p>:</p>
+                  value={Math.floor(Number(pace))}/><p>:</p>
                 <input disabled className='time-box' placeholder='ss'
                   type='number' max='59' min='0'
-                  value={Math.round((Number(pace) % 60))}/><p>min/mi</p>
+                  value={Math.round((Number(pace) - Math.floor(Number(pace))) * 60)}/><p>min/mi</p>
               </div>
             </label>
           </form>

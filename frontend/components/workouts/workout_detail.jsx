@@ -1,18 +1,98 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
 import {fetchWorkout} from '../../actions/workout_actions';
 import {fetchRoute} from '../../actions/route_actions';
-import {fetchMarkersforRoute} from '../../marker_actions';
+import {fetchMarkersforRoute, receiveMarkers
+} from '../../actions/marker_actions';
+import {receiveCenter, center} from '../../actions/map_actions';
+import ShowMap from '../maps/show_map';
+import {inMiles} from '../../reducers/selectors';
 
 class WorkoutDetail extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    this.props.fetchWorkout(this.props.match.params.workout_id);
+  }
+
+  renderPace() {
+    const {workout: {distance, duration}} = this.props
+    const min = Math.floor(duration / (60 * distance));
+    const sec = Math.round(60 * (duration / (60 * distance) - min));
+    return `${min}:${sec}`
+  }
+
+  renderDuration(duration) {
+    const hr = Math.floor(duration / 3600);
+    duration -= hr * 3600;
+    const min = Math.floor(duration / 60);
+    duration -= min * 60;
+    const sec = Math.floor(duration);
+    return `${hr}:${min}:${sec}`;
+  }
+
   render() {
-    const {distance, duration, date, startTime} = this.props;
-    return (
-      <div className='content-container'>
-        <div className='route-detail-container'>
-          <h1></h1>
+    const {
+      center, markers, workout,
+      fetchMarkersforRoute, receiveMarkers
+    } = this.props;
+    let map;
+    if (workout && workout.routeId) {
+      map = <ShowMap fetchMarkersforRoute={fetchMarkersforRoute}
+            receiveCenter={receiveCenter} center={center} markers={markers}
+            routeId={workout.routeId} receiveMarkers={receiveMarkers}/>
+    }
+    if (workout){
+      return (
+        <div className='content-container'>
+          <div className='workout-detail-container'>
+            <h1 className='title'>{workout.title}</h1>
+            <ul className='workout-details'>
+              <li><h3>distance</h3>
+                <strong>{inMiles(workout.distance)} <p>mi</p></strong></li>
+              <li><h3>duration</h3>
+                <strong>{this.renderDuration(workout.duration)}</strong></li>
+              <li><h3>avg pace</h3>
+                <strong>{this.renderPace()}</strong></li>
+            </ul>
+            <div className='buttons'>
+              <Link className='button-style'
+                to='/workouts/edit/:workout_id'>edit</Link>
+              <p className='button-style'>delete</p>
+              <Link className='button-style'
+                to='/workouts/create'>create workout</Link>
+            </div>
+          </div>
+          <div className='map-container'>
+            <header className='route-details'></header>
+            <div className='map'>
+              {map}
+            </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return <h1>Loading Workout</h1>
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchWorkout: id => dispatch(fetchWorkout(id)),
+  fetchRoute: id => dispatch(fetchRoute(id)),
+  fetchMarkersforRoute: id => dispatch(fetchMarkersforRoute(id)),
+  receiveCenter: center => dispatch(receiveCenter(enter)),
+  receiveMarkers: markers => dispatch(receiveMarkers(markers)),
+});
+
+const mapStateToProps = (state, ownProps) => ({
+  workout: state.entities.workouts[ownProps.match.params.workout_id],
+  center: state.ui.maps.center,
+  markers: state.entities.markers,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutDetail);
