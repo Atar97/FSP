@@ -43,7 +43,6 @@ class WorkoutForm extends React.Component {
     } else {
       createWorkout({workout: data})
       .then(res => {
-        debugger;
         const resId = Object.keys(res.payload)[0]
         this.props.history.push(`/workouts/${resId}`)
       });

@@ -1,7 +1,15 @@
 import React from 'react';
 
-const button = ({demoUser}) => (
-  <button id='demo' onClick={demoUser}>Demo User</button>
-);
+class DemoLogin extends React.Component {
+  demoUser(e) {
+    e.preventDefault()
+    this.props.demoUser()
+    .then(() => this.props.history.push('/activity_log'));
+  }
 
-export default button;
+  render() {
+    return <button id='demo' onClick={this.demoUser.bind(this)}>Demo User</button>
+  };
+}
+
+export default DemoLogin;

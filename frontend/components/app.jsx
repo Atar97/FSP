@@ -17,24 +17,28 @@ import RouteCreate from './routes/route_create';
 import WorkoutForm from './workouts/workout_form';
 import WorkoutDetail from './workouts/workout_detail';
 import WorkoutIndex from './workouts/workout_index';
+import ActivityLogIndex from './activity_log/activity_log_index';
 
-export default () => (
-  <div>
-    <NavBar />
-    <div className='main-content'>
-      <Switch>
-        <AuthRoute exact path='/' component={Splash}/>
-        <AuthRoute path='/signup' component={SignupFormContainer} />
-        <AuthRoute path='/login' component={LoginFormContainer} />
-        <ProtectedRoute path='/routes/my_routes' component={RouteIndex} />
-        <ProtectedRoute path='/routes/create' component={RouteCreate} />
-        <ProtectedRoute path='/routes/:route_id' component={RouteDetail} />
-        <ProtectedRoute path='/workouts/index' component={WorkoutIndex} />
-        <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
-        <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
-        <Redirect to='/' />
-      </Switch>
+export default () => {
+  return (
+    <div>
+      <NavBar />
+      <div className='main-content'>
+        <Switch>
+          <AuthRoute exact path='/' component={Splash}/>
+          <AuthRoute path='/signup' component={SignupFormContainer} />
+          <AuthRoute path='/login' component={LoginFormContainer} />
+          <ProtectedRoute path='/routes/my_routes' component={RouteIndex} />
+          <ProtectedRoute path='/routes/create' component={RouteCreate} />
+          <ProtectedRoute path='/routes/:route_id' component={RouteDetail} />
+          <ProtectedRoute path='/workouts/index' component={WorkoutIndex} />
+          <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
+          <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
+          <ProtectedRoute path='/activity_log' component={ActivityLogIndex} />
+          <Redirect to='/activity_log' />
+        </Switch>
+      </div>
+      <Footer/>
     </div>
-    <Footer/>
-  </div>
-);
+  );
+}

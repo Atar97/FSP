@@ -58,7 +58,10 @@ class UserForm extends React.Component {
     event.preventDefault();
     const DOB = `${this.state.Day}/${this.state.month}/${this.state.Year}`;
     const user = {user: Object.assign({}, this.state, {DOB})};
-    this.props.sendForm(user);
+    this.props.sendForm(user)
+    .then(() => {
+      this.props.history.push('/activity_log')
+    });
   }
 
   handleClick(event) {
@@ -104,7 +107,8 @@ class UserForm extends React.Component {
         <form className='userform'
           onSubmit={this.handleSubmit.bind(this)}>
           <Link to={linkPath}>{linkText}</Link>
-          <DemoLogin demoUser={this.props.demoUser} />
+          <DemoLogin demoUser={this.props.demoUser}
+            history={this.props.history}/>
           <div className='holder or-container'>
             <div className='line'></div>
             <span>OR</span>
