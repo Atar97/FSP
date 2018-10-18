@@ -182,9 +182,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 0;
 
-
+    img {
+      height: 120px;
+      width: 120px;
+    }
 
     span {
       font-size: 16px;
@@ -212,14 +216,17 @@
     .button {
       font-size: 14px;
       width: 120px;
-      border: 2px solid $light-gray;
+      border: 2px solid $medium-gray;
       border-radius: 4px;
-      padding: 6px 0;
-      color: $light-gray;
-      text-align: center;
+      padding: 6px;
+      color: $medium-gray;
       margin-left: 15px;
       text-transform: uppercase;
       font-weight: 300;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
     }
   }
   .route-dropdown-item {

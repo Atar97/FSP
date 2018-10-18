@@ -42,7 +42,8 @@ class Api::RoutesController < ApplicationController
   private
 
   def route_params
-    params.require(:route).permit(:city, :distance, :name)
+    params.require(:route).permit(:city, :distance, :name, :imageUrl)
+    .transform_keys!(&:underscore)
   end
 
   def find_route

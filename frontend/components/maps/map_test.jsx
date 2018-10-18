@@ -15,14 +15,14 @@ class MapTest extends React.Component {
   componentDidMount() {
     const {fetchMarkersforRoute, markers} = this.props;
     fetchMarkersforRoute(14)
-    .then(res => {
-      debugger;
-      fetchMapImage(markers, '600x600', '-33.9582756273208,18.416178040909017', 11)
-    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({map: fetchMapImage(nextProps.markers, '400x400', '-33.9582756273208,18.416178040909017', 13)});
   }
 
   render() {
-    return this.state.map
+    return <img src={this.state.map}></img>
   }
 }
 

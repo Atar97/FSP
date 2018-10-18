@@ -131,11 +131,13 @@
     position: relative;
     margin-right: 15px;
     margin-bottom: 15px;
+    border: 1px solid $light-gray;
 
     img {
-      height: 100%;
-      background: $lightest-blue;
+      height: 150px;
+      width: 150px;
     }
+
     div {
       z-index: 1;
       padding: 3px;
@@ -152,5 +154,12 @@
   .route-list-item:hover {
     color: $link-blue;
     cursor: pointer;
+  }
+}
+
+.workout-index-item {
+  img {
+    height: 50px;
+    width: 50px;
   }
 }

@@ -25,6 +25,7 @@ export default class CurrentRouteItem extends React.Component {
       const route = this.props.routes[this.props.selectedRouteId]
       return (
         <div value={route.id} className='selected-route'>
+          <img src={route.imageUrl}/>
           <span>{inMiles(route.distance)} <p>mi</p></span>
           <div>
             <strong>{route.name}</strong>

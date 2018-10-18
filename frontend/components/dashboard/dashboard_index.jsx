@@ -28,9 +28,9 @@ class DashboardIndex extends React.Component {
               <Link to='/workouts/index'>View All</Link>
             </header>
             <ul>
-              {workouts.map(workout => {
+              {Object.values(workouts).reverse().slice(0, 10).map(workout => {
                 return <Workout key={workout.id}
-                  workout={workout} />
+                  workout={workout} routes={routes}/>
               })}
             </ul>
           </div>
@@ -40,7 +40,7 @@ class DashboardIndex extends React.Component {
               <Link to='/routes/my_routes'>View All</Link>
             </header>
             <ul>
-              {routes.map(route => {
+              {Object.values(routes).reverse().slice(0,10).map(route => {
                 return <Route key={route.id}
                   route={route} history={history}/>
               })}
@@ -53,8 +53,8 @@ class DashboardIndex extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  routes: Object.values(state.entities.routes).reverse().slice(0, 10),
-  workouts: Object.values(state.entities.workouts).reverse().slice(0, 10),
+  routes: state.entities.routes,
+  workouts: state.entities.workouts,
   currentUser: currentUser(state),
 });
 

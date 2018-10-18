@@ -21,12 +21,12 @@ export default class RouteDropDown extends React.Component {
           receiveSelectedRoute={receiveSelectedRoute}
           routes={routes}/>
         <div id='routes' className='hidden'>
-          {Object.values(routes).map((route, idx) => {
+          {Object.values(routes).reverse().map((route, idx) => {
             return (
               <div key={route.id} value={route.id}
                 className='route-dropdown-item'
                 onClick={this.selectRoute.bind(this)}>
-                <img />
+                <img src={route.imageUrl}/>
                 <div>
                   <strong>{route.name}</strong>
                   <p>{inMiles(route.distance)} mi in {route.city}</p>
