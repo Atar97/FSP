@@ -18,7 +18,7 @@ import WorkoutForm from './workouts/workout_form';
 import WorkoutDetail from './workouts/workout_detail';
 import WorkoutIndex from './workouts/workout_index';
 import DashboardIndex from './dashboard/dashboard_index';
-import MapTest from './maps/map_test';
+// import MapTest from './maps/map_test';
 
 export default () => {
   return (
@@ -36,7 +36,6 @@ export default () => {
           <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
           <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
           <ProtectedRoute path='/dashboard' component={DashboardIndex} />
-          <ProtectedRoute path='/map_test' component={MapTest} />
           <Redirect to='/dashboard' />
         </Switch>
       </div>
