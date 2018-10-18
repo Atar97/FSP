@@ -17,7 +17,7 @@ import RouteCreate from './routes/route_create';
 import WorkoutForm from './workouts/workout_form';
 import WorkoutDetail from './workouts/workout_detail';
 import WorkoutIndex from './workouts/workout_index';
-import ActivityLogIndex from './activity_log/activity_log_index';
+import DashboardIndex from './dashboard/dashboard_index';
 
 export default () => {
   return (
@@ -34,8 +34,8 @@ export default () => {
           <ProtectedRoute path='/workouts/index' component={WorkoutIndex} />
           <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
           <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
-          <ProtectedRoute path='/activity_log' component={ActivityLogIndex} />
-          <Redirect to='/activity_log' />
+          <ProtectedRoute path='/dashboard' component={DashboardIndex} />
+          <Redirect to='/dashboard' />
         </Switch>
       </div>
       <Footer/>

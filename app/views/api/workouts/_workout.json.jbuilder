@@ -6,4 +6,5 @@ json.set! workout.id do
   else
     json.startTime nil
   end
+  json.createdDate workout.created_at.to_formatted_s(:api_response)
 end

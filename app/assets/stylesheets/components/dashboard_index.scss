@@ -1,0 +1,15 @@
+.dashboard-index {
+  width: 70%;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $light-gray;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+}
