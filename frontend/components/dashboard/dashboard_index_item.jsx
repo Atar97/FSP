@@ -24,7 +24,7 @@ export class Route extends DashboardIndexItem {
     return (
       <li className='route-list-item' value={route.id}
         onClick={this.handleClick.bind(this)}>
-        <img />
+        <img src={route.imageUrl}/>
         <div className='route-description'>
           <p>{route.name}</p>
           <p>{inMiles(route.distance)} mi</p>
@@ -41,9 +41,15 @@ export class Workout extends DashboardIndexItem {
   }
 
   render() {
-    const {workout} = this.props;
+    const {workout, routes} = this.props;
+    const route = routes[workout.routeId]
+    let imageUrl = '';
+    if (route) {
+      imageUrl = route.imageUrl;
+    }
     return (
-      <li>
+      <li className='workout-index-item'>
+        <img src={imageUrl}/>
         <div className='workout-title'>
           <Link to={`/workouts/${workout.id}`}>{workout.title}</Link>
           <p>Distance</p>

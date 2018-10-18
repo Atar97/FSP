@@ -15,7 +15,7 @@ export default class RouteIndexItem extends React.Component {
     }
     return (
       <ul className={classname}>
-        <li className='route attribute-box'><p>{route.id}</p></li>
+        <li className='route attribute-box'><img src={route.imageUrl}/></li>
 
         <li className='created attribute-box'>
           <Link to={`/routes/${route.id}`} className='link-style'>{route.createdDate}</Link></li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {addClass, removeClass} from '../../util/html_util';
+import {fetchMapImage} from '../../util/map_api_util';
 
 class RouteForm extends React.Component {
   constructor(props) {
@@ -51,22 +52,23 @@ class RouteForm extends React.Component {
     const latLngString = `${startPosition.lat()},${startPosition.lng()}`;
     let newRouteId;
     fetchAddress(latLngString)
-    .then(mainAddress => {
+      .then(mainAddress => {
         //wait for address from google
         route.city = this.createCity(mainAddress.address);
+        route.imageUrl = fetchMapImage(markers, '400x400', latLngString, 13);
         createRoute({route})
         .then(routeRes => {
-            //wait for route to be created to make markers
-            const resRoute = Object.values(routeRes.payload)[0];
-            newRouteId = resRoute.id;
-            createMarkers(data, resRoute.id)
+          //wait for route to be created to make markers
+          const resRoute = Object.values(routeRes.payload)[0];
+          newRouteId = resRoute.id;
+          createMarkers(data, resRoute.id)
           .then(() => {
-              //wait for all markers to be created before redirecting to
-              //route show page
-              clearDistance();
-              history.push(`/routes/${newRouteId}`);
-            });
+            //wait for all markers to be created before redirecting to
+            //route show page
+            clearDistance();
+            history.push(`/routes/${newRouteId}`);
           });
+        });
       });
   }
 

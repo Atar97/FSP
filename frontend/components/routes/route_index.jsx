@@ -23,7 +23,7 @@ class RouteIndex extends React.Component {
         </header>
         <ul className='route-list vertical-box-center'>
           <li> <ul className='minor-header'>
-                <li className='route attribute-box'>ID</li>
+                <li className='route attribute-box'>Route</li>
                 <li className='created attribute-box'>Created</li>
                 <li className='distance attribute-box'>distance</li>
                 <li className='name attribute-box'>name</li>
