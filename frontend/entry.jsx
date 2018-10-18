@@ -5,7 +5,9 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 //begin test
-import * as WorkoutApi from './util/workout_api_util';
+import * as MapApi from './util/map_api_util';
+import * as MarkerApi from './util/marker_api_util';
+import * as MarkerActions from './actions/marker_actions';
 // end test
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -24,19 +26,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     store = configureStore({});
   }
   // start test
-  window.workout = {userId: 110, title: 'a new route', startTime: '19:21',
-    body: 'such a good workout', routeId: 75, distance: 12260,
-    duration: 600, date: '15/10/18'};
-  window.newWorkout = {body: "such a good workout",
-    date: "15/10/18",
-    distance: 12260,
-    duration: 600,
-    id: 6,
-    routeId: 75,
-    startTime: null,
-    title: "updated new route",
-    userId: 110}
-  window.WorkoutApi = WorkoutApi;
+  window.MapApi = MapApi;
+  window.MarkerApi = MarkerApi;
+  window.MarkerActions = MarkerActions;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   // end test
