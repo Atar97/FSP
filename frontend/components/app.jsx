@@ -33,6 +33,7 @@ export default () => {
           <ProtectedRoute path='/routes/:route_id' component={RouteDetail} />
           <ProtectedRoute path='/workouts/index' component={WorkoutIndex} />
           <ProtectedRoute path='/workouts/create' component={WorkoutForm} />
+          <ProtectedRoute path='/workouts/edit/:workout_id' component={WorkoutForm} />
           <ProtectedRoute path='/workouts/:workout_id' component={WorkoutDetail} />
           <ProtectedRoute path='/dashboard' component={DashboardIndex} />
           <Redirect to='/dashboard' />

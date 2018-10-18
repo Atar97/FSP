@@ -43,7 +43,7 @@ class WorkoutDetail extends React.Component {
   render() {
     const {
       center, markers, workout,
-      fetchMarkersforRoute, receiveMarkers
+      fetchMarkersforRoute, receiveMarkers, match
     } = this.props;
     let map;
     if (workout && workout.routeId) {
@@ -66,7 +66,7 @@ class WorkoutDetail extends React.Component {
             </ul>
             <div className='button-list'>
               <Link className='button-style small'
-                to='/workouts/edit/:workout_id'>edit</Link>
+                to={`/workouts/edit/${match.params.workout_id}`}>edit</Link>
               <p className='button-style small gray-button'
                 onClick={this.destroy.bind(this)}>delete</p>
               <Link className='button-style small'

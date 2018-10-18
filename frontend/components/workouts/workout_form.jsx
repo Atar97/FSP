@@ -2,14 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {fetchMyRoutes} from '../../actions/route_actions';
-import {createWorkout, updateWorkout, receiveSelectedRoute
+import {
+  createWorkout, updateWorkout, receiveSelectedRoute, fetchWorkout
 } from '../../actions/workout_actions';
 import RouteDropDown from './route_dropdown';
-import {getDistance, inMiles} from '../../reducers/selectors';
+import {getDistance, inMiles, timeConversion} from '../../reducers/selectors';
 
 class WorkoutForm extends React.Component {
   constructor(props) {
     super(props);
+
     const d = new Date();
     this.state = {
       title: '',
@@ -32,13 +34,14 @@ class WorkoutForm extends React.Component {
   handleSubmit(event) {
     const {
       match, createWorkout,
-      editWorkout, selectedRouteId} = this.props;
+      updateWorkout, selectedRouteId} = this.props;
     event.preventDefault();
     const data = Object.assign({}, this.state);
     data.distance = data.distance * 1609;
     data.duration = this.getDuration();
     data.routeId = selectedRouteId;
-    if (match.params.id) {
+    if (match.params.workout_id) {
+      data.id = match.params.workout_id;
       updateWorkout({workout: data})
       .then(res => {
         const resId = Object.keys(res.payload)[0]
@@ -55,7 +58,40 @@ class WorkoutForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMyRoutes()
+    const {
+      receiveSelectedRoute, fetchMyRoutes, fetchWorkout, match
+    } = this.props;
+    fetchMyRoutes().then(() => {
+      fetchWorkout(match.params.workout_id)
+      .then(res => {
+        const workout = Object.values(res.payload)[0];
+        receiveSelectedRoute(workout.routeId);
+        const startTime = workout.startTime.split(' ')[0]
+        const duration = timeConversion(workout.duration).split(':')
+        let hrs, sec, min;
+        if (duration.length > 2) {
+          hrs = duration[0]
+          min = duration[1]
+          sec = duration[2]
+        } else {
+          hrs = ''
+          min = duration[0]
+          sec = duration[1]
+        }
+        this.setState({
+          title: workout.title,
+          date: workout.date,
+          body: workout.body,
+          startTime,
+          routeId: workout.routeId,
+          hrs,
+          min,
+          sec,
+          pace: '',
+          distance: inMiles(workout.distance)
+        }, () => this.setState({pace: this.getPace()}))
+      });
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -169,8 +205,9 @@ class WorkoutForm extends React.Component {
 const mapDispatchToProps = dispatch => ({
   createWorkout: (workout) => dispatch(createWorkout(workout)),
   updateWorkout: (workout) => dispatch(updateWorkout(workout)),
+  fetchWorkout: id => dispatch(fetchWorkout(id)),
   fetchMyRoutes: () => dispatch(fetchMyRoutes()),
-  receiveSelectedRoute: routeId => dispatch(receiveSelectedRoute(routeId))
+  receiveSelectedRoute: routeId => dispatch(receiveSelectedRoute(routeId)),
 });
 
 const mapStateToProps = state => {
