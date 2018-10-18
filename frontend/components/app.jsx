@@ -18,7 +18,6 @@ import WorkoutForm from './workouts/workout_form';
 import WorkoutDetail from './workouts/workout_detail';
 import WorkoutIndex from './workouts/workout_index';
 import DashboardIndex from './dashboard/dashboard_index';
-// import MapTest from './maps/map_test';
 
 export default () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {fetchWorkout} from '../../actions/workout_actions';
+import {fetchWorkout, destroyWorkout} from '../../actions/workout_actions';
 import {fetchRoute} from '../../actions/route_actions';
 import {fetchMarkersforRoute, receiveMarkers
 } from '../../actions/marker_actions';
@@ -22,13 +22,22 @@ class WorkoutDetail extends React.Component {
 
   renderPace() {
     const {workout: {distance, duration}} = this.props
-    const min = Math.floor(duration / (60 * distance));
-    const sec = Math.round(60 * (duration / (60 * distance) - min));
-    return `${min}:${sec}`
+    const secPerMile = duration / inMiles(distance);
+    const min = Math.floor(secPerMile / 60);
+    let sec = Math.round(secPerMile - (60 * min));
+    if (sec < 10) {
+      sec = `0${sec}`;
+    }
+    return `${min}:${sec}`;
   }
 
   renderDuration(duration) {
     return timeConversion(duration)
+  }
+
+  destroy() {
+    this.props.destroyWorkout(this.props.match.params.workout_id)
+    .then(this.props.history.push('/workouts/'))
   }
 
   render() {
@@ -58,7 +67,8 @@ class WorkoutDetail extends React.Component {
             <div className='button-list'>
               <Link className='button-style small'
                 to='/workouts/edit/:workout_id'>edit</Link>
-              <p className='button-style small'>delete</p>
+              <p className='button-style small gray-button'
+                onClick={this.destroy.bind(this)}>delete</p>
               <Link className='button-style small'
                 to='/workouts/create'>create workout</Link>
             </div>
@@ -79,6 +89,7 @@ class WorkoutDetail extends React.Component {
 const mapDispatchToProps = dispatch => ({
   fetchWorkout: id => dispatch(fetchWorkout(id)),
   fetchRoute: id => dispatch(fetchRoute(id)),
+  destroyWorkout: id => dispatch(destroyWorkout(id)),
   fetchMarkersforRoute: id => dispatch(fetchMarkersforRoute(id)),
   receiveCenter: center => dispatch(receiveCenter(enter)),
   receiveMarkers: markers => dispatch(receiveMarkers(markers)),

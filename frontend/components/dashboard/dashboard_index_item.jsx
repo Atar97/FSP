@@ -45,7 +45,7 @@ export class Workout extends DashboardIndexItem {
     return (
       <li>
         <div className='workout-title'>
-          <Link to={`/routes/${workout.id}`}>{workout.title}</Link>
+          <Link to={`/workouts/${workout.id}`}>{workout.title}</Link>
           <p>Distance</p>
           <strong>{inMiles(workout.distance)} <p className='mi'>mi</p></strong>
         </div>

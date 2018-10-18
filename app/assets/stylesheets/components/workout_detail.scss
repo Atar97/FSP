@@ -68,7 +68,7 @@
     font-size: 12px;
   }
 
-  p {
+  p:hover {
     background-color: $dark-gray;
   }
 
@@ -99,6 +99,10 @@
   color: white;
   min-width: 35px;
   text-align: center;
+}
+
+.button-style:hover {
+  cursor: pointer;
 }
 
 .gray-button {

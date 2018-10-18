@@ -20,9 +20,9 @@ class NavBar extends React.Component {
             <i className="fas fa-route"></i>
             plot my plod
           </Link>
-          <Link className='navlink' to='/workouts/index'>training</Link>
+          <Link className='navlink' to='/dashboard'>training</Link>
           <Link className='navlink' to='/routes/my_routes'>routes</Link>
-          <Link className='navlink' to='/challenges'>challenges</Link>
+          <Link className='navlink' to='/workouts/index'>workouts</Link>
         </div>
         <UserNav />
       </div>
