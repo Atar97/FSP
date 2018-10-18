@@ -39,7 +39,11 @@ class WorkoutForm extends React.Component {
     data.duration = this.getDuration();
     data.routeId = selectedRouteId;
     if (match.params.id) {
-
+      updateWorkout({workout: data})
+      .then(res => {
+        const resId = Object.keys(res.payload)[0]
+        this.props.history.push(`/workouts/${resId}`)
+      });
     } else {
       createWorkout({workout: data})
       .then(res => {
