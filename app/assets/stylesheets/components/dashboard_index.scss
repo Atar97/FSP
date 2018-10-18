@@ -51,6 +51,10 @@
         margin: 3px 0;
       }
 
+      a:hover {
+        color: $link-blue-hover;
+      }
+
       p {
         font-size: 12px;
         margin: 3px 0;
@@ -159,7 +163,8 @@
 
 .workout-index-item {
   img {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
   }
 }
