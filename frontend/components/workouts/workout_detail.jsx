@@ -8,7 +8,7 @@ import {fetchMarkersforRoute, receiveMarkers
 } from '../../actions/marker_actions';
 import {receiveCenter, center} from '../../actions/map_actions';
 import ShowMap from '../maps/show_map';
-import {inMiles} from '../../reducers/selectors';
+import {inMiles, timeConversion} from '../../reducers/selectors';
 
 class WorkoutDetail extends React.Component {
 
@@ -28,12 +28,7 @@ class WorkoutDetail extends React.Component {
   }
 
   renderDuration(duration) {
-    const hr = Math.floor(duration / 3600);
-    duration -= hr * 3600;
-    const min = Math.floor(duration / 60);
-    duration -= min * 60;
-    const sec = Math.floor(duration);
-    return `${hr}:${min}:${sec}`;
+    return timeConversion(duration)
   }
 
   render() {

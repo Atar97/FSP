@@ -21,7 +21,7 @@ class WorkoutIndex extends React.Component {
             to='/workouts/create'>Log a Workout</Link>
         </header>
         <ul className='workout-list'>
-          {Object.values(workouts).map(workout => {
+          {Object.values(workouts).reverse().map(workout => {
             return <WorkoutIndexItem key={workout.id}
               workout={workout} history={history}/>
           })}

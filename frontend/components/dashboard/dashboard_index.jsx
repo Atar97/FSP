@@ -13,20 +13,19 @@ import {currentUser} from '../../reducers/selectors';
 class DashboardIndex extends React.Component {
 
   componentDidMount() {
-    debugger;
     const {fetchMyRoutes, fetchUserWorkouts, currentUser} = this.props;
     fetchMyRoutes().then(fetchUserWorkouts(currentUser.id));
   }
 
   render() {
-    const {workouts, routes} = this.props;
+    const {workouts, routes, history} = this.props;
     return (
       <div className='content-container'>
         <div className='dashboard-index'>
           <div className='workouts list'>
             <header>
               <h1>Recent Workouts</h1>
-              <Link to='/workouts'>View All</Link>
+              <Link to='/workouts/index'>View All</Link>
             </header>
             <ul>
               {workouts.map(workout => {
@@ -38,12 +37,12 @@ class DashboardIndex extends React.Component {
           <div className='list routes'>
             <header>
               <h1>Recent Routes</h1>
-              <Link to='/my_routes'>View All</Link>
+              <Link to='/routes/my_routes'>View All</Link>
             </header>
             <ul>
               {routes.map(route => {
                 return <Route key={route.id}
-                  route={route} />
+                  route={route} history={history}/>
               })}
             </ul>
           </div>
@@ -54,8 +53,8 @@ class DashboardIndex extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  routes: Object.values(state.entities.routes).slice(0, 10),
-  workouts: Object.values(state.entities.workouts).slice(0, 10),
+  routes: Object.values(state.entities.routes).reverse().slice(0, 10),
+  workouts: Object.values(state.entities.workouts).reverse().slice(0, 10),
   currentUser: currentUser(state),
 });
 

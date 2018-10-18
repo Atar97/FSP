@@ -42,7 +42,7 @@ class RouteIndex extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  routes: Object.values(state.entities.routes),
+  routes: Object.values(state.entities.routes).reverse(),
 });
 
 const mapDispatchToProps = dispatch => ({

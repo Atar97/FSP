@@ -6,10 +6,151 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $light-gray;
+
+    a {
+      background-color: $light-gray;
+      border-radius: 4px;
+      color: $link-blue;
+      padding: 6px;
+      font-size: 12px;
+    }
+
+    a:hover {
+      color: $link-blue-hover;
+    }
   }
 
   h1 {
     font-size: 20px;
   }
 
+  li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $light-gray;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid $light-gray;
+      height: 100px;
+      margin-right: 10px;
+      min-width: 120px;
+    }
+
+    .workout-title {
+      min-width: 300px;
+
+      a {
+        color: $link-blue;
+        font-size: 16px;
+        margin: 3px 0;
+      }
+
+      p {
+        font-size: 12px;
+        margin: 3px 0;
+        display: inline;
+      }
+
+      strong {
+        font-size: 45px;
+        font-weight: normal;
+        margin-right: 7px;
+
+      }
+
+      .mi {
+        font-size: 14px;
+        color: $medium-gray;
+      }
+    }
+
+    .workout-duration {
+
+      p {
+        text-transform: uppercase;
+        color: $medium-gray;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+
+      strong {
+        font-size: 22px;
+        font-weight: normal;
+      }
+
+    }
+
+    .workout-date {
+      display: flex;
+      align-items: center;
+      // justify-content: flex-start;
+      font-size: 12px;
+      border: none;
+      strong {
+        border-bottom: 1px solid $light-gray;
+        padding: 2px 0;
+        margin-bottom: 2px;
+        width: 100%;
+        text-align: center;
+      }
+
+      i {
+        margin-top: 5px;
+        padding: 3px 7px;
+        font-size: 35px;
+        color: $light-gray;
+        border: 2px solid $light-gray;
+        border-radius: 50%;
+      }
+    }
+  }
+
+}
+
+.routes {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+  }
+
+  .route-list-item {
+    padding: 0;
+    height: 150px;
+    width: 150px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+    img {
+      height: 100%;
+      background: $lightest-blue;
+    }
+    div {
+      z-index: 1;
+      padding: 3px;
+      position: absolute;
+      bottom: 5px;
+      left: 2px;
+      background-color: rgba(255, 255, 255, .8);
+      width: 90%;
+      box-shadow: 1px 1px 3px gray;
+      height: 40px;
+    }
+  }
+
+  .route-list-item:hover {
+    color: $link-blue;
+    cursor: pointer;
+  }
 }

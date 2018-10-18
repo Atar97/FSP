@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import {inMiles, timeConversion} from '../../reducers/selectors';
+
 class DashboardIndexItem extends React.Component {
 
 }
@@ -12,11 +14,21 @@ export class Route extends DashboardIndexItem {
     super(props)
   }
 
+  handleClick(event) {
+    const id = event.currentTarget.getAttribute('value');
+    this.props.history.push(`routes/${id}`)
+  }
+
   render() {
     const {route} = this.props;
     return (
-      <li>
-        <p>{route.id}</p>
+      <li className='route-list-item' value={route.id}
+        onClick={this.handleClick.bind(this)}>
+        <img />
+        <div className='route-description'>
+          <p>{route.name}</p>
+          <p>{inMiles(route.distance)} mi</p>
+        </div>
       </li>
     )
   }
@@ -29,23 +41,22 @@ export class Workout extends DashboardIndexItem {
   }
 
   render() {
-    debugger;
     const {workout} = this.props;
     return (
       <li>
-        <div>
+        <div className='workout-title'>
           <Link to={`/routes/${workout.id}`}>{workout.title}</Link>
           <p>Distance</p>
-          <strong>{workout.distance} <p>mi</p></strong>
+          <strong>{inMiles(workout.distance)} <p className='mi'>mi</p></strong>
         </div>
-        <div>
+        <div className='workout-duration'>
           <p>duration</p>
-          <strong>{workout.duration}</strong>
+          <strong>{timeConversion(workout.duration)}</strong>
         </div>
-        <div>
-          <p>{workout.createdDate}</p>
+        <div className='workout-date'>
+          <strong>{workout.createdDate}</strong>
           <p>Activity</p>
-          <i>runner man</i>
+          <i className="fas fa-running"></i>
         </div>
       </li>
     )
