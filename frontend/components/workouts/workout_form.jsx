@@ -62,35 +62,37 @@ class WorkoutForm extends React.Component {
       receiveSelectedRoute, fetchMyRoutes, fetchWorkout, match
     } = this.props;
     fetchMyRoutes().then(() => {
-      fetchWorkout(match.params.workout_id)
-      .then(res => {
-        const workout = Object.values(res.payload)[0];
-        receiveSelectedRoute(workout.routeId);
-        const startTime = workout.startTime.split(' ')[0]
-        const duration = timeConversion(workout.duration).split(':')
-        let hrs, sec, min;
-        if (duration.length > 2) {
-          hrs = duration[0]
-          min = duration[1]
-          sec = duration[2]
-        } else {
-          hrs = ''
-          min = duration[0]
-          sec = duration[1]
-        }
-        this.setState({
-          title: workout.title,
-          date: workout.date,
-          body: workout.body,
-          startTime,
-          routeId: workout.routeId,
-          hrs,
-          min,
-          sec,
-          pace: '',
-          distance: inMiles(workout.distance)
-        }, () => this.setState({pace: this.getPace()}))
-      });
+      if (match.params.workout_id) {
+        fetchWorkout(match.params.workout_id)
+        .then(res => {
+          const workout = Object.values(res.payload)[0];
+          receiveSelectedRoute(workout.routeId);
+          const startTime = workout.startTime.split(' ')[0]
+          const duration = timeConversion(workout.duration).split(':')
+          let hrs, sec, min;
+          if (duration.length > 2) {
+            hrs = duration[0]
+            min = duration[1]
+            sec = duration[2]
+          } else {
+            hrs = ''
+            min = duration[0]
+            sec = duration[1]
+          }
+          this.setState({
+            title: workout.title,
+            date: workout.date,
+            body: workout.body,
+            startTime,
+            routeId: workout.routeId,
+            hrs,
+            min,
+            sec,
+            pace: '',
+            distance: inMiles(workout.distance)
+          }, () => this.setState({pace: this.getPace()}))
+        });
+      }
     })
   }
 
