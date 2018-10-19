@@ -8,6 +8,8 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
+  Route.destroy_all
+  Workout.destroy_all
 
   User.create!([
     {email: 'austin', password: 'password',
@@ -15,38 +17,28 @@ ActiveRecord::Base.transaction do
     gender: 'M', country: 'USA'},
     {email: 'Sam', password: 'password',
       fname: 'Sam', lname: 'Hacker', DOB: '24/6/1993',
-    gender: 'M', country: 'USA'}
-    ])
-
-    10.times do
-      User.create_demo_user
-    end
-
-  austin = User.find_by(email: 'austin');
-
-  Route.destroy_all
-
-  Route.create!([
-    {city: 'Madison', distance: 1234,
-      name: Faker::LordOfTheRings.location, creator_id: austin.id},
-    {city: 'Madison', distance: 2345,
-      name: Faker::LordOfTheRings.location, creator_id: austin.id},
-    {city: 'Madison', distance: 23421,
-      name: Faker::LordOfTheRings.location, creator_id: austin.id},
-    {city: 'Madison', distance: 4463,
-      name: Faker::LordOfTheRings.location, creator_id: austin.id},
-  ])
-
-  rf = Route.first
-  rl = Route.last
-
-  Workout.create!([
-    {user_id: austin.id, title: Faker::Dune.planet, start_time: '19:23',
-    body: Faker::Dune.saying, route_id: rf.id, distance: rf.distance,
-    duration: 600, date: Faker::Date.backward(10)},
-    {user_id: austin.id, title: Faker::Dune.planet, start_time: '19:23',
-    body: Faker::Dune.saying, route_id: rl.id, distance: rl.distance,
-    duration: 1000, date: Faker::Date.backward(10)},
+    gender: 'M', country: 'USA'},
+    {email: 'demouser1',
+      fname: Faker::Name.first_name,
+      lname: Faker::Name.last_name,
+      DOB: Faker::Date.birthday(16, 120),
+      password: 'starwars',
+      gender: ['F', 'M'].shuffle[0],
+      country: Faker::WorldCup.team},
+    {email: 'demouser2',
+      fname: Faker::Name.first_name,
+      lname: Faker::Name.last_name,
+      DOB: Faker::Date.birthday(16, 120),
+      password: 'starwars',
+      gender: ['F', 'M'].shuffle[0],
+      country: Faker::WorldCup.team},
+    {email: 'demouser3',
+      fname: Faker::Name.first_name,
+      lname: Faker::Name.last_name,
+      DOB: Faker::Date.birthday(16, 120),
+      password: 'starwars',
+      gender: ['F', 'M'].shuffle[0],
+      country: Faker::WorldCup.team},
     ])
 
 

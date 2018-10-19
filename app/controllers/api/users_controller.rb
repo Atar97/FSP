@@ -15,7 +15,8 @@ class Api::UsersController < ApplicationController
   end
 
   def demo_user
-    @user = User.create_demo_user
+    demos = User.where('email LIKE ?', '%demouser%')
+    @user = demos.sample
     login(@user)
     render :show
   end

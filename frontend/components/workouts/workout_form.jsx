@@ -61,6 +61,7 @@ class WorkoutForm extends React.Component {
     const {
       receiveSelectedRoute, fetchMyRoutes, fetchWorkout, match
     } = this.props;
+    receiveSelectedRoute(null);
     fetchMyRoutes().then(() => {
       if (match.params.workout_id) {
         fetchWorkout(match.params.workout_id)
