@@ -10,6 +10,9 @@ The project was designed and built within a ten day timeline, though improvement
 - Users can create and destroy routes they have plodded
 - Users can create, edit, and destroy workouts to make sure they are hitting their plodding goals
 
+![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/search-bar.gif)
+
+
 ## Routes
 
 Routes uses the google maps javascript api to allow plodders to recreate paths they have plodded. Plot My Plod allows plodders to undo or clear mistaken points and dynamically updates the plodded distance as routes are being created.
@@ -20,8 +23,12 @@ The route map has a search feature that allows plodders to center the map on any
 
 Every route saves a thumbnail so when searching through the index pages the site doesn't need to load a fully interactive map.
 
+![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/route_index.png)
+
 ## Workouts
 
 Plodders can keep track of their progress by logging the routes they have plodded using the workout feature. Each workout can have a route associated with it.
 
 Workouts automatically update distance based on the distance of the route and show pacing information once a time has been entered.
+
+![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/workout-form.gif)
