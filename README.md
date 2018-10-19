@@ -16,6 +16,8 @@ Routes uses the google maps javascript api to allow plodders to recreate paths t
 
 The route map has a search feature that allows plodders to center the map on any location in the world.
 
+![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/search-bar.gif)
+
 Every route saves a thumbnail so when searching through the index pages the site doesn't need to load a fully interactive map.
 
 ## Workouts
