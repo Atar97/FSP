@@ -10,7 +10,7 @@ The project was designed and built within a ten day timeline, though improvement
 - Users can create and destroy routes they have plodded
 - Users can create, edit, and destroy workouts to make sure they are hitting their plodding goals
 
-![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/search-bar.gif)
+![Alt Text](https://github.com/Atar97/FSP/blob/master/app/assets/readme/dashboard.png)
 
 
 ## Routes
