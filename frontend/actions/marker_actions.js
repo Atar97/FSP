@@ -18,14 +18,14 @@ export const popMarker = () => ({
   type: POP_MARKER
 });
 
-const success = (res) => {
+const success = dispatch => (res) => {
   dispatch(receiveMarkers(res));
 };
 
 export const createMarkers = (markers, routeId) => dispatch => (
-  APIUtil.sendDownMarkers(markers, routeId).then(success)
+  APIUtil.sendDownMarkers(markers, routeId).then(success(dispatch))
 );
 
 export const fetchMarkersforRoute = routeId => dispatch => (
-  APIUtil.fetchMarkersforRoute(routeId).then(success)
+  APIUtil.fetchMarkersforRoute(routeId).then(success(dispatch))
 );

@@ -30,21 +30,21 @@ export const removeRoute = routeId => ({
   routeId
 });
 
-const success = (res) => {
+const success = dispatch => (res) => {
   return dispatch(receiveRoutes(res));
 };
 
-const failure = res => {
+const failure = dispatch => res => {
   return dispatch(receiveRouteErrors(res.responseJSON));
 };
 
 const createThunkAction = callback => input => dispatch => {
-  return callback(input).then(success, failure);
+  return callback(input).then(success(dispatch), failure(dispatch));
 };
 
 export const destroyRoute = (routeId) => dispatch => {
   return RouteAPIUtil.destroyRoute(routeId)
-    .then(() => dispatch(removeRoute(routeId)), failure);
+    .then(() => dispatch(removeRoute(routeId)), failure(dispatch));
 };
 
 export const fetchRoute = createThunkAction(RouteAPIUtil.fetchRoute);

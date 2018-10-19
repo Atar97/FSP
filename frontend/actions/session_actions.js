@@ -18,18 +18,18 @@ export const clearErrors = () => ({
   type: CLEAR_ERRORS
 });
 
-const success = payload => {
+const success = dispatch => payload => {
   dispatch(clearErrors);
   dispatch(receiveCurrentUser(payload));
 };
 
-const failure = errorResponse => {
+const failure = dispatch => errorResponse => {
   const errors = errorResponse.responseJSON;
   dispatch(receiveErrors(errors));
 };
 
 const createThunkAction = callback => user => dispatch => {
-  return callback(user).then(success, failure);
+  return callback(user).then(success(dispatch), failure(dispatch));
 };
 
 export const logout = createThunkAction(SessionUtil.logout);

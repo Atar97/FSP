@@ -27,16 +27,16 @@ export const receiveSelectedRoute = routeId => ({
 
 // Thunk actions
 
-const success = (res) => {
+const success = dispatch => (res) => {
   return dispatch(receiveWorkouts(res));
 };
 
-const failure = res => {
+const failure = dispatch => res => {
   return dispatch(receiveWorkoutErrors(res.responseJSON));
 };
 
 const createThunkAction = callback => input => dispatch => {
-  return callback(input).then(success, failure);
+  return callback(input).then(success(dispatch), failure(dispatch));
 };
 
 export const fetchUserWorkouts = createThunkAction(
