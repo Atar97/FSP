@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('road.png'), :rel => 'icon', :type =>  'image/png' %>
-    <script>window.decodeURlComponent = '<%= Rails.application.credentials.google[:api_key] %>'</script>
+    <script>window.api_key = '<%= Rails.application.credentials.google[:api_key] %>'</script>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:api_key]}&libraries=geometry" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">

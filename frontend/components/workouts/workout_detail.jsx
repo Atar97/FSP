@@ -74,7 +74,8 @@ class WorkoutDetail extends React.Component {
             </div>
           </div>
           <div className='map-container'>
-            <header className='route-details'></header>
+            <header className='route-details'>
+            </header>
             <div className='map'>
               {map}
             </div>

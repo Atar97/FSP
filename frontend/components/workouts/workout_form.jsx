@@ -29,6 +29,7 @@ class WorkoutForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.getDuration = this.getDuration.bind(this);
     this.getPace = this.getPace.bind(this);
+    receiveSelectedRoute(null)
   }
 
   handleSubmit(event) {
@@ -61,7 +62,6 @@ class WorkoutForm extends React.Component {
     const {
       receiveSelectedRoute, fetchMyRoutes, fetchWorkout, match
     } = this.props;
-    receiveSelectedRoute(null);
     fetchMyRoutes().then(() => {
       if (match.params.workout_id) {
         fetchWorkout(match.params.workout_id)
@@ -126,6 +126,10 @@ class WorkoutForm extends React.Component {
   render () {
     const {title, date, body, startTime, sec,
       routeId, hrs, min, distance, pace} = this.state;
+    let paceSecs = Math.round((Number(pace) - Math.floor(Number(pace))) * 60)
+    if (paceSecs < 10) {
+      paceSecs = `0${paceSecs}`;
+    }
     return (
       <div className='content-container'>
         <div className='workout-form-container'>
@@ -193,7 +197,7 @@ class WorkoutForm extends React.Component {
                   value={Math.floor(Number(pace))}/><p>:</p>
                 <input disabled className='time-box' placeholder='ss'
                   type='number' max='59' min='0'
-                  value={Math.round((Number(pace) - Math.floor(Number(pace))) * 60)}/><p>min/mi</p>
+                  value={paceSecs}/><p>min/mi</p>
               </div>
             </label>
           </form>

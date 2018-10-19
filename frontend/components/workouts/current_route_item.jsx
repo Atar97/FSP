@@ -21,6 +21,7 @@ export default class CurrentRouteItem extends React.Component {
   }
 
   render() {
+    debugger;
     if (this.props.selectedRouteId) {
       const route = this.props.routes[this.props.selectedRouteId]
       return (
