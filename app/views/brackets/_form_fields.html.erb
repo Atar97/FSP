@@ -1,36 +1,31 @@
 <%= form_with(url: "/brackets") do %>
-  <%= text_field_tag(:bracket_name) %>
+  <div class="form-group">
+    <%= label_tag(:bracket_name, "Bracket Name:") %>
+    <%= text_field_tag(:bracket_name) %>
+  </div>
+
   <div class="container">
     <div class="row">
+    <% @rounds.each_with_index do |matchups, round| %>
       <div class="col-sm">
-        <% @round1.each do |matchup| %>
+        <h3>Round <%= round + 1 %></h3>
+        <% matchups.each do |matchup| %>
           <div class="form-group">
-            <%= label_tag(nil, "#{matchup.choices.map(&:titleize).join(" vs. ")}") %>
-            </br>
+            <%= label_tag(:bracket_matchup, "#{matchup.title}") %>
             <%= select(
               :bracket_matchup,
               matchup.id,
-              options_for_select(matchup.select_choices)
+              options_for_select(matchup.select_choices),
+              { prompt: "Which Will Scruffy Snarf?" },
+              class: "form-control",
             ) %>
           </div>
+          <% if round == 3 %>
+            <%= submit_tag("Submit", class: "btn btn-primary") %>
+          <% end %>
         <% end %>
       </div>
-      <div class="col-sm">
-        <% @round2.each do |matchup| %>
-          <div class="form-group">
-            <%= label_tag(nil, "#{matchup.choices.map(&:titleize).join(" vs. ")}") %>
-            </br>
-            <%= select(
-              :bracket_matchup,
-              matchup.id,
-              options_for_select(matchup.select_choices)
-            ) %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-sm">
-        <%= submit_tag("Submit", class: "btn btn-primary") %>
-      </div>
+    <% end %>
     </div>
   </div>
 

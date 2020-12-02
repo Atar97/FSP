@@ -1,5 +1,15 @@
 class Matchup < ApplicationRecord
 
+  has_many :bracket_matchups
+
+  after_update do
+    if winner_changed?
+      bracket_matchups.each do |bracket_matchup|
+        bracket_matchup.update!(correct: bracket_matchup.choice == winner)
+      end
+    end
+  end
+
   def choices=(value)
     self[:choices] = value.join(", ")
   end
@@ -14,19 +24,30 @@ class Matchup < ApplicationRecord
     end
   end
 
+  def title
+    "THE TITLE"
+  end
+
   class << self
     def seed
       destroy_all
-      # round 1
-      [
-        %w[ cheese beef ],
-        %w[ sausage chicken ],
-      ].each do |choices|
+      %w[
+          cheese beef
+          sausage chicken
+          chocolate ice_cream
+          peanut_butter dog_treat
+          watermelon blueberry
+          carrot artichoke
+          bread goldfish
+          popcorn noodle
+        ].each_slice(2) do |choices|
         create(choices: choices, round: 1)
       end
-      # round 2
-      where(round: 1).each_slice(2) do |matchups|
-        create(round: 2, choices: matchups.map(&:choices).flatten)
+
+      [1, 2, 3].each do |round|
+        where(round: round).each_slice(2) do |matchups|
+          create(round: round + 1, choices: matchups.map(&:choices).flatten)
+        end
       end
     end
   end
