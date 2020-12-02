@@ -8,6 +8,12 @@ class Matchup < ApplicationRecord
     self[:choices].split(", ")
   end
 
+  def select_choices
+    choices.map do |choice|
+      [choice.titleize, choice]
+    end
+  end
+
   class << self
     def seed
       destroy_all

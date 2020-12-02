@@ -1,5 +1,37 @@
-<%= form_with do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
+<%= form_with(url: "/brackets") do %>
+  <%= text_field_tag(:bracket_name) %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <% @round1.each do |matchup| %>
+          <div class="form-group">
+            <%= label_tag(nil, "#{matchup.choices.map(&:titleize).join(" vs. ")}") %>
+            </br>
+            <%= select(
+              :bracket_matchup,
+              matchup.id,
+              options_for_select(matchup.select_choices)
+            ) %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm">
+        <% @round2.each do |matchup| %>
+          <div class="form-group">
+            <%= label_tag(nil, "#{matchup.choices.map(&:titleize).join(" vs. ")}") %>
+            </br>
+            <%= select(
+              :bracket_matchup,
+              matchup.id,
+              options_for_select(matchup.select_choices)
+            ) %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm">
+        <%= submit_tag("Submit", class: "btn btn-primary") %>
+      </div>
+    </div>
+  </div>
+
 <% end %>
