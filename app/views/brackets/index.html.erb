@@ -1,0 +1,5 @@
+<%= link_to("New Bracket", bracket_path) %>
+
+<% @brackets.each do |bracket| %>
+  <%= link_to(bracket.name, bracket_path(bracket)) %>
+<% end %>
