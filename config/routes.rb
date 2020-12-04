@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   end
   get 'api/my_routes/', to: 'api/routes#myindex'
 
-  resources :brackets, only: %w[ index show new create ]
+  resources :brackets, only: %w[ index show new create ] do
+    collection do
+      :admin
+    end
+  end
 end

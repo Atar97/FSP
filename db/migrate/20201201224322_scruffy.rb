@@ -17,7 +17,7 @@ class Scruffy < ActiveRecord::Migration[5.2]
       t.belongs_to :bracket
       t.belongs_to :matchup
       t.string :choice
-      t.boolean :correct, null: false, default: false
+      t.boolean :correct
       t.timestamps
     end
 

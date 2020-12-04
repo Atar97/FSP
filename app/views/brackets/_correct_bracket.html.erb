@@ -1,0 +1,33 @@
+<div class="container" style="margin: 5px; border: 3px; padding: 5px; text-align: center">
+  <div class="row">
+    <div class="col-sm">
+      <h1>Round 1</h1>
+      <ul>
+        <% @rounds.first.each do |matchup| %>
+          <div style="padding: 2px; border-style: solid; border-width: 2px; margin: 3px; border-radius: 10%;">
+            <%
+              choice1, choice2 = matchup.choices
+              style = "margin: 5px;"
+            %>
+            <li style=<%= style %> class=<%= choice1 == matchup.winner ? "text-success" : ""%>>
+              <%= choice1.titleize %>
+            </li>
+            vs.
+            <li style=<%= style %> class=<%= choice2 == matchup.winner ? "text-success" : ""%>>
+              <%= choice2.titleize %>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <h1>Round 2</h1>
+    </div>
+    <div class="col-sm">
+      <h1>Semi-Final</h1>
+    </div>
+    <div class="col-sm">
+      <h1>Final Round</h1>
+    </div>
+  </div>
+</div>

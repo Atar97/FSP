@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_224322) do
     t.bigint "bracket_id"
     t.bigint "matchup_id"
     t.string "choice"
-    t.boolean "correct"
+    t.boolean "correct", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bracket_id"], name: "index_bracket_matchups_on_bracket_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_224322) do
   create_table "matchups", force: :cascade do |t|
     t.integer "round"
     t.string "choices"
+    t.string "winner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
