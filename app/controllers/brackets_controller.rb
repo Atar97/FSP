@@ -35,6 +35,13 @@ class BracketsController < ApplicationController
     end
   end
 
+  def seed
+    if Matchup.count == 0
+      Matchup.seed
+    end
+    redirect_to(brackets_path, notice: "Matchups Seeded")
+  end
+
 private
 
   before_action(:set_rounds, only: %w[ new index ])

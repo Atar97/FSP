@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     collection do
       get :admin
       post :admin
+      get :seed
     end
   end
 end
