@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_212624) do
+ActiveRecord::Schema.define(version: 2020_12_01_224322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bracket_matchups", force: :cascade do |t|
+    t.bigint "bracket_id"
+    t.bigint "matchup_id"
+    t.string "choice"
+    t.boolean "correct", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bracket_id"], name: "index_bracket_matchups_on_bracket_id"
+    t.index ["matchup_id"], name: "index_bracket_matchups_on_matchup_id"
+  end
+
+  create_table "brackets", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "choices_matchups", id: false, force: :cascade do |t|
+    t.bigint "choice_id", null: false
+    t.bigint "matchup_id", null: false
+  end
 
   create_table "markers", force: :cascade do |t|
     t.integer "route_id", null: false
@@ -24,6 +47,14 @@ ActiveRecord::Schema.define(version: 2018_10_18_212624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["route_id"], name: "index_markers_on_route_id"
+  end
+
+  create_table "matchups", force: :cascade do |t|
+    t.integer "round"
+    t.string "choices"
+    t.string "winner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "routes", force: :cascade do |t|

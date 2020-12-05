@@ -1,0 +1,40 @@
+<%= form_with(url: brackets_path, local: true) do %>
+  <div class="form-group d-flex justify-content-center">
+    <%= label_tag(:bracket_name, "Bracket Name:", style: "font-size: 25px; margin-right: 30px;") %>
+    <%= text_field_tag(:bracket_name, nil, class: "form-control input-lg", style: "width: 50%;") %>
+  </div>
+
+  <div class="container">
+    <div class="row">
+    <% @rounds.each_with_index do |matchups, round| %>
+      <div class="col-sm">
+        <h3>Round <%= round + 1 %></h3>
+        <%
+          padding = case round
+            when 0 then 0
+            when 1 then 16
+            when 2 then 50
+            when 3 then 100
+            end
+        %>
+        <% matchups.each do |matchup| %>
+          <div class="form-group" style="padding: <%= padding %>% 0">
+            <%= label_tag(:bracket_matchup, "#{matchup.title}") %>
+            <%= select(
+              :bracket_matchup,
+              matchup.id,
+              options_for_select(matchup.select_choices),
+              { prompt: "Which Will Scruffy Snarf?" },
+              class: "form-control",
+            ) %>
+          </div>
+          <% if round == 3 %>
+            <%= submit_tag("Submit", class: "btn btn-primary") %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+<% end %>
