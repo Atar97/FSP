@@ -24,6 +24,7 @@ class BracketsController < ApplicationController
 
   def admin
     if request.get?
+      return redirect_to(brackets_path, alert: "Where do you think you're going?") if params[:password] != "scroopy-noops"
       set_rounds
     elsif request.post?
       params[:matchup_winners].each do |matchup_id, winner|
