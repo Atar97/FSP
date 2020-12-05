@@ -2,18 +2,18 @@
   <h1 class="text-dark">Welcome to Scruffy's Snack Bracket!</h1>
   <div class="text-light">
     <p>Select your bracket below or create a new one!</p>
-    <p>Check back here on December 15th for the first round matchups.</p>
+    <%= link_to("New Bracket", new_bracket_path, class: "btn btn-primary btn-lg") %>
+    <p style="margin-top: 5px;">Check back here on December 15th for the first round matchups.</p>
   </div>
 
   <ul>
     <% @brackets.each do |bracket| %>
-      <li>
+      <li style="padding: 5px;">
         <%= link_to(bracket.name, bracket_path(bracket), class: "btn btn-dark") %>
       </li>
     <% end %>
   </ul>
 
-  <%= link_to("New Bracket", new_bracket_path, class: "btn btn-primary") %>
 
   <%= render("correct_bracket") %>
 </div>
