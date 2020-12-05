@@ -7,7 +7,7 @@
     <div class="col-sm">
       <h1>Round 1</h1>
       <ul>
-        <% BracketMatchup.where(matchup_id: Matchup.where(round: 1), bracket: @bracket).each do |bracket_matchup| %>
+        <% BracketMatchup.where(matchup_id: Matchup.where(round: 1), bracket: @bracket).order(:id).each do |bracket_matchup| %>
           <%
             html_class =
               if bracket_matchup.correct.nil?
@@ -18,7 +18,7 @@
                 "text-danger"
               end
           %>
-          <li style="padding: 2px; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
+          <li style="padding: 2%; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
             <%= bracket_matchup.choice %>
           </li>
         <% end %>
@@ -28,7 +28,7 @@
       <h1>Round 2</h1>
       <div style="height: 3%"></div>
       <ul>
-        <% BracketMatchup.where(matchup_id: Matchup.where(round: 2), bracket: @bracket).each do |bracket_matchup| %>
+        <% BracketMatchup.where(matchup_id: Matchup.where(round: 2), bracket: @bracket).order(:id).each do |bracket_matchup| %>
           <%
             html_class =
               if bracket_matchup.correct.nil?
@@ -39,7 +39,7 @@
                 "text-danger"
               end
           %>
-          <li style="padding: 2px; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
+          <li style="padding: 2%; border-style: solid; border-width: 2px; margin: 30px 10px; border-radius: 30px;" class=<%= html_class %>>
             <%= bracket_matchup.choice %>
           </li>
           <div style="margin: 26%;"></div>
@@ -50,7 +50,7 @@
       <h1>Semi-Final</h1>
       <div style="height: 15%"></div>
       <ul>
-        <% BracketMatchup.where(matchup_id: Matchup.where(round: 3), bracket: @bracket).each do |bracket_matchup| %>
+        <% BracketMatchup.where(matchup_id: Matchup.where(round: 3), bracket: @bracket).order(:id).each do |bracket_matchup| %>
           <%
             html_class =
               if bracket_matchup.correct.nil?
@@ -61,7 +61,7 @@
                 "text-danger"
               end
           %>
-          <li style="padding: 2px; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
+          <li style="padding: 2%; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
             <%= bracket_matchup.choice %>
           </li>
           <div style="margin: 50%;"></div>
@@ -83,7 +83,7 @@
                 "text-danger"
               end
           %>
-          <li style="padding: 2px; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
+          <li style="padding: 2%; border-style: solid; border-width: 2px; margin: 20px; border-radius: 30px;" class=<%= html_class %>>
             <%= bracket_matchup.choice %>
           </li>
         <% end %>

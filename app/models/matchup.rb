@@ -3,10 +3,8 @@ class Matchup < ApplicationRecord
   has_many :bracket_matchups
 
   after_update do
-    if winner_changed?
-      bracket_matchups.each do |bracket_matchup|
-        bracket_matchup.update!(correct: bracket_matchup.choice == winner)
-      end
+    bracket_matchups.each do |bracket_matchup|
+      bracket_matchup.update!(correct: bracket_matchup.choice == winner)
     end
   end
 

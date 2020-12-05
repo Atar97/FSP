@@ -19,11 +19,20 @@ class BracketsController < ApplicationController
         BracketMatchup.create(bracket: @bracket, matchup_id: matchup_id, choice: choice)
       end
     end
-    redirect_to("/brackets/#{@bracket.id}")
+    redirect_to(bracket_path(@bracket))
   end
 
   def admin
-
+    if request.get?
+      set_rounds
+    elsif request.post?
+      params[:matchup_winners].each do |matchup_id, winner|
+        if winner.present?
+          Matchup.find(matchup_id).update!(winner: winner)
+        end
+      end
+      redirect_to(brackets_path)
+    end
   end
 
 private
@@ -31,7 +40,7 @@ private
   before_action(:set_rounds, only: %w[ new index ])
 
   def set_rounds
-    @rounds = (1..4).map { |num| Matchup.where(round: num) }
+    @rounds = (1..4).map { |num| Matchup.where(round: num).sort }
   end
 
 end
