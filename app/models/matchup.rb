@@ -23,7 +23,9 @@ class Matchup < ApplicationRecord
   end
 
   def title
-    "THE TITLE"
+    if round == 1
+      choices.first + " vs. " + choices.second
+    end
   end
 
   class << self

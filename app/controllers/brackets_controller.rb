@@ -18,8 +18,10 @@ class BracketsController < ApplicationController
         puts choice.inspect
         BracketMatchup.create(bracket: @bracket, matchup_id: matchup_id, choice: choice)
       end
+      redirect_to(bracket_path(@bracket))
+    else
+      redirect_to(new_bracket_path)
     end
-    redirect_to(bracket_path(@bracket))
   end
 
   def admin
