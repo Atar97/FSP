@@ -32,3 +32,10 @@
     </div>
   </div>
 <% end %>
+
+
+<ul>
+  <% @brackets.each do |bracket| %>
+    <li><%= link_to("Destroy #{bracket.name}", bracket_path(bracket), method: :delete) %></li>
+  <% end %>
+</ul>

@@ -26,6 +26,7 @@ class BracketsController < ApplicationController
 
   def admin
     if request.get?
+      @brackets = Bracket.all
       return redirect_to(brackets_path, alert: "Where do you think you're going?") if params[:password] != "scroopy-noops"
       set_rounds
     elsif request.post?
@@ -43,6 +44,14 @@ class BracketsController < ApplicationController
       Matchup.seed
     end
     redirect_to(brackets_path, notice: "Matchups Seeded")
+  end
+
+  def destroy
+    @bracket = Bracket.find(params[:id])
+    if @bracket
+      @bracket.destroy
+    end
+    redirect_to(brackets_path)
   end
 
 private

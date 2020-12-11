@@ -9,7 +9,6 @@
       <ul>
         <% BracketMatchup.where(matchup_id: Matchup.where(round: 1), bracket: @bracket).order(:id).each do |bracket_matchup| %>
           <%
-            byebug
             html_class =
               if bracket_matchup.correct?
                 "text-success"
