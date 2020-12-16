@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get :admin
       post :admin
       get :seed
+      get :introduction
     end
   end
 end

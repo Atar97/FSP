@@ -54,6 +54,10 @@ class BracketsController < ApplicationController
     redirect_to(brackets_path)
   end
 
+  def introduction
+
+  end
+
 private
 
   before_action(:set_rounds, only: %w[ new index ])
