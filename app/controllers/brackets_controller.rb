@@ -51,7 +51,7 @@ class BracketsController < ApplicationController
     if @bracket
       @bracket.destroy
     end
-    redirect_to(brackets_admin_path(password: "scroopy-noops"))
+    redirect_to(admin_brackets_path(password: "scroopy-noops"))
   end
 
   def introduction
