@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PlotMyPlod</title>
+    <title>Scruffy Bracket</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag asset_path('road.png'), :rel => 'icon', :type =>  'image/png' %>
+    <%= favicon_link_tag asset_path('dog-fav.jpg'), :rel => 'icon', :type =>  'image/png' %>
     <script>window.api_key = '<%= Rails.application.credentials.google[:api_key] %>'</script>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:api_key]}&libraries=geometry" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>

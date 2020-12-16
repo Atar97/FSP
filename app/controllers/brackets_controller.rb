@@ -1,7 +1,7 @@
 class BracketsController < ApplicationController
 
   def index
-    @brackets = Bracket.all
+    @brackets = Bracket.all.preload(:bracket_matchups)
   end
 
   def show
@@ -51,7 +51,7 @@ class BracketsController < ApplicationController
     if @bracket
       @bracket.destroy
     end
-    redirect_to(brackets_path)
+    redirect_to(brackets_admin_path(password: "scroopy-noops"))
   end
 
   def introduction
