@@ -4,24 +4,45 @@
       <h1>Round 1</h1>
       <ul>
         <% @rounds.first.each do |matchup| %>
-          <div style="padding: 2px; border-style: solid; border-width: 2px; margin: 3px; border-radius: 20px;">
-            <%
-              choice1, choice2 = matchup.choices
-              style = "margin: 5px;"
-            %>
-            <li style=<%= style %> class=<%= choice1 == matchup.winner ? "text-success" : ""%>>
-              <%= choice1.titleize %>
-            </li>
-            vs.
-            <li style=<%= style %> class=<%= choice2 == matchup.winner ? "text-success" : ""%>>
-              <%= choice2.titleize %>
-            </li>
-          </div>
+          <a target="_blank" href="<%= matchup.video_link %>">
+            <div class="text-dark" style="padding: 2px; border-style: solid; border-width: 2px; margin: 3px; border-radius: 20px;">
+              <%
+                choice1, choice2 = matchup.choices
+              %>
+              <li style="<%= choice1 == matchup.winner ? "margin: 5px; color: green;" : "margin: 5px;" %>">
+                <%= choice1.titleize %>
+              </li>
+              vs.
+              <li style="<%= choice2 == matchup.winner ? "margin: 5px; color: green;" : "margin: 5px;" %>">
+                <%= choice2.titleize %>
+              </li>
+            </div>
+          </a>
         <% end %>
       </ul>
     </div>
     <div class="col-sm">
       <h1>Round 2</h1>
+        <div style="height: 35px; width: 20px;"></div>
+      <ul>
+        <% [].each do |matchup| %>
+          <a target="_blank" href="<%= matchup.video_link %>">
+            <div class="text-dark" style="padding: 2px; border-style: solid; border-width: 2px; margin: 3px; border-radius: 20px;">
+              <%
+                choice1, choice2 = matchup.choices
+              %>
+              <li style="<%= choice1 == matchup.winner ? "margin: 5px; color: green;" : "margin: 5px;" %>">
+                <%= choice1.titleize %>
+              </li>
+              vs.
+              <li style="<%= choice2 == matchup.winner ? "margin: 5px; color: green;" : "margin: 5px;" %>">
+                <%= choice2.titleize %>
+              </li>
+            </div>
+          </a>
+          <div style="height: 100px; width: 20px;"></div>
+        <% end %>
+      </ul>
     </div>
     <div class="col-sm">
       <h1>Semi-Final</h1>
