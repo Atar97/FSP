@@ -12,7 +12,7 @@
 
         <%= link_to("New Bracket", new_bracket_path, class: "btn btn-primary btn-lg") %>
         <ul style="margin-top: 20px;">
-          <% @brackets.each do |bracket| %>
+          <% @brackets.sort_by { |bracket| -bracket.score }.each do |bracket| %>
             <li style="margin:5px;">
               <%= link_to("#{bracket.name} (#{bracket.score})", bracket_path(bracket), class: "btn btn-success btn-lg p-2") %>
             </li>

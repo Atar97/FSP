@@ -25,7 +25,7 @@
       <h1>Round 2</h1>
         <div style="height: 35px; width: 20px;"></div>
       <ul>
-        <% [].each do |matchup| %>
+        <% @rounds[1].each do |matchup| %>
           <a target="_blank" href="<%= matchup.video_link %>">
             <div class="text-dark" style="padding: 2px; border-style: solid; border-width: 2px; margin: 3px; border-radius: 20px;">
               <%
